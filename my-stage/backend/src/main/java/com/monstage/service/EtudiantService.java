@@ -2,16 +2,19 @@ package com.monstage.service;
 
 import com.monstage.modele.Etudiant;
 import com.monstage.repository.EtudiantRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class EtudiantService {
 
     private final EtudiantRepository etudiantRepository;
+
+    // Constructeur manuel
+    public EtudiantService(EtudiantRepository etudiantRepository) {
+        this.etudiantRepository = etudiantRepository;
+    }
 
     public List<Etudiant> tousLesEtudiants() {
         return etudiantRepository.findAll();

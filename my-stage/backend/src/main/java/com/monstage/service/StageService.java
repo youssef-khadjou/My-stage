@@ -5,17 +5,21 @@ import com.monstage.modele.Entreprise;
 import com.monstage.modele.Stage;
 import com.monstage.repository.EntrepriseRepository;
 import com.monstage.repository.StageRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class StageService {
 
     private final StageRepository stageRepository;
     private final EntrepriseRepository entrepriseRepository;
+
+    // Constructeur manuel
+    public StageService(StageRepository stageRepository, EntrepriseRepository entrepriseRepository) {
+        this.stageRepository = stageRepository;
+        this.entrepriseRepository = entrepriseRepository;
+    }
 
     public List<Stage> tousLesStages() {
         return stageRepository.findAll();

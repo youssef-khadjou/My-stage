@@ -1,21 +1,14 @@
 package com.monstage.modele;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "stage")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Stage {
     
@@ -63,5 +56,131 @@ public class Stage {
     
     public enum Statut {
         EN_ATTENTE, VALIDE, REFUSE, TERMINE
+    }
+    
+    // Constructeurs
+    public Stage() {}
+    
+    public Stage(Long id, String titre, String description, Integer duree, String lieu, 
+                 LocalDate dateDebut, LocalDate dateFin, Statut statut, Integer nbPlaces, 
+                 String competencesRequises, BigDecimal remuneration, Entreprise entreprise, LocalDateTime dateCreation) {
+        this.id = id;
+        this.titre = titre;
+        this.description = description;
+        this.duree = duree;
+        this.lieu = lieu;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.statut = statut;
+        this.nbPlaces = nbPlaces;
+        this.competencesRequises = competencesRequises;
+        this.remuneration = remuneration;
+        this.entreprise = entreprise;
+        this.dateCreation = dateCreation;
+    }
+    
+    // Getters et Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getDuree() {
+        return duree;
+    }
+
+    public void setDuree(Integer duree) {
+        this.duree = duree;
+    }
+
+    public String getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
+    }
+
+    public LocalDate getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(LocalDate dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public LocalDate getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(LocalDate dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    public Statut getStatut() {
+        return statut;
+    }
+
+    public void setStatut(Statut statut) {
+        this.statut = statut;
+    }
+
+    public Integer getNbPlaces() {
+        return nbPlaces;
+    }
+
+    public void setNbPlaces(Integer nbPlaces) {
+        this.nbPlaces = nbPlaces;
+    }
+
+    public String getCompetencesRequises() {
+        return competencesRequises;
+    }
+
+    public void setCompetencesRequises(String competencesRequises) {
+        this.competencesRequises = competencesRequises;
+    }
+
+    public BigDecimal getRemuneration() {
+        return remuneration;
+    }
+
+    public void setRemuneration(BigDecimal remuneration) {
+        this.remuneration = remuneration;
+    }
+
+    public Entreprise getEntreprise() {
+        return entreprise;
+    }
+
+    public void setEntreprise(Entreprise entreprise) {
+        this.entreprise = entreprise;
+    }
+
+    public LocalDateTime getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(LocalDateTime dateCreation) {
+        this.dateCreation = dateCreation;
     }
 }

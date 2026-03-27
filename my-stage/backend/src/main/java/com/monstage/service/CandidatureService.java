@@ -7,18 +7,25 @@ import com.monstage.modele.Stage;
 import com.monstage.repository.CandidatureRepository;
 import com.monstage.repository.EtudiantRepository;
 import com.monstage.repository.StageRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CandidatureService {
 
     private final CandidatureRepository candidatureRepository;
     private final EtudiantRepository etudiantRepository;
     private final StageRepository stageRepository;
+
+    // Constructeur manuel
+    public CandidatureService(CandidatureRepository candidatureRepository,
+                              EtudiantRepository etudiantRepository,
+                              StageRepository stageRepository) {
+        this.candidatureRepository = candidatureRepository;
+        this.etudiantRepository = etudiantRepository;
+        this.stageRepository = stageRepository;
+    }
 
     public Candidature postuler(RequeteCandidature requete, Long etudiantId) {
         Etudiant etudiant = etudiantRepository.findById(etudiantId)

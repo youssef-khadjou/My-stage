@@ -1,15 +1,9 @@
 package com.monstage.modele;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "entreprise")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Entreprise {
     
     @Id
@@ -46,4 +40,112 @@ public class Entreprise {
     @MapsId
     @JoinColumn(name = "id")
     private Utilisateur utilisateur;
+    
+    // Constructeurs
+    public Entreprise() {}
+    
+    public Entreprise(Long id, String siret, String nomEntreprise, String adresse, String ville, 
+                      String codePostal, String secteurActivite, String siteWeb, 
+                      String telephoneContact, String nomContact, Utilisateur utilisateur) {
+        this.id = id;
+        this.siret = siret;
+        this.nomEntreprise = nomEntreprise;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.codePostal = codePostal;
+        this.secteurActivite = secteurActivite;
+        this.siteWeb = siteWeb;
+        this.telephoneContact = telephoneContact;
+        this.nomContact = nomContact;
+        this.utilisateur = utilisateur;
+    }
+    
+    // Getters et Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSiret() {
+        return siret;
+    }
+
+    public void setSiret(String siret) {
+        this.siret = siret;
+    }
+
+    public String getNomEntreprise() {
+        return nomEntreprise;
+    }
+
+    public void setNomEntreprise(String nomEntreprise) {
+        this.nomEntreprise = nomEntreprise;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(String codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public String getSecteurActivite() {
+        return secteurActivite;
+    }
+
+    public void setSecteurActivite(String secteurActivite) {
+        this.secteurActivite = secteurActivite;
+    }
+
+    public String getSiteWeb() {
+        return siteWeb;
+    }
+
+    public void setSiteWeb(String siteWeb) {
+        this.siteWeb = siteWeb;
+    }
+
+    public String getTelephoneContact() {
+        return telephoneContact;
+    }
+
+    public void setTelephoneContact(String telephoneContact) {
+        this.telephoneContact = telephoneContact;
+    }
+
+    public String getNomContact() {
+        return nomContact;
+    }
+
+    public void setNomContact(String nomContact) {
+        this.nomContact = nomContact;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
 }

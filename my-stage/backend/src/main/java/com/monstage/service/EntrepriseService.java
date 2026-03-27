@@ -2,16 +2,19 @@ package com.monstage.service;
 
 import com.monstage.modele.Entreprise;
 import com.monstage.repository.EntrepriseRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class EntrepriseService {
 
     private final EntrepriseRepository entrepriseRepository;
+
+    // Constructeur manuel
+    public EntrepriseService(EntrepriseRepository entrepriseRepository) {
+        this.entrepriseRepository = entrepriseRepository;
+    }
 
     public List<Entreprise> toutesLesEntreprises() {
         return entrepriseRepository.findAll();

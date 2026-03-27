@@ -5,7 +5,6 @@ import com.monstage.dto.RequeteInscription;
 import com.monstage.modele.*;
 import com.monstage.repository.*;
 import com.monstage.securite.JwtUtilisateur;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
 public class AuthService {
 
     private final UtilisateurRepository utilisateurRepository;
@@ -26,12 +24,28 @@ public class AuthService {
     private final JwtUtilisateur jwtUtilisateur;
     private final AuthenticationManager authenticationManager;
 
+    // Constructeur manuel
+    public AuthService(UtilisateurRepository utilisateurRepository, 
+                       EtudiantRepository etudiantRepository,
+                       EntrepriseRepository entrepriseRepository,
+                       ProfesseurRepository professeurRepository,
+                       PasswordEncoder passwordEncoder,
+                       JwtUtilisateur jwtUtilisateur,
+                       AuthenticationManager authenticationManager) {
+        this.utilisateurRepository = utilisateurRepository;
+        this.etudiantRepository = etudiantRepository;
+        this.entrepriseRepository = entrepriseRepository;
+        this.professeurRepository = professeurRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtUtilisateur = jwtUtilisateur;
+        this.authenticationManager = authenticationManager;
+    }
+
     public Map<String, Object> inscrire(RequeteInscription requete) {
         if (utilisateurRepository.existsByEmail(requete.getEmail())) {
             throw new RuntimeException("Email déjà utilisé");
         }
 
-        // Créer l'utilisateur
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setEmail(requete.getEmail());
         utilisateur.setMotDePasse(passwordEncoder.encode(requete.getMotDePasse()));
@@ -42,7 +56,6 @@ public class AuthService {
         utilisateur.setActif(true);
         utilisateurRepository.save(utilisateur);
 
-        // Créer le profil selon le rôle
         switch (requete.getRole()) {
             case ETUDIANT -> {
                 Etudiant etudiant = new Etudiant();
