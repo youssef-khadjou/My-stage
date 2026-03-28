@@ -1,1 +1,63 @@
-<p>home works!</p>
+<div class="accueil-container">
+
+  <nav class="navbar">
+    <img src="assets/logo-univ.png" alt="Logo Université d'Orléans" class="logo">
+    <a routerLink="/register" class="btn-creer-compte">Créer un compte</a>
+  </nav>
+
+  <div class="banniere">
+    <h1>My'Stage</h1>
+  </div>
+
+  <div class="cartes-container">
+
+    <div class="carte" (click)="naviguer('directeur')">
+      <span class="icone">👔</span>
+      <h2>Directeur</h2>
+      <p>Cliquer ici pour se connecter</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+    <div class="carte" (click)="naviguer('enseignant')">
+      <span class="icone">👨‍🏫</span>
+      <h2>Enseignant</h2>
+      <p>Cliquer ici pour se connecter</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+    <div class="carte" (click)="naviguer('entreprise')">
+      <span class="icone">🏢</span>
+      <h2>Entreprise</h2>
+      <p>Cliquer ici pour se connecter</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+    <div class="carte" (click)="naviguer('etudiant')">
+      <span class="icone">🎓</span>
+      <h2>Etudiant</h2>
+      <p>Cliquer ici pour se connecter</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+    <div class="carte" (click)="naviguer('secretariat')">
+      <span class="icone">🗂️</span>
+      <h2>Secretariat</h2>
+      <p>Cliquer ici pour se connecter</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>
