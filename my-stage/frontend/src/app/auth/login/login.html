@@ -1,1 +1,35 @@
-<p>login works!</p>
+<div class="login-container">
+
+  <div class="gauche">
+    <h1>My'Stage</h1>
+  </div>
+
+  <div class="droite">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+
+    <h2>Connectez-vous<br>en tant que {{ role }} !</h2>
+
+    <div class="champ">
+      <label>Email</label>
+      <input type="email" placeholder="email@example.com" [(ngModel)]="email">
+    </div>
+
+    <div class="champ">
+      <label>Mot de passe</label>
+      <input type="password" placeholder="••••••••" [(ngModel)]="motDePasse">
+    </div>
+
+    <div class="options">
+      <label><input type="checkbox"> Se souvenir</label>
+      <a href="#">Mot de passe oublié ?</a>
+    </div>
+
+    <button class="btn-connexion" (click)="seConnecter()">Connexion</button>
+
+    <p class="inscription">
+      Pas encore de compte ? <a routerLink="/register">Créer un compte</a>
+    </p>
+
+  </div>
+
+</div>

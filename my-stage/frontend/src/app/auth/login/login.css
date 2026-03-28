@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.login-container {
+  display: flex;
+  height: 100vh;
+}
+
+.gauche {
+  width: 55%;
+  background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauche h1 {
+  color: white;
+  font-size: 52px;
+  font-weight: bold;
+}
+
+.droite {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  gap: 15px;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  margin-bottom: 10px;
+}
+
+.droite h2 {
+  font-size: 24px;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.champ label {
+  font-size: 14px;
+  color: #333;
+}
+
+.champ input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.options a {
+  color: #1a56a0;
+  text-decoration: none;
+}
+
+.btn-connexion {
+  background-color: #1a56a0;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-connexion:hover {
+  background-color: #154080;
+}
+
+.inscription {
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+}
+
+.inscription a {
+  color: #1a56a0;
+  text-decoration: none;
+}
