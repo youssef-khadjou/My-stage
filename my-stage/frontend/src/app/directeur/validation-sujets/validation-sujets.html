@@ -1,1 +1,54 @@
-<p>validation-sujets works!</p>
+<div class="validation-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/directeur">Accueil</a>
+      <a routerLink="/directeur/profil">Infos personnelles</a>
+      <a routerLink="/directeur/validation">Validation sujets</a>
+      <a routerLink="/directeur/publications">Publications</a>
+      <a routerLink="/directeur/suivis">Suivis</a>
+      <a routerLink="/directeur/soutenances">Soutenances</a>
+    </div>
+    <div class="avatar">D</div>
+  </nav>
+
+  <div class="contenu">
+    <div class="liste-sujets">
+      <h2>Sujets proposés par les entreprises</h2>
+      <p class="sous-titre">À valider pour publication aux étudiants</p>
+
+      <div class="sujet" *ngFor="let sujet of sujets">
+        <div class="sujet-info">
+          <h3>{{ sujet.entreprise }}</h3>
+          <p>Sujet : {{ sujet.titre }}</p>
+          <p>Reçu le : {{ sujet.date }}</p>
+          <p>Contact : {{ sujet.contact }}</p>
+        </div>
+        <div class="sujet-actions">
+          <button class="btn-description">Voir la description complète</button>
+          <div class="btn-groupe">
+            <button class="btn-refuser" (click)="refuser(sujet)">Refuser</button>
+            <button class="btn-valider" (click)="valider(sujet)">Valider</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="vide" *ngIf="sujets.length === 0">Aucun sujet en attente de validation.</p>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>

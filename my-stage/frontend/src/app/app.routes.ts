@@ -8,6 +8,7 @@ import { ConfirmerStage } from './etudiant/confirmer-stage/confirmer-stage';
 import { Disponibilites } from './etudiant/disponibilites/disponibilites';
 import { Profil } from './etudiant/profil/profil';
 import { Dashboard as DirecteurDashboard } from './directeur/dashboard/dashboard';
+import { ValidationSujets } from './directeur/validation-sujets/validation-sujets';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'etudiant/offres', component: Offres },
   { path: 'etudiant/confirmer', component: ConfirmerStage },
   { path: 'etudiant/disponibilites', component: Disponibilites },
-  { path: 'directeur', component: DirecteurDashboard }
+  { path: 'directeur', component: DirecteurDashboard },
+  { path: 'directeur/validation', component: ValidationSujets }
 ];
