@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.profil-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  height: 50px;
+}
+
+.nav-liens {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-liens a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.nav-liens a:hover {
+  color: #1a56a0;
+}
+
+.avatar {
+  background-color: #1a56a0;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.contenu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+.carte-profil {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 40px;
+  width: 800px;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.avatar-grand {
+  background-color: #1a56a0;
+  color: white;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.formulaire {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rangee {
+  display: flex;
+  gap: 20px;
+}
+
+.champ {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.champ label {
+  font-size: 14px;
+  color: #1a56a0;
+  font-weight: bold;
+}
+
+.champ input,
+.champ select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  background: #f9f9f9;
+}
+
+.radio-groupe {
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.radio-groupe label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  color: #333;
+  font-weight: normal;
+}
+
+.boutons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+  width: 800px;
+}
+
+.btn-annuler {
+  border: 1px solid #333;
+  background: white;
+  color: #333;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-enregistrer {
+  background-color: #1a56a0;
+  color: white;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-enregistrer:hover {
+  background-color: #154080;
+}
+
+.footer {
+  background-color: #1a56a0;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-liens {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-liens a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+}
