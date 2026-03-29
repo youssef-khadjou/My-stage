@@ -1,1 +1,57 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/directeur">Accueil</a>
+      <a routerLink="/directeur/profil">Infos personnelles</a>
+      <a routerLink="/directeur/validation">Validation sujets</a>
+      <a routerLink="/directeur/publications">Publications</a>
+      <a routerLink="/directeur/suivis">Suivis</a>
+      <a routerLink="/directeur/soutenances">Soutenances</a>
+    </div>
+    <div class="avatar">D</div>
+  </nav>
+
+  <div class="banniere">
+    <h1>My'Stage</h1>
+  </div>
+
+  <div class="cartes-container">
+
+    <div class="carte" (click)="naviguer('/directeur/validation')">
+      <span class="icone">✅</span>
+      <h2>Validation sujets</h2>
+      <p>Approuvez ou refusez les propositions d'entreprises</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+    <div class="carte" (click)="naviguer('/directeur/publications')">
+      <span class="icone">📢</span>
+      <h2>Publications</h2>
+      <p>Envoyez les sujets validés aux étudiants</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+    <div class="carte" (click)="naviguer('/directeur/suivis')">
+      <span class="icone">📊</span>
+      <h2>Suivis</h2>
+      <p>Suivre le stage des différents étudiants</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>
