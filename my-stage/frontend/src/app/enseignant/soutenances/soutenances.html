@@ -1,1 +1,87 @@
-<p>soutenances works!</p>
+<div class="soutenances-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/enseignant">Accueil</a>
+      <a routerLink="/enseignant/profil">Infos personnelles</a>
+      <a routerLink="/enseignant/calendrier">Calendrier</a>
+      <a routerLink="/enseignant/suivis">Suivis</a>
+      <a routerLink="/enseignant/soutenances">Soutenances</a>
+    </div>
+    <div class="avatar">E.S</div>
+  </nav>
+
+  <div class="contenu">
+
+    <div class="formulaire-soutenance">
+      <h2>Planifier une soutenance</h2>
+
+      <div class="rangee">
+        <div class="champ">
+          <label>Sélectionnez un étudiant</label>
+          <select [(ngModel)]="etudiantSelectionne">
+            <option value="">Choisir un étudiant</option>
+          </select>
+        </div>
+        <div class="champ">
+          <label>Sélectionnez une date</label>
+          <input type="date" [(ngModel)]="date">
+        </div>
+      </div>
+
+      <div class="rangee">
+        <div class="champ">
+          <label>Sélectionnez une salle</label>
+          <select [(ngModel)]="salle">
+            <option value="">Choisir une salle</option>
+            <option value="salle1">Salle 1</option>
+            <option value="salle2">Salle 2</option>
+            <option value="salle3">Salle 3</option>
+          </select>
+        </div>
+        <div class="champ">
+          <label>Sélectionnez une heure</label>
+          <input type="time" [(ngModel)]="heure">
+        </div>
+      </div>
+
+      <div class="boutons">
+        <button class="btn-annuler" routerLink="/enseignant">Annuler</button>
+        <button class="btn-ajouter" (click)="ajouter()">Ajouter</button>
+      </div>
+    </div>
+
+    <div class="liste-soutenances">
+      <h2>Soutenances planifiées</h2>
+      <div class="carte-soutenance" *ngFor="let s of soutenances">
+        <div class="soutenance-info">
+          <p><span class="label">Nom :</span> {{ s.nom }}</p>
+          <p><span class="label">Prénom :</span> {{ s.prenom }}</p>
+          <p><span class="label">Promotion :</span> {{ s.promotion }}</p>
+        </div>
+        <div class="soutenance-info">
+          <p><span class="label">Entreprise :</span> {{ s.entreprise }}</p>
+          <p><span class="label">Sujet :</span> {{ s.sujet }}</p>
+          <p><span class="label">Tuteur de stage :</span> {{ s.tuteur }}</p>
+        </div>
+        <button class="btn-plus">+</button>
+      </div>
+      <p class="vide" *ngIf="soutenances.length === 0">Aucune soutenance planifiée.</p>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>
