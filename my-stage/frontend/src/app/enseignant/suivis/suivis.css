@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.suivis-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  height: 50px;
+}
+
+.nav-liens {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-liens a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.nav-liens a:hover {
+  color: #1a56a0;
+}
+
+.avatar {
+  background-color: #1a56a0;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.contenu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px 40px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.section h2 {
+  color: #1a56a0;
+  font-size: 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #1a56a0;
+}
+
+.filtres {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.filtre {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filtre label {
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+}
+
+.filtre select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 200px;
+}
+
+.btn-rechercher {
+  background-color: #1a56a0;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  height: 40px;
+}
+
+.btn-rechercher:hover {
+  background-color: #154080;
+}
+
+.carte-etudiant {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.etudiant-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.etudiant-info p {
+  font-size: 14px;
+  color: #333;
+}
+
+.label {
+  color: #1a56a0;
+  font-weight: bold;
+}
+
+.btn-suivre {
+  background-color: #1a56a0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-suivre:hover {
+  background-color: #154080;
+}
+
+.vide {
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}
+
+.footer {
+  background-color: #1a56a0;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-liens {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-liens a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+}

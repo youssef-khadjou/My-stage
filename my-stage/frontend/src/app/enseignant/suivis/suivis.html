@@ -1,0 +1,91 @@
+<div class="suivis-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/enseignant">Accueil</a>
+      <a routerLink="/enseignant/profil">Infos personnelles</a>
+      <a routerLink="/enseignant/calendrier">Calendrier</a>
+      <a routerLink="/enseignant/suivis">Suivis</a>
+      <a routerLink="/enseignant/soutenances">Soutenances</a>
+    </div>
+    <div class="avatar">E.S</div>
+  </nav>
+
+  <div class="contenu">
+
+    <div class="section">
+      <h2>Mes étudiants suivis</h2>
+      <div class="carte-etudiant" *ngFor="let etudiant of etudiantsSuivis">
+        <div class="etudiant-info">
+          <p><span class="label">Nom :</span> {{ etudiant.nom }}</p>
+          <p><span class="label">Prénom :</span> {{ etudiant.prenom }}</p>
+          <p><span class="label">Promotion :</span> {{ etudiant.promotion }}</p>
+        </div>
+        <div class="etudiant-info">
+          <p><span class="label">Entreprise :</span> {{ etudiant.entreprise }}</p>
+          <p><span class="label">Sujet :</span> {{ etudiant.sujet }}</p>
+          <p><span class="label">Tuteur de stage :</span> {{ etudiant.tuteur }}</p>
+        </div>
+      </div>
+      <p class="vide" *ngIf="etudiantsSuivis.length === 0">Vous ne suivez aucun étudiant pour le moment.</p>
+    </div>
+
+    <div class="section">
+      <h2>Ajouter un étudiant à suivre</h2>
+
+      <div class="filtres">
+        <div class="filtre">
+          <label>Promotion</label>
+          <select [(ngModel)]="promotionFiltre">
+            <option value="">Toutes</option>
+            <option value="miage-l3">MIAGE L3</option>
+            <option value="miage-m1">MIAGE M1</option>
+            <option value="miage-m2">MIAGE M2</option>
+            <option value="inge-l3">Ingénierie L3</option>
+            <option value="inge-m1">Ingénierie M1</option>
+            <option value="inge-m2">Ingénierie M2</option>
+          </select>
+        </div>
+        <div class="filtre">
+          <label>Lieu</label>
+          <select [(ngModel)]="lieuFiltre">
+            <option value="">Tous</option>
+            <option value="orleans">Orléans</option>
+            <option value="paris">Paris</option>
+          </select>
+        </div>
+        <button class="btn-rechercher" (click)="rechercher()">Rechercher</button>
+      </div>
+
+      <div class="carte-etudiant" *ngFor="let etudiant of resultatsRecherche">
+        <div class="etudiant-info">
+          <p><span class="label">Nom :</span> {{ etudiant.nom }}</p>
+          <p><span class="label">Prénom :</span> {{ etudiant.prenom }}</p>
+          <p><span class="label">Promotion :</span> {{ etudiant.promotion }}</p>
+        </div>
+        <div class="etudiant-info">
+          <p><span class="label">Entreprise :</span> {{ etudiant.entreprise }}</p>
+          <p><span class="label">Sujet :</span> {{ etudiant.sujet }}</p>
+        </div>
+        <button class="btn-suivre" (click)="suivre(etudiant)">Suivre</button>
+      </div>
+      <p class="vide" *ngIf="resultatsRecherche.length === 0 && rechercheLancee">Aucun étudiant trouvé.</p>
+
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>
