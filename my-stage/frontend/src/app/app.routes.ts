@@ -13,6 +13,7 @@ import { Publications } from './directeur/publications/publications';
 import { Suivis as DirecteurSuivis } from './directeur/suivis/suivis';
 import { Soutenances as DirecteurSoutenances } from './directeur/soutenances/soutenances';
 import { Profil as DirecteurProfil } from './directeur/profil/profil';
+import { Dashboard as EnseignantDashboard } from './enseignant/dashboard/dashboard';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -28,5 +29,6 @@ export const routes: Routes = [
   { path: 'directeur/validation', component: ValidationSujets },
   { path: 'directeur/publications', component: Publications },
   { path: 'directeur/suivis', component: DirecteurSuivis },
-  { path: 'directeur/soutenances', component: DirecteurSoutenances }
+  { path: 'directeur/soutenances', component: DirecteurSoutenances },
+  { path: 'enseignant', component: EnseignantDashboard }
 ];
