@@ -1,1 +1,87 @@
-<p>profil works!</p>
+<div class="profil-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/directeur">Accueil</a>
+      <a routerLink="/directeur/profil">Infos personnelles</a>
+      <a routerLink="/directeur/validation">Validation sujets</a>
+      <a routerLink="/directeur/publications">Publications</a>
+      <a routerLink="/directeur/suivis">Suivis</a>
+      <a routerLink="/directeur/soutenances">Soutenances</a>
+    </div>
+    <div class="avatar">D</div>
+  </nav>
+
+  <div class="contenu">
+
+    <div class="carte-profil">
+
+      <div class="avatar-grand">D</div>
+
+      <div class="formulaire">
+
+        <div class="rangee">
+          <div class="champ">
+            <label>Nom</label>
+            <input type="text" [(ngModel)]="nom" placeholder="Votre nom">
+          </div>
+          <div class="champ">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="email" placeholder="Votre email">
+          </div>
+        </div>
+
+        <div class="rangee">
+          <div class="champ">
+            <label>Prénom</label>
+            <input type="text" [(ngModel)]="prenom" placeholder="Votre prénom">
+          </div>
+          <div class="champ">
+            <label>Mot de passe</label>
+            <input type="password" [(ngModel)]="motDePasse" placeholder="••••••••">
+          </div>
+        </div>
+
+        <div class="rangee">
+          <div class="champ">
+            <label>Sexe</label>
+            <div class="radio-groupe">
+              <label><input type="radio" [(ngModel)]="sexe" value="homme"> Homme</label>
+              <label><input type="radio" [(ngModel)]="sexe" value="femme"> Femme</label>
+            </div>
+          </div>
+          <div class="champ">
+            <label>Département</label>
+            <select [(ngModel)]="departement">
+              <option value="">Choisir un département</option>
+              <option value="miage">MIAGE</option>
+              <option value="ingenierie">Ingénierie</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="boutons">
+      <button class="btn-annuler" routerLink="/directeur">Annuler</button>
+      <button class="btn-enregistrer" (click)="enregistrer()">Enregistrer</button>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>
