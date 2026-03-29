@@ -1,1 +1,74 @@
-<p>calendrier works!</p>
+<div class="calendrier-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/enseignant">Accueil</a>
+      <a routerLink="/enseignant/profil">Infos personnelles</a>
+      <a routerLink="/enseignant/calendrier">Calendrier</a>
+      <a routerLink="/enseignant/suivis">Suivis</a>
+      <a routerLink="/enseignant/soutenances">Soutenances</a>
+    </div>
+    <div class="avatar">E.S</div>
+  </nav>
+
+  <div class="contenu">
+
+    <div class="bloc-calendrier">
+      <div class="cal-header">
+        <button (click)="moisPrecedent()">‹</button>
+        <span>{{ nomMoisActuel }} {{ annee }}</span>
+        <button (click)="moisSuivant()">›</button>
+      </div>
+      <div class="cal-jours-semaine">
+        <span>Lu</span><span>Ma</span><span>Me</span>
+        <span>Je</span><span>Ve</span><span>Sa</span><span>Di</span>
+      </div>
+      <div class="cal-jours">
+        <span
+          *ngFor="let jour of jours"
+          [class.vide]="jour === 0"
+          [class.actif]="jour === jourSelectionne"
+          (click)="jour !== 0 && selectionnerJour(jour)">
+          {{ jour !== 0 ? jour : '' }}
+        </span>
+      </div>
+    </div>
+
+    <div class="bloc-soutenances">
+      <h2>Soutenances du {{ jourSelectionne }} {{ nomMoisActuel }} {{ annee }}</h2>
+      <div class="carte-soutenance" *ngFor="let s of soutenances">
+        <div class="soutenance-info">
+          <p><span class="label">Étudiant :</span> {{ s.etudiant }}</p>
+          <p><span class="label">Entreprise :</span> {{ s.entreprise }}</p>
+          <p><span class="label">Sujet :</span> {{ s.sujet }}</p>
+        </div>
+        <div class="soutenance-info">
+          <p><span class="label">Salle :</span> {{ s.salle }}</p>
+          <p><span class="label">Date :</span> {{ s.date }}</p>
+          <p><span class="label">Heure :</span> {{ s.heure }}</p>
+        </div>
+        <div class="jury">
+          <p class="label">Professeurs inscrits :</p>
+          <div class="prof" *ngFor="let prof of s.professeurs">{{ prof }}</div>
+          <button class="btn-plus" (click)="sInscrire(s)">+</button>
+        </div>
+      </div>
+      <p class="vide" *ngIf="soutenances.length === 0">Aucune soutenance pour ce jour.</p>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>
