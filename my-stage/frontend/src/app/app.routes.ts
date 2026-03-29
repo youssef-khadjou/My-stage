@@ -5,6 +5,7 @@ import { Register } from './auth/register/register';
 import { Dashboard as EtudiantDashboard } from './etudiant/dashboard/dashboard';
 import { Offres } from './etudiant/offres/offres';
 import { ConfirmerStage } from './etudiant/confirmer-stage/confirmer-stage';
+import { Disponibilites } from './etudiant/disponibilites/disponibilites';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -12,5 +13,6 @@ export const routes: Routes = [
   { path: 'register', component: Register },
   { path: 'etudiant', component: EtudiantDashboard },
   { path: 'etudiant/offres', component: Offres },
-  { path: 'etudiant/confirmer', component: ConfirmerStage }
+  { path: 'etudiant/confirmer', component: ConfirmerStage },
+  { path: 'etudiant/disponibilites', component: Disponibilites }
 ];

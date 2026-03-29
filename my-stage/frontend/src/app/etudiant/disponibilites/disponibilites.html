@@ -1,1 +1,64 @@
-<p>disponibilites works!</p>
+<div class="dispo-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/etudiant">Accueil</a>
+      <a routerLink="/etudiant/profil">Infos personnelles</a>
+      <a routerLink="/etudiant/offres">Offres de stage</a>
+      <a routerLink="/etudiant/confirmer">Confirmer mon stage</a>
+      <a routerLink="/etudiant/disponibilites">Mes Disponibilités</a>
+    </div>
+    <div class="avatar">E</div>
+  </nav>
+
+  <div class="contenu">
+
+    <div class="info-box">
+      <p>Indiquer mes disponibilités</p>
+      <p>Pour les visites de suivi et soutenances</p>
+    </div>
+
+    <div class="calendrier">
+      <div class="header-cal">
+        <div class="heure-col"></div>
+        <div class="jour" *ngFor="let jour of jours">
+          <span class="jour-nom">{{ jour.nom }}</span>
+          <span class="jour-num">{{ jour.num }}</span>
+        </div>
+      </div>
+
+      <div class="body-cal">
+        <div class="ligne" *ngFor="let heure of heures">
+          <div class="heure-label">{{ heure }}H</div>
+          <div
+            class="creneau"
+            *ngFor="let jour of jours"
+            [class.disponible]="isDisponible(jour.num, heure)"
+            (click)="toggleDisponibilite(jour.num, heure)">
+            <span *ngIf="isDisponible(jour.num, heure)">{{ heure }}:00<br>Disponible</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="boutons">
+    <button class="btn-annuler" routerLink="/etudiant">Annuler</button>
+    <button class="btn-enregistrer" (click)="enregistrer()">Enregistrer</button>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>
