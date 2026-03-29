@@ -9,6 +9,7 @@ import { Disponibilites } from './etudiant/disponibilites/disponibilites';
 import { Profil } from './etudiant/profil/profil';
 import { Dashboard as DirecteurDashboard } from './directeur/dashboard/dashboard';
 import { ValidationSujets } from './directeur/validation-sujets/validation-sujets';
+import { Publications } from './directeur/publications/publications';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -20,5 +21,6 @@ export const routes: Routes = [
   { path: 'etudiant/confirmer', component: ConfirmerStage },
   { path: 'etudiant/disponibilites', component: Disponibilites },
   { path: 'directeur', component: DirecteurDashboard },
-  { path: 'directeur/validation', component: ValidationSujets }
+  { path: 'directeur/validation', component: ValidationSujets },
+  { path: 'directeur/publications', component: Publications }
 ];

@@ -1,1 +1,67 @@
-<p>publications works!</p>
+<div class="publications-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/directeur">Accueil</a>
+      <a routerLink="/directeur/profil">Infos personnelles</a>
+      <a routerLink="/directeur/validation">Validation sujets</a>
+      <a routerLink="/directeur/publications">Publications</a>
+      <a routerLink="/directeur/suivis">Suivis</a>
+      <a routerLink="/directeur/soutenances">Soutenances</a>
+    </div>
+    <div class="avatar">D</div>
+  </nav>
+
+  <div class="contenu">
+    <div class="liste-publications">
+      <h2>Sujets validés - Prêts à publier</h2>
+      <p class="sous-titre">Envoyer aux étudiants sélectionnés</p>
+
+      <div class="sujet" *ngFor="let sujet of sujets">
+        <input type="checkbox" [(ngModel)]="sujet.selectionne">
+        <div class="sujet-info">
+          <h3>{{ sujet.entreprise }} - {{ sujet.titre }}</h3>
+          <p>Validé le : {{ sujet.dateValidation }}</p>
+        </div>
+      </div>
+
+      <p class="vide" *ngIf="sujets.length === 0">Aucun sujet validé pour le moment.</p>
+
+      <div class="bas-page">
+        <div class="promo-select">
+          <label>Promotion cible</label>
+          <select [(ngModel)]="promotionCible">
+            <option value="">Veuillez sélectionner une promotion</option>
+            <option value="tous">Tous</option>
+            <option value="miage-l3">MIAGE - L3</option>
+            <option value="miage-m1">MIAGE - M1</option>
+            <option value="miage-m2">MIAGE - M2</option>
+            <option value="inge-l3">Ingénierie - L3</option>
+            <option value="inge-m1">Ingénierie - M1</option>
+            <option value="inge-m2">Ingénierie - M2</option>
+          </select>
+        </div>
+
+        <div class="actions">
+          <button class="btn-publier" (click)="publier()">Publier les sujets cochés</button>
+          <button class="btn-email" (click)="envoyerEmail()">Envoyer un email à la promotion</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>
