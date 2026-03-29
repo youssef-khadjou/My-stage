@@ -1,1 +1,70 @@
-<p>suivis works!</p>
+<div class="suivis-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/directeur">Accueil</a>
+      <a routerLink="/directeur/profil">Infos personnelles</a>
+      <a routerLink="/directeur/validation">Validation sujets</a>
+      <a routerLink="/directeur/publications">Publications</a>
+      <a routerLink="/directeur/suivis">Suivis</a>
+      <a routerLink="/directeur/soutenances">Soutenances</a>
+    </div>
+    <div class="avatar">D</div>
+  </nav>
+
+  <div class="contenu">
+
+    <div class="filtres">
+      <h3>Sélectionnez la promotion</h3>
+      <div class="radio-groupe">
+        <label><input type="radio" [(ngModel)]="promotion" value="miage-l3"> MIAGE L3</label>
+        <label><input type="radio" [(ngModel)]="promotion" value="miage-m1"> MIAGE M1</label>
+        <label><input type="radio" [(ngModel)]="promotion" value="miage-m2"> MIAGE M2</label>
+        <label><input type="radio" [(ngModel)]="promotion" value="inge-l3"> Ingénierie L3</label>
+        <label><input type="radio" [(ngModel)]="promotion" value="inge-m1"> Ingénierie M1</label>
+        <label><input type="radio" [(ngModel)]="promotion" value="inge-m2"> Ingénierie M2</label>
+      </div>
+
+      <h3>Sélectionnez un lieu</h3>
+      <select [(ngModel)]="lieu">
+        <option value="">Veuillez sélectionner un lieu</option>
+        <option value="tous">Tous</option>
+        <option value="orleans">Orléans</option>
+        <option value="paris">Paris</option>
+      </select>
+
+      <button class="btn-rechercher" (click)="rechercher()">Rechercher</button>
+    </div>
+
+    <div class="liste-etudiants">
+      <div class="carte-etudiant" *ngFor="let etudiant of etudiants">
+        <div class="etudiant-info">
+          <p><span class="label">Nom :</span> {{ etudiant.nom }}</p>
+          <p><span class="label">Prénom :</span> {{ etudiant.prenom }}</p>
+          <p><span class="label">Promotion :</span> {{ etudiant.promotion }}</p>
+        </div>
+        <div class="etudiant-info">
+          <p><span class="label">Entreprise :</span> {{ etudiant.entreprise }}</p>
+          <p><span class="label">Sujet :</span> {{ etudiant.sujet }}</p>
+          <p><span class="label">Tuteur de stage :</span> {{ etudiant.tuteur }}</p>
+        </div>
+      </div>
+      <p class="vide" *ngIf="etudiants.length === 0">Aucun étudiant trouvé.</p>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>
