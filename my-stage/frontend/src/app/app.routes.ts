@@ -11,6 +11,7 @@ import { Dashboard as DirecteurDashboard } from './directeur/dashboard/dashboard
 import { ValidationSujets } from './directeur/validation-sujets/validation-sujets';
 import { Publications } from './directeur/publications/publications';
 import { Suivis as DirecteurSuivis } from './directeur/suivis/suivis';
+import { Soutenances as DirecteurSoutenances } from './directeur/soutenances/soutenances';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -24,5 +25,6 @@ export const routes: Routes = [
   { path: 'directeur', component: DirecteurDashboard },
   { path: 'directeur/validation', component: ValidationSujets },
   { path: 'directeur/publications', component: Publications },
-  { path: 'directeur/suivis', component: DirecteurSuivis }
+  { path: 'directeur/suivis', component: DirecteurSuivis },
+  { path: 'directeur/soutenances', component: DirecteurSoutenances }
 ];
