@@ -25,6 +25,9 @@ import { Profil as SecretariatProfil } from './secretariat/profil/profil';
 
 import { Calendrier as SecretariatCalendrier } from './secretariat/calendrier/calendrier';
 
+import { Salles } from './secretariat/salles/salles';
+import { SallesPlanning } from './secretariat/salles-planning/salles-planning';
+
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'login/:role', component: Login },
@@ -51,4 +54,7 @@ export const routes: Routes = [
   { path: 'secretariat/profil', component: SecretariatProfil },
 
   { path: 'secretariat/calendrier', component: SecretariatCalendrier },
+
+  { path: 'secretariat/salles', component: Salles },
+  { path: 'secretariat/salles-planning', component: SallesPlanning },
 ];
