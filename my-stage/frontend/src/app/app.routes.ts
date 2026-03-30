@@ -19,6 +19,8 @@ import { Calendrier } from './enseignant/calendrier/calendrier';
 import { Suivis as EnseignantSuivis } from './enseignant/suivis/suivis';
 import { Soutenances as EnseignantSoutenances } from './enseignant/soutenances/soutenances';
 
+import { Dashboard as SecretariatDashboard } from './secretariat/dashboard/dashboard';
+
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'login/:role', component: Login },
@@ -38,5 +40,7 @@ export const routes: Routes = [
   { path: 'enseignant/profil', component: EnseignantProfil },
   { path: 'enseignant/calendrier', component: Calendrier },
   { path: 'enseignant/suivis', component: EnseignantSuivis },
-  { path: 'enseignant/soutenances', component: EnseignantSoutenances }
+  { path: 'enseignant/soutenances', component: EnseignantSoutenances },
+
+  { path: 'secretariat', component: SecretariatDashboard }
 ];

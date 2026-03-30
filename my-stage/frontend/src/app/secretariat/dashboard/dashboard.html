@@ -1,1 +1,56 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/secretariat">Accueil</a>
+      <a routerLink="/secretariat/profil">Infos personnelles</a>
+      <a routerLink="/secretariat/calendrier">Calendrier</a>
+      <a routerLink="/secretariat/salles">Salles</a>
+      <a routerLink="/secretariat/stages">Stages</a>
+    </div>
+    <div class="avatar">S.T</div>
+  </nav>
+
+  <div class="banniere">
+    <h1>My'Stage</h1>
+  </div>
+
+  <div class="cartes-container">
+
+    <div class="carte" (click)="naviguer('/secretariat/calendrier')">
+      <span class="icone">📅</span>
+      <h2>Calendrier</h2>
+      <p>Consulter le calendrier des soutenances.</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+    <div class="carte" (click)="naviguer('/secretariat/salles')">
+      <span class="icone">🏢</span>
+      <h2>Salles</h2>
+      <p>Consulter le planning des différentes salles.</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+    <div class="carte" (click)="naviguer('/secretariat/stages')">
+      <span class="icone">🧾</span>
+      <h2>Stages</h2>
+      <p>Consulter le stage des différents étudiants.</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>
