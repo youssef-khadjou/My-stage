@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.calendrier-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  height: 50px;
+}
+
+.nav-liens {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-liens a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.nav-liens a:hover {
+  color: #1a56a0;
+}
+
+.avatar {
+  background-color: #1a56a0;
+  color: white;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.contenu {
+  flex: 1;
+  display: flex;
+  gap: 40px;
+  padding: 50px 70px;
+  align-items: flex-start;
+}
+
+.bloc-calendrier {
+  width: 360px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  padding: 25px;
+}
+
+.mois-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.mois-header h2 {
+  color: #1a56a0;
+  font-size: 18px;
+}
+
+.navigation-mois {
+  display: flex;
+  gap: 18px;
+  color: #1a56a0;
+  font-size: 24px;
+}
+
+.navigation-mois span {
+  cursor: pointer;
+  user-select: none;
+}
+
+.jours-semaine {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 10px;
+  color: #1a56a0;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.grille-calendrier {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.grille-calendrier span {
+  height: 40px;
+  border: 1px solid #e6e6e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #4d6a9a;
+}
+
+.grille-calendrier span:not(.jour-inactif) {
+  cursor: pointer;
+}
+
+.jour-actif {
+  background-color: #2f5fb3;
+  color: white !important;
+  font-weight: bold;
+}
+
+.jour-inactif {
+  background-color: #f1f1f1;
+  color: #b0b0b0 !important;
+}
+
+.liste-cartes {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.carte-soutenance {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.infos-gauche,
+.infos-centre,
+.infos-droite {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.carte-soutenance p {
+  font-size: 15px;
+  color: #b3b3b3;
+}
+
+.carte-soutenance strong {
+  color: #1a56a0;
+}
+
+.professeur-bloc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.icone-prof {
+  width: 52px;
+  height: 52px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: white;
+}
+
+.professeur-bloc span {
+  color: #1a56a0;
+  font-size: 14px;
+}
+
+.aucun-prof {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.footer {
+  background-color: #1a56a0;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-liens {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-liens a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+}
