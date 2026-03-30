@@ -21,6 +21,8 @@ import { Soutenances as EnseignantSoutenances } from './enseignant/soutenances/s
 
 import { Dashboard as SecretariatDashboard } from './secretariat/dashboard/dashboard';
 
+import { Profil as SecretariatProfil } from './secretariat/profil/profil';
+
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'login/:role', component: Login },
@@ -42,5 +44,7 @@ export const routes: Routes = [
   { path: 'enseignant/suivis', component: EnseignantSuivis },
   { path: 'enseignant/soutenances', component: EnseignantSoutenances },
 
-  { path: 'secretariat', component: SecretariatDashboard }
+  { path: 'secretariat', component: SecretariatDashboard },
+
+  { path: 'secretariat/profil', component: SecretariatProfil }
 ];
