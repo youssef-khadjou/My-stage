@@ -36,6 +36,8 @@ import { Profil as EntrepriseProfil } from './entreprise/profil/profil';
 
 import { ProposerSujet } from './entreprise/proposer-sujet/proposer-sujet';
 
+import { Propositions } from './entreprise/propositions/propositions';
+
 
 
 
@@ -78,4 +80,6 @@ export const routes: Routes = [
   { path: 'entreprise/profil', component: EntrepriseProfil },
 
   { path: 'entreprise/proposer-sujet', component: ProposerSujet },
+
+  { path: 'entreprise/propositions', component: Propositions },
 ];
