@@ -34,6 +34,8 @@ import { Dashboard as EntrepriseDashboard } from './entreprise/dashboard/dashboa
 
 import { Profil as EntrepriseProfil } from './entreprise/profil/profil';
 
+import { ProposerSujet } from './entreprise/proposer-sujet/proposer-sujet';
+
 
 
 
@@ -74,4 +76,6 @@ export const routes: Routes = [
   { path: 'entreprise', component: EntrepriseDashboard },
 
   { path: 'entreprise/profil', component: EntrepriseProfil },
+
+  { path: 'entreprise/proposer-sujet', component: ProposerSujet },
 ];
