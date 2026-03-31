@@ -32,6 +32,11 @@ import { Stages as SecretariatStages } from './secretariat/stages/stages';
 
 import { Dashboard as EntrepriseDashboard } from './entreprise/dashboard/dashboard';
 
+import { Profil as EntrepriseProfil } from './entreprise/profil/profil';
+
+
+
+
 
 
 export const routes: Routes = [
@@ -67,4 +72,6 @@ export const routes: Routes = [
   { path: 'secretariat/stages', component: SecretariatStages },
 
   { path: 'entreprise', component: EntrepriseDashboard },
+
+  { path: 'entreprise/profil', component: EntrepriseProfil },
 ];
