@@ -38,6 +38,7 @@ import { ProposerSujet } from './entreprise/proposer-sujet/proposer-sujet';
 
 import { Propositions } from './entreprise/propositions/propositions';
 
+import { CompteRenduVisite } from './entreprise/compte-rendu-visite/compte-rendu-visite';
 
 
 
@@ -82,4 +83,6 @@ export const routes: Routes = [
   { path: 'entreprise/proposer-sujet', component: ProposerSujet },
 
   { path: 'entreprise/propositions', component: Propositions },
+
+  { path: 'entreprise/compte-rendu-visite', component: CompteRenduVisite },
 ];

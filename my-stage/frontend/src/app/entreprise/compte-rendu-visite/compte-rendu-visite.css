@@ -1,0 +1,226 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.compte-rendu-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8f8f8;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid #ddd;
+  background: white;
+}
+
+.logo {
+  height: 50px;
+}
+
+.nav-liens {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-liens a {
+  text-decoration: none;
+  color: #1a56a0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.nav-liens a:hover {
+  color: #154080;
+}
+
+.avatar {
+  background-color: #4a6fb3;
+  color: white;
+  min-width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.contenu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 38px 40px;
+}
+
+.carte-etape1,
+.carte-etape2 {
+  width: 760px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+.titre-etape1 {
+  padding: 18px 26px 14px;
+  border-bottom: 1px solid #9bb2de;
+}
+
+.titre-etape1 h2 {
+  color: #2f5fb3;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.titre-etape1 p {
+  color: #2f5fb3;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.form-etape1 {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 30px 65px 38px;
+}
+
+.colonne {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.champ label {
+  color: #2f5fb3;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.champ select,
+.champ input {
+  width: 100%;
+  border: 2px solid #4a6fb3;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #2f5fb3;
+  background: white;
+}
+
+.carte-etape2 {
+  padding: 26px 28px 30px;
+}
+
+.grid-etape2 {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.bloc-gauche,
+.bloc-droite {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.champ-ligne,
+.champ-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.champ-ligne label,
+.champ-zone label {
+  color: #2f5fb3;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.champ-ligne input,
+.champ-zone textarea {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #b7b7b7;
+  font-size: 15px;
+  resize: none;
+  line-height: 1.5;
+}
+
+.champ-zone textarea {
+  min-height: 90px;
+}
+
+.boutons {
+  display: flex;
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.btn-annuler,
+.btn-principal {
+  min-width: 120px;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.btn-annuler {
+  background: white;
+  border: 2px solid #4a6fb3;
+  color: #2f5fb3;
+}
+
+.btn-principal {
+  background: #4a6fb3;
+  border: none;
+  color: white;
+}
+
+.btn-principal:hover {
+  background: #3d5d98;
+}
+
+.footer {
+  background-color: #3f67b1;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-liens {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-liens a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+}
