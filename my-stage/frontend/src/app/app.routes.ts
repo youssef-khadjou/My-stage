@@ -5,7 +5,7 @@ import { Register } from './auth/register/register';
 import { Dashboard as EtudiantDashboard } from './etudiant/dashboard/dashboard';
 import { Offres } from './etudiant/offres/offres';
 import { ConfirmerStage } from './etudiant/confirmer-stage/confirmer-stage';
-import { Disponibilites } from './etudiant/disponibilites/disponibilites';
+import { Disponibilites as EtudiantDisponibilites } from './etudiant/disponibilites/disponibilites';
 import { Profil as EtudiantProfil } from './etudiant/profil/profil';
 import { Dashboard as DirecteurDashboard } from './directeur/dashboard/dashboard';
 import { ValidationSujets } from './directeur/validation-sujets/validation-sujets';
@@ -40,6 +40,10 @@ import { Propositions } from './entreprise/propositions/propositions';
 
 import { CompteRenduVisite } from './entreprise/compte-rendu-visite/compte-rendu-visite';
 
+import { Disponibilites as EntrepriseDisponibilites } from './entreprise/disponibilites/disponibilites';
+
+
+
 
 
 
@@ -52,7 +56,7 @@ export const routes: Routes = [
   { path: 'etudiant/profil', component: EtudiantProfil },
   { path: 'etudiant/offres', component: Offres },
   { path: 'etudiant/confirmer', component: ConfirmerStage },
-  { path: 'etudiant/disponibilites', component: Disponibilites },
+  { path: 'etudiant/disponibilites', component: EtudiantDisponibilites },
   { path: 'directeur', component: DirecteurDashboard },
   { path: 'directeur/profil', component: DirecteurProfil },
   { path: 'directeur/validation', component: ValidationSujets },
@@ -85,4 +89,6 @@ export const routes: Routes = [
   { path: 'entreprise/propositions', component: Propositions },
 
   { path: 'entreprise/compte-rendu-visite', component: CompteRenduVisite },
+
+  { path: 'entreprise/disponibilites', component: EntrepriseDisponibilites },
 ];
