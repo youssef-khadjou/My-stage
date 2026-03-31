@@ -30,6 +30,9 @@ import { SallesPlanning } from './secretariat/salles-planning/salles-planning';
 
 import { Stages as SecretariatStages } from './secretariat/stages/stages';
 
+import { Dashboard as EntrepriseDashboard } from './entreprise/dashboard/dashboard';
+
+
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -62,4 +65,6 @@ export const routes: Routes = [
   { path: 'secretariat/salles-planning', component: SallesPlanning },
 
   { path: 'secretariat/stages', component: SecretariatStages },
+
+  { path: 'entreprise', component: EntrepriseDashboard },
 ];
