@@ -2,68 +2,121 @@ package com.monstage.controleur;
 
 import com.monstage.dto.RequeteStage;
 import com.monstage.modele.Stage;
-import com.monstage.service.StageService;
-import lombok.RequiredArgsConstructor;
+import com.monstage.modele.Stage.Statut;
+import com.monstage.modele.Entreprise;
+import com.monstage.repository.StageRepository;
+import com.monstage.repository.EntrepriseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/stages")
-@RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class StageControleur {
 
-    private final StageService stageService;
+    @Autowired
+    private StageRepository stageRepository;
 
-    @GetMapping("/liste")
-    public ResponseEntity<List<Stage>> listerStagesValides() {
-        return ResponseEntity.ok(stageService.stagesValides());
-    }
+    @Autowired
+    private EntrepriseRepository entrepriseRepository;
 
     @GetMapping
-    @PreAuthorize("hasRole('SECRETARIAT') or hasRole('ADMIN')")
-    public ResponseEntity<List<Stage>> tousLesStages() {
-        return ResponseEntity.ok(stageService.tousLesStages());
+    public List<Stage> getAllStages() {
+        return stageRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Stage> trouverParId(@PathVariable Long id) {
-        return ResponseEntity.ok(stageService.trouverParId(id));
+    public ResponseEntity<Stage> getStageById(@PathVariable Long id) {
+        Optional<Stage> stage = stageRepository.findById(id);
+        return stage.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/entreprise/{entrepriseId}")
-    @PreAuthorize("hasRole('ENTREPRISE') or hasRole('SECRETARIAT')")
-    public ResponseEntity<List<Stage>> stagesEntreprise(@PathVariable Long entrepriseId) {
-        return ResponseEntity.ok(stageService.stagesParEntreprise(entrepriseId));
+    public List<Stage> getStagesByEntreprise(@PathVariable Long entrepriseId) {
+        return stageRepository.findByEntrepriseId(entrepriseId);
+    }
+
+    @GetMapping("/statut/{statut}")
+    public List<Stage> getStagesByStatut(@PathVariable String statut) {
+        return stageRepository.findByStatut(Statut.valueOf(statut));
+    }
+
+    @GetMapping("/recherche/titre")
+    public List<Stage> getStagesByTitre(@RequestParam String titre) {
+        return stageRepository.findByTitreContaining(titre);
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ENTREPRISE')")
-    public ResponseEntity<Stage> creer(@RequestBody RequeteStage requete,
-                                        @RequestParam Long entrepriseId) {
-        return ResponseEntity.ok(stageService.creer(requete, entrepriseId));
+    public ResponseEntity<Stage> createStage(@RequestBody RequeteStage requete) {
+        Optional<Entreprise> entrepriseOpt = entrepriseRepository.findById(requete.getEntrepriseId());
+        
+        if (entrepriseOpt.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        
+        Stage stage = new Stage();
+        stage.setTitre(requete.getTitre());
+        stage.setDescription(requete.getDescription());
+        stage.setDuree(requete.getDuree());
+        stage.setLieu(requete.getLieu());
+        stage.setDateDebut(requete.getDateDebut());
+        stage.setDateFin(requete.getDateFin());
+        stage.setNbPlaces(requete.getNbPlaces());
+        stage.setCompetencesRequises(requete.getCompetencesRequises());
+        stage.setRemuneration(requete.getRemuneration());
+        stage.setStatut(Statut.EN_ATTENTE);
+        stage.setDateCreation(LocalDateTime.now());
+        stage.setEntreprise(entrepriseOpt.get());
+        
+        return ResponseEntity.ok(stageRepository.save(stage));
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ENTREPRISE') or hasRole('SECRETARIAT')")
-    public ResponseEntity<Stage> modifier(@PathVariable Long id,
-                                           @RequestBody RequeteStage requete) {
-        return ResponseEntity.ok(stageService.modifier(id, requete));
+    public ResponseEntity<Stage> updateStage(@PathVariable Long id, @RequestBody RequeteStage requete) {
+        Optional<Stage> stageOpt = stageRepository.findById(id);
+        if (stageOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        
+        Stage stage = stageOpt.get();
+        stage.setTitre(requete.getTitre());
+        stage.setDescription(requete.getDescription());
+        stage.setDuree(requete.getDuree());
+        stage.setLieu(requete.getLieu());
+        stage.setDateDebut(requete.getDateDebut());
+        stage.setDateFin(requete.getDateFin());
+        stage.setNbPlaces(requete.getNbPlaces());
+        stage.setCompetencesRequises(requete.getCompetencesRequises());
+        stage.setRemuneration(requete.getRemuneration());
+        
+        return ResponseEntity.ok(stageRepository.save(stage));
     }
 
-    @PatchMapping("/{id}/statut")
-    @PreAuthorize("hasRole('SECRETARIAT')")
-    public ResponseEntity<Stage> changerStatut(@PathVariable Long id,
-                                                @RequestParam Stage.Statut statut) {
-        return ResponseEntity.ok(stageService.changerStatut(id, statut));
+    @PutMapping("/{id}/statut")
+    public ResponseEntity<Stage> updateStatut(@PathVariable Long id, @RequestBody Map<String, String> body) {
+        Optional<Stage> stageOpt = stageRepository.findById(id);
+        if (stageOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        
+        Stage stage = stageOpt.get();
+        stage.setStatut(Statut.valueOf(body.get("statut")));
+        return ResponseEntity.ok(stageRepository.save(stage));
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ENTREPRISE') or hasRole('SECRETARIAT')")
-    public ResponseEntity<Void> supprimer(@PathVariable Long id) {
-        stageService.supprimer(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> deleteStage(@PathVariable Long id) {
+        if (stageRepository.existsById(id)) {
+            stageRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }
