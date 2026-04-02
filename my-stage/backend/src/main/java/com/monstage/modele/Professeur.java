@@ -28,83 +28,30 @@ public class Professeur {
     @OneToMany(mappedBy = "professeur", cascade = CascadeType.ALL)
     private List<Stage> stages;
     
-    // Constructeurs
     public Professeur() {}
     
-    public Professeur(Long id, String nom, String prenom, String specialite, 
-                      String bureau, String telephone, Utilisateur utilisateur, List<Stage> stages) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.specialite = specialite;
-        this.bureau = bureau;
-        this.telephone = telephone;
-        this.utilisateur = utilisateur;
-        this.stages = stages;
-    }
-    
     // Getters et Setters
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getNom() { return nom; }
+    public void setNom(String nom) { this.nom = nom; }
 
-    public String getNom() {
-        return nom;
-    }
+    public String getPrenom() { return prenom; }
+    public void setPrenom(String prenom) { this.prenom = prenom; }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+    public String getSpecialite() { return specialite; }
+    public void setSpecialite(String specialite) { this.specialite = specialite; }
 
-    public String getPrenom() {
-        return prenom;
-    }
+    public String getBureau() { return bureau; }
+    public void setBureau(String bureau) { this.bureau = bureau; }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+    public String getTelephone() { return telephone; }
+    public void setTelephone(String telephone) { this.telephone = telephone; }
 
-    public String getSpecialite() {
-        return specialite;
-    }
+    public Utilisateur getUtilisateur() { return utilisateur; }
+    public void setUtilisateur(Utilisateur utilisateur) { this.utilisateur = utilisateur; }
 
-    public void setSpecialite(String specialite) {
-        this.specialite = specialite;
-    }
-
-    public String getBureau() {
-        return bureau;
-    }
-
-    public void setBureau(String bureau) {
-        this.bureau = bureau;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
-
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
-    }
-
-    public List<Stage> getStages() {
-        return stages;
-    }
-
-    public void setStages(List<Stage> stages) {
-        this.stages = stages;
-    }
+    public List<Stage> getStages() { return stages; }
+    public void setStages(List<Stage> stages) { this.stages = stages; }
 }

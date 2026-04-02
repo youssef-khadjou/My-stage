@@ -50,6 +50,10 @@ public class Stage {
     @JoinColumn(name = "entreprise_id", nullable = false)
     private Entreprise entreprise;
     
+    @ManyToOne
+    @JoinColumn(name = "professeur_id")
+    private Professeur professeur;
+    
     @CreatedDate
     @Column(name = "date_creation", updatable = false)
     private LocalDateTime dateCreation;
@@ -61,126 +65,46 @@ public class Stage {
     // Constructeurs
     public Stage() {}
     
-    public Stage(Long id, String titre, String description, Integer duree, String lieu, 
-                 LocalDate dateDebut, LocalDate dateFin, Statut statut, Integer nbPlaces, 
-                 String competencesRequises, BigDecimal remuneration, Entreprise entreprise, LocalDateTime dateCreation) {
-        this.id = id;
-        this.titre = titre;
-        this.description = description;
-        this.duree = duree;
-        this.lieu = lieu;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.statut = statut;
-        this.nbPlaces = nbPlaces;
-        this.competencesRequises = competencesRequises;
-        this.remuneration = remuneration;
-        this.entreprise = entreprise;
-        this.dateCreation = dateCreation;
-    }
-    
     // Getters et Setters
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getTitre() { return titre; }
+    public void setTitre(String titre) { this.titre = titre; }
 
-    public String getTitre() {
-        return titre;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
+    public Integer getDuree() { return duree; }
+    public void setDuree(Integer duree) { this.duree = duree; }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getLieu() { return lieu; }
+    public void setLieu(String lieu) { this.lieu = lieu; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public LocalDate getDateDebut() { return dateDebut; }
+    public void setDateDebut(LocalDate dateDebut) { this.dateDebut = dateDebut; }
 
-    public Integer getDuree() {
-        return duree;
-    }
+    public LocalDate getDateFin() { return dateFin; }
+    public void setDateFin(LocalDate dateFin) { this.dateFin = dateFin; }
 
-    public void setDuree(Integer duree) {
-        this.duree = duree;
-    }
+    public Statut getStatut() { return statut; }
+    public void setStatut(Statut statut) { this.statut = statut; }
 
-    public String getLieu() {
-        return lieu;
-    }
+    public Integer getNbPlaces() { return nbPlaces; }
+    public void setNbPlaces(Integer nbPlaces) { this.nbPlaces = nbPlaces; }
 
-    public void setLieu(String lieu) {
-        this.lieu = lieu;
-    }
+    public String getCompetencesRequises() { return competencesRequises; }
+    public void setCompetencesRequises(String competencesRequises) { this.competencesRequises = competencesRequises; }
 
-    public LocalDate getDateDebut() {
-        return dateDebut;
-    }
+    public BigDecimal getRemuneration() { return remuneration; }
+    public void setRemuneration(BigDecimal remuneration) { this.remuneration = remuneration; }
 
-    public void setDateDebut(LocalDate dateDebut) {
-        this.dateDebut = dateDebut;
-    }
+    public Entreprise getEntreprise() { return entreprise; }
+    public void setEntreprise(Entreprise entreprise) { this.entreprise = entreprise; }
 
-    public LocalDate getDateFin() {
-        return dateFin;
-    }
+    public Professeur getProfesseur() { return professeur; }
+    public void setProfesseur(Professeur professeur) { this.professeur = professeur; }
 
-    public void setDateFin(LocalDate dateFin) {
-        this.dateFin = dateFin;
-    }
-
-    public Statut getStatut() {
-        return statut;
-    }
-
-    public void setStatut(Statut statut) {
-        this.statut = statut;
-    }
-
-    public Integer getNbPlaces() {
-        return nbPlaces;
-    }
-
-    public void setNbPlaces(Integer nbPlaces) {
-        this.nbPlaces = nbPlaces;
-    }
-
-    public String getCompetencesRequises() {
-        return competencesRequises;
-    }
-
-    public void setCompetencesRequises(String competencesRequises) {
-        this.competencesRequises = competencesRequises;
-    }
-
-    public BigDecimal getRemuneration() {
-        return remuneration;
-    }
-
-    public void setRemuneration(BigDecimal remuneration) {
-        this.remuneration = remuneration;
-    }
-
-    public Entreprise getEntreprise() {
-        return entreprise;
-    }
-
-    public void setEntreprise(Entreprise entreprise) {
-        this.entreprise = entreprise;
-    }
-
-    public LocalDateTime getDateCreation() {
-        return dateCreation;
-    }
-
-    public void setDateCreation(LocalDateTime dateCreation) {
-        this.dateCreation = dateCreation;
-    }
+    public LocalDateTime getDateCreation() { return dateCreation; }
+    public void setDateCreation(LocalDateTime dateCreation) { this.dateCreation = dateCreation; }
 }

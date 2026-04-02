@@ -8,10 +8,12 @@ import java.util.Optional;
 
 @Repository
 public interface ProfesseurRepository extends JpaRepository<Professeur, Long> {
-    Optional<Professeur> findByMatricule(String matricule);
+        
     Optional<Professeur> findByUtilisateurId(Long utilisateurId);
-    List<Professeur> findByDepartement(String departement);
+    
     List<Professeur> findBySpecialite(String specialite);
-    List<Professeur> findByEstJuryTrue();
-    List<Professeur> findByEstLaboratoireTrue();
+    
+    List<Professeur> findByNomContaining(String nom);
+    
+    List<Professeur> findByPrenomContaining(String prenom);
 }
