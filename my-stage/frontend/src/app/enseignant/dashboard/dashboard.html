@@ -1,1 +1,56 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/enseignant">Accueil</a>
+      <a routerLink="/enseignant/profil">Infos personnelles</a>
+      <a routerLink="/enseignant/calendrier">Calendrier</a>
+      <a routerLink="/enseignant/suivis">Suivis</a>
+      <a routerLink="/enseignant/soutenances">Soutenances</a>
+    </div>
+    <div class="avatar">E.S</div>
+  </nav>
+
+  <div class="banniere">
+    <h1>My'Stage</h1>
+  </div>
+
+  <div class="cartes-container">
+
+    <div class="carte" (click)="naviguer('/enseignant/offres')">
+      <span class="icone">📋</span>
+      <h2>Offres de stage</h2>
+      <p>Consultez les propositions validées</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+    <div class="carte" (click)="naviguer('/enseignant/suivis')">
+      <span class="icone">🔍</span>
+      <h2>Suivis</h2>
+      <p>Suivre le stage d'un nouvel étudiant</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+    <div class="carte" (click)="naviguer('/enseignant/soutenances')">
+      <span class="icone">➕</span>
+      <h2>Ajouter</h2>
+      <p>Créer différentes soutenances</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>

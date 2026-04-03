@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  height: 50px;
+}
+
+.nav-liens {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-liens a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.nav-liens a:hover {
+  color: #1a56a0;
+}
+
+.avatar {
+  background-color: #1a56a0;
+  color: white;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.banniere {
+  background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400');
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px 60px 0;
+}
+
+.banniere h1 {
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.cartes-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+  flex: 1;
+}
+
+.carte {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 30px;
+  width: 280px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  background: white;
+}
+
+.carte:hover {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.icone {
+  font-size: 35px;
+}
+
+.carte h2 {
+  color: #333;
+  margin: 10px 0 5px;
+  font-size: 16px;
+}
+
+.carte p {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.lien {
+  color: #1a56a0;
+  font-size: 13px;
+}
+
+.footer {
+  background-color: #1a56a0;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-liens {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-liens a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+}

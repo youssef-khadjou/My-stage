@@ -1,0 +1,74 @@
+<div class="confirmer-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/etudiant">Accueil</a>
+      <a routerLink="/etudiant/profil">Infos personnelles</a>
+      <a routerLink="/etudiant/offres">Offres de stage</a>
+      <a routerLink="/etudiant/confirmer">Confirmer mon stage</a>
+      <a routerLink="/etudiant/disponibilites">Mes Disponibilités</a>
+    </div>
+    <div class="avatar">E</div>
+  </nav>
+
+  <div class="contenu">
+    <div class="carte-stage">
+      <h2>Confirmation de votre stage</h2>
+      <p class="sous-titre">Félicitations ! Vous avez été sélectionné pour par le directeur</p>
+
+      <div class="info-ligne">
+        <span class="label">Entreprise :</span>
+        <span>{{ stage.entreprise }}</span>
+      </div>
+      <div class="info-ligne">
+        <span class="label">Poste :</span>
+        <span>{{ stage.poste }}</span>
+      </div>
+      <div class="info-ligne">
+        <span class="label">Période :</span>
+        <span>{{ stage.debut }} - {{ stage.fin }}</span>
+      </div>
+      <div class="info-ligne">
+        <span class="label">Gratification :</span>
+        <span>{{ stage.gratification }}</span>
+      </div>
+      <div class="info-ligne">
+        <span class="label">Tuteur entreprise :</span>
+        <span>{{ stage.tuteur }}</span>
+      </div>
+      <div class="info-ligne">
+        <span class="label">Lieu :</span>
+        <span>{{ stage.lieu }}</span>
+      </div>
+
+      <div class="avertissement">
+        <p>Avant de confirmer :</p>
+        <ul>
+          <li>Lisez attentivement la convention</li>
+          <li>Vérifiez les dates et modalités</li>
+          <li>Contactez votre tuteur pédagogique si questions</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="boutons">
+    <button class="btn-refuser" (click)="refuser()">Refuser</button>
+    <button class="btn-confirmer" (click)="confirmer()">Confirmer</button>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>

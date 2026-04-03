@@ -1,0 +1,50 @@
+<div class="propositions-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/entreprise">Accueil</a>
+      <a routerLink="/entreprise/profil">Infos personnelles</a>
+      <a routerLink="/entreprise/proposer-sujet">Proposer un sujet</a>
+      <a routerLink="/entreprise/propositions">Mes Propositions</a>
+      <a routerLink="/entreprise/compte-rendu-visite">Compte rendu visite</a>
+      <a routerLink="/entreprise/disponibilites">Mes Disponibilités</a>
+    </div>
+    <div class="avatar">E.T</div>
+  </nav>
+
+  <div class="contenu">
+
+    <div class="carte-propositions">
+      <div class="titre-carte">
+        <h2>Mes propositions de stage</h2>
+      </div>
+
+      <div class="liste-propositions">
+        <div class="ligne-proposition" *ngFor="let proposition of propositions">
+          <div class="infos">
+            <p class="titre">{{ proposition.titre }}</p>
+            <p><strong>Etudiant :</strong> {{ proposition.etudiant }}</p>
+            <p><strong>Statut :</strong> {{ proposition.statut }}</p>
+          </div>
+
+          <button class="btn-voir" (click)="voirProposition(proposition)">Voir</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>

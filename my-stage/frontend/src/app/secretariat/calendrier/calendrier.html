@@ -1,0 +1,113 @@
+<div class="calendrier-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/secretariat">Accueil</a>
+      <a routerLink="/secretariat/profil">Infos personnelles</a>
+      <a routerLink="/secretariat/calendrier">Calendrier</a>
+      <a routerLink="/secretariat/salles">Salles</a>
+      <a routerLink="/secretariat/stages">Stages</a>
+    </div>
+    <div class="avatar">S.T</div>
+  </nav>
+
+  <div class="contenu">
+
+    <div class="bloc-calendrier">
+      <div class="mois-header">
+        <h2>{{ moisActuel }}</h2>
+        <div class="navigation-mois">
+          <span (click)="moisPrecedent()">‹</span>
+          <span (click)="moisSuivant()">›</span>
+        </div>
+      </div>
+
+      <div class="jours-semaine">
+        <span>Lu</span>
+        <span>Ma</span>
+        <span>Me</span>
+        <span>Je</span>
+        <span>Ve</span>
+        <span>Sa</span>
+        <span>Di</span>
+      </div>
+
+      <div class="grille-calendrier">
+        <span
+          *ngFor="let jour of joursDuMois"
+          [class.jour-actif]="jour === jourSelectionne"
+          (click)="selectionnerJour(jour)"
+        >
+          {{ jour }}
+        </span>
+
+        <span
+          *ngFor="let jour of joursInactifs"
+          class="jour-inactif"
+        >
+          {{ jour }}
+        </span>
+      </div>
+    </div>
+
+    <div class="liste-cartes">
+
+      <div class="carte-soutenance">
+        <div class="infos-gauche">
+          <p><strong>Étudiant :</strong> XXXXXXXXXX</p>
+          <p><strong>Entreprise :</strong> XXXXXXXXX</p>
+          <p><strong>Sujet :</strong> XXXXXXXXXX</p>
+        </div>
+
+        <div class="infos-centre">
+          <p><strong>Salle :</strong> XXXXXXXXXX</p>
+          <p><strong>Date :</strong> {{ jourSelectionne }} / {{ indexMois + 1 }} / 2026</p>
+          <p><strong>Heure :</strong> XXXXXXXXXX</p>
+        </div>
+
+        <div class="infos-droite">
+          <p><strong>Professeurs inscrits :</strong></p>
+          <div class="professeur-bloc">
+            <div class="icone-prof">👤</div>
+            <span>Professeur1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="carte-soutenance">
+        <div class="infos-gauche">
+          <p><strong>Étudiant :</strong> XXXXXXXXXX</p>
+          <p><strong>Entreprise :</strong> XXXXXXXXX</p>
+          <p><strong>Sujet :</strong> XXXXXXXXXX</p>
+        </div>
+
+        <div class="infos-centre">
+          <p><strong>Salle :</strong> XXXXXXXXXX</p>
+          <p><strong>Date :</strong> {{ jourSelectionne }} / {{ indexMois + 1 }} / 2026</p>
+          <p><strong>Heure :</strong> XXXXXXXXXX</p>
+        </div>
+
+        <div class="infos-droite">
+          <p><strong>Professeurs inscrits :</strong></p>
+          <div class="aucun-prof">AUCUN</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>

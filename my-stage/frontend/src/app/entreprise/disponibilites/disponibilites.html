@@ -1,0 +1,71 @@
+<div class="disponibilites-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/entreprise">Accueil</a>
+      <a routerLink="/entreprise/profil">Infos personnelles</a>
+      <a routerLink="/entreprise/proposer-sujet">Proposer un sujet</a>
+      <a routerLink="/entreprise/propositions">Mes Propositions</a>
+      <a routerLink="/entreprise/compte-rendu-visite">Compte rendu visite</a>
+      <a routerLink="/entreprise/disponibilites">Mes Disponibilités</a>
+    </div>
+    <div class="avatar">E.T</div>
+  </nav>
+
+  <div class="contenu">
+
+    <div class="panneau-gauche">
+      <div class="encadre-info">
+        <p>Indiquer mes disponibilités</p>
+        <p>Pour les visites de suivi et soutenances</p>
+      </div>
+
+      <div class="boutons">
+        <button class="btn-annuler" routerLink="/entreprise">Annuler</button>
+        <button class="btn-enregistrer" (click)="enregistrer()">Enregistrer</button>
+      </div>
+    </div>
+
+    <div class="planning-zone">
+      <div class="tableau">
+        <div class="header-row">
+          <div class="corner"></div>
+          <div class="day-cell" *ngFor="let jour of jours">{{ jour }}</div>
+          <div class="corner right-corner"></div>
+        </div>
+
+        <div class="body-row" *ngFor="let heure of heures">
+          <div class="hour-cell">{{ heure }}</div>
+
+          <div
+            class="grid-cell"
+            *ngFor="let jour of jours"
+            (click)="toggleCreneau(jour, heure)"
+          >
+            <div *ngIf="estSelectionne(jour, heure)" class="event-box">
+              <p>{{ heureAffichage(heure) }}</p>
+              <p>Disponible</p>
+            </div>
+          </div>
+
+          <div class="hour-cell right-hour">{{ heure }}</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>

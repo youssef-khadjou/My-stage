@@ -1,1 +1,77 @@
-<p>register works!</p>
+<div class="register-container">
+
+  <div class="gauche">
+    <h1>My'Stage</h1>
+  </div>
+
+  <div class="droite">
+    <h2>Créez votre compte !</h2>
+
+    <div class="champ">
+      <label>Nom</label>
+      <input type="text" placeholder="nom" [(ngModel)]="nom">
+    </div>
+
+    <div class="champ">
+      <label>Prénom</label>
+      <input type="text" placeholder="prénom" [(ngModel)]="prenom">
+    </div>
+
+    <div class="champ">
+      <label>Sexe</label>
+      <select [(ngModel)]="sexe">
+        <option value="">sexe</option>
+        <option value="homme">Homme</option>
+        <option value="femme">Femme</option>
+      </select>
+    </div>
+
+    <div class="champ">
+      <label>Fonction</label>
+      <select [(ngModel)]="fonction">
+        <option value="">fonction</option>
+        <option value="etudiant">Etudiant</option>
+        <option value="enseignant">Enseignant</option>
+        <option value="directeur">Directeur</option>
+        <option value="entreprise">Entreprise</option>
+        <option value="secretariat">Secrétariat</option>
+      </select>
+    </div>
+
+    <div class="champ">
+      <label>Département</label>
+      <select [(ngModel)]="departement">
+        <option value="">Choisir un département</option>
+        <option value="miage-l3">MIAGE - L3</option>
+        <option value="miage-m1">MIAGE - M1</option>
+        <option value="miage-m2">MIAGE - M2</option>
+        <option value="inge-l3">Ingénierie - L3</option>
+        <option value="inge-m1">Ingénierie - M1</option>
+        <option value="inge-m2">Ingénierie - M2</option>
+      </select>
+    </div>
+
+    <div class="champ">
+      <label>Email</label>
+      <input type="email" placeholder="email@example.com" [(ngModel)]="email">
+    </div>
+
+    <div class="champ">
+      <label>Mot de passe</label>
+      <input type="password" [(ngModel)]="motDePasse">
+    </div>
+
+    <div class="champ">
+      <label>Confirmation mot de passe</label>
+      <input type="password" [(ngModel)]="confirmation">
+    </div>
+
+    <div class="options">
+      <label><input type="checkbox"> Acceptez la politique de confidentialité</label>
+    </div>
+
+    <button class="btn-creer" (click)="creerCompte()">Créez votre compte</button>
+
+  </div>
+
+</div>

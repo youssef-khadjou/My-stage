@@ -1,0 +1,45 @@
+<div class="offres-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/etudiant">Accueil</a>
+      <a routerLink="/etudiant/profil">Infos personnelles</a>
+      <a routerLink="/etudiant/offres">Offres de stage</a>
+      <a routerLink="/etudiant/confirmer">Confirmer mon stage</a>
+      <a routerLink="/etudiant/disponibilites">Mes Disponibilités</a>
+    </div>
+    <div class="avatar">E</div>
+  </nav>
+
+  <div class="contenu">
+    <div class="liste-offres">
+      <h2>Offres de stage disponibles</h2>
+      <p class="sous-titre">Propositions validées par le directeur</p>
+
+      <div class="offre" *ngFor="let offre of offres">
+        <div class="offre-info">
+          <h3>{{ offre.titre }}</h3>
+          <p>Durée : {{ offre.duree }}</p>
+          <p>Gratification : {{ offre.gratification }}</p>
+          <p>Lieu : {{ offre.lieu }}</p>
+        </div>
+        <button class="btn-voir">Voir la fiche complète</button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>

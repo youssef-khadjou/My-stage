@@ -1,0 +1,81 @@
+<div class="proposer-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/entreprise">Accueil</a>
+      <a routerLink="/entreprise/profil">Infos personnelles</a>
+      <a routerLink="/entreprise/proposer-sujet">Proposer un sujet</a>
+      <a routerLink="/entreprise/propositions">Mes Propositions</a>
+      <a routerLink="/entreprise/compte-rendu-visite">Compte rendu visite</a>
+      <a routerLink="/entreprise/disponibilites">Mes Disponibilités</a>
+    </div>
+    <div class="avatar">E.T</div>
+  </nav>
+
+  <div class="contenu">
+
+    <div class="carte-formulaire">
+
+      <div class="colonne-gauche">
+        <div class="champ-inline">
+          <label>Titre du poste :</label>
+          <input type="text" [(ngModel)]="titrePoste" placeholder="XXXXXXXXXX">
+        </div>
+
+        <div class="champ-inline">
+          <label>Description :</label>
+          <input type="text" [(ngModel)]="description" placeholder="XXXXXXXXXX">
+        </div>
+      </div>
+
+      <div class="colonne-droite">
+        <div class="champ-inline">
+          <label>Durée :</label>
+          <input type="text" [(ngModel)]="duree" placeholder="XXXXXXXXXX">
+        </div>
+
+        <div class="champ-inline">
+          <label>Gratification :</label>
+          <input type="text" [(ngModel)]="gratification" placeholder="XXXXXXXXXX">
+        </div>
+
+        <div class="champ-inline">
+          <label>Compétences :</label>
+          <input type="text" [(ngModel)]="competences" placeholder="XXXXXXXXXX">
+        </div>
+
+        <div class="champ-inline">
+          <label>Télétravail :</label>
+          <input type="text" [(ngModel)]="teletravail" placeholder="XXXXXXXXXX">
+        </div>
+      </div>
+
+      <div class="zone-fichier">
+        <label for="fichier" class="btn-fichier">Joindre fiche de poste</label>
+        <input id="fichier" type="file" (change)="onFileSelected($event)" hidden>
+        <span class="nom-fichier" *ngIf="fichierNom">{{ fichierNom }}</span>
+      </div>
+
+    </div>
+
+    <div class="boutons">
+      <button class="btn-annuler" routerLink="/entreprise">Annuler</button>
+      <button class="btn-publier" (click)="publierOffre()">Publier l’offre</button>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>

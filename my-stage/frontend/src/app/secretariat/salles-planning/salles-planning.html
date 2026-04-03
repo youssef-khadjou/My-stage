@@ -1,0 +1,61 @@
+<div class="planning-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/secretariat">Accueil</a>
+      <a routerLink="/secretariat/profil">Infos personnelles</a>
+      <a routerLink="/secretariat/calendrier">Calendrier</a>
+      <a routerLink="/secretariat/salles">Salles</a>
+      <a routerLink="/secretariat/stages">Stages</a>
+    </div>
+    <div class="avatar">S.T</div>
+  </nav>
+
+  <div class="contenu">
+    <div class="planning-zone">
+
+      <div class="tableau">
+        <div class="header-row">
+          <div class="corner"></div>
+          <div class="day-cell" *ngFor="let jour of jours">{{ jour }}</div>
+          <div class="corner right-corner"></div>
+        </div>
+
+        <div class="body-row" *ngFor="let heure of heures">
+          <div class="hour-cell">{{ heure }}</div>
+
+          <div class="grid-cell" *ngFor="let jour of jours">
+            <div *ngIf="getEvent(jour, heure) as event" class="event-box">
+              <p>{{ heure.toLowerCase().replace(' h', ':00') }}</p>
+              <p>Étudiant : {{ event.etudiant }}</p>
+              <p>Enseignant : {{ event.enseignant }}</p>
+              <p>Entreprise : {{ event.entreprise }}</p>
+            </div>
+          </div>
+
+          <div class="hour-cell right-hour">{{ heure }}</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="cancel" (click)="retour()">Annuler</button>
+        <button class="export">Exporter</button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>

@@ -1,1 +1,57 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/entreprise">Accueil</a>
+      <a routerLink="/entreprise/profil">Infos personnelles</a>
+      <a routerLink="/entreprise/proposer-sujet">Proposer un sujet</a>
+      <a routerLink="/entreprise/propositions">Mes Propositions</a>
+      <a routerLink="/entreprise/compte-rendu-visite">Compte rendu visite</a>
+      <a routerLink="/entreprise/disponibilites">Mes Disponibilités</a>
+    </div>
+    <div class="avatar">E.T</div>
+  </nav>
+
+  <div class="banniere">
+    <h1>My’Stage</h1>
+  </div>
+
+  <div class="cartes-container">
+
+    <div class="carte" (click)="naviguer('/entreprise/proposer-sujet')">
+      <span class="icone">📢</span>
+      <h2>Proposer un sujet</h2>
+      <p>Soumettre un nouveau sujet.</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+    <div class="carte" (click)="naviguer('/entreprise/propositions')">
+      <span class="icone">📄</span>
+      <h2>Mes Propositions</h2>
+      <p>Suivre l’historique des stages.</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+    <div class="carte" (click)="naviguer('/entreprise/compte-rendu-visite')">
+      <span class="icone">✏️</span>
+      <h2>Compte rendu visite</h2>
+      <p>Remplir un rapport de stage</p>
+      <a class="lien">Commencer →</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>

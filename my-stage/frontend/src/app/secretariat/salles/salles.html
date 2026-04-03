@@ -1,0 +1,42 @@
+<div class="salles-container">
+
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/secretariat">Accueil</a>
+      <a routerLink="/secretariat/profil">Infos personnelles</a>
+      <a routerLink="/secretariat/calendrier">Calendrier</a>
+      <a routerLink="/secretariat/salles">Salles</a>
+      <a routerLink="/secretariat/stages">Stages</a>
+    </div>
+    <div class="avatar">S.T</div>
+  </nav>
+
+  <div class="contenu">
+    <div class="card">
+      <h2>Sélectionnez une salle</h2>
+
+      <select [(ngModel)]="selectedSalle">
+        <option value="">Veuillez sélectionner une salle</option>
+        <option *ngFor="let salle of salles" [value]="salle">
+          {{ salle }}
+        </option>
+      </select>
+
+      <button (click)="rechercher()">Rechercher</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-liens">
+      <a>À propos</a>
+      <a>Contactez nous</a>
+      <a>FAQ</a>
+      <a>Termes et conditions</a>
+      <a>Politique de cookies</a>
+      <a>Confidentialité</a>
+    </div>
+    <p>Copyright © 2026 - My'Stage</p>
+  </footer>
+
+</div>
