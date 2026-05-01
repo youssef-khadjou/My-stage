@@ -70,6 +70,8 @@
       <label><input type="checkbox"> Acceptez la politique de confidentialité</label>
     </div>
 
+    <p *ngIf="erreur" style="color: red; font-size: 13px;">{{ erreur }}</p>
+    <p *ngIf="succes" style="color: green; font-size: 13px;">{{ succes }}</p>
     <button class="btn-creer" (click)="creerCompte()">Créez votre compte</button>
 
     <div class="lien-connexion" style="text-align: center; margin-top: 20px;">

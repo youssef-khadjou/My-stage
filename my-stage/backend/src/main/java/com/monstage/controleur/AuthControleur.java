@@ -23,7 +23,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthControleur {
 
     @Autowired
@@ -40,10 +40,15 @@ public class AuthControleur {
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+    @PostMapping("/connexion")
+    public ResponseEntity<Map<String, Object>> connexion(@RequestBody RequeteConnexion requete) {
+        return login(requete);
+    }
+
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody RequeteConnexion requete) {
         Optional<Utilisateur> utilisateurOpt = utilisateurRepository.findByEmail(requete.getEmail());
-        
+
         if (utilisateurOpt.isPresent()) {
             Utilisateur utilisateur = utilisateurOpt.get();
             if (passwordEncoder.matches(requete.getMotDePasse(), utilisateur.getMotDePasse())) {
@@ -59,7 +64,7 @@ public class AuthControleur {
                 return ResponseEntity.ok(response);
             }
         }
-        
+
         Map<String, Object> error = new HashMap<>();
         error.put("message", "Email ou mot de passe incorrect");
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
@@ -98,7 +103,7 @@ public class AuthControleur {
                 etudiant.setUtilisateur(savedUser);
                 etudiantRepository.save(etudiant);
                 break;
-                
+
             case ENTREPRISE:
                 Entreprise entreprise = new Entreprise();
                 entreprise.setId(savedUser.getId());
@@ -111,7 +116,7 @@ public class AuthControleur {
                 entreprise.setUtilisateur(savedUser);
                 entrepriseRepository.save(entreprise);
                 break;
-                
+
             case PROFESSEUR:
                 Professeur professeur = new Professeur();
                 professeur.setNom(requete.getNom());
@@ -121,7 +126,7 @@ public class AuthControleur {
                 professeur.setUtilisateur(savedUser);
                 professeurRepository.save(professeur);
                 break;
-                
+
             default:
                 break;
         }

@@ -1,1 +1,4 @@
 .idea/
+my-stage/backend/target/
+my-stage/frontend/node_modules/
+my-stage/frontend/.angular/

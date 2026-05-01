@@ -24,6 +24,7 @@
       <a href="#">Mot de passe oublié ?</a>
     </div>
 
+    <p *ngIf="erreur" style="color: red; font-size: 13px;">{{ erreur }}</p>
     <button class="btn-connexion" (click)="seConnecter()">Connexion</button>
 
     <p class="inscription">

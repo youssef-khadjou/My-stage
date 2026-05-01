@@ -44,9 +44,9 @@ public class Utilisateur {
     @LastModifiedDate
     @Column(name = "date_modification")
     private LocalDateTime dateModification;
-    
+
     public enum Role {
-        ETUDIANT, ENTREPRISE, PROFESSEUR, SECRETARIAT
+        ETUDIANT, ENTREPRISE, PROFESSEUR, DIRECTEUR, ENSEIGNANT, SECRETARIAT
     }
     
     // Constructeurs
