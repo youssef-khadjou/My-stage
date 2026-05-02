@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-suivis',
@@ -9,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './suivis.html',
   styleUrl: './suivis.css'
 })
-export class Suivis {
+export class Suivis implements OnInit {
 
   etudiantsSuivis: any[] = [];
   resultatsRecherche: any[] = [];
@@ -17,15 +19,37 @@ export class Suivis {
   lieuFiltre: string = '';
   rechercheLancee: boolean = false;
 
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private storage: StorageService
+  ) {}
+
+  ngOnInit() {
+    this.http.get<any[]>('http://localhost:8080/api/stages')
+      .subscribe({
+        next: (data) => this.etudiantsSuivis = data,
+        error: () => console.log('Erreur chargement étudiants suivis')
+      });
+  }
+
   rechercher() {
     this.rechercheLancee = true;
-    console.log('Recherche :', this.promotionFiltre, this.lieuFiltre);
+    this.http.get<any[]>('http://localhost:8080/api/stages')
+      .subscribe({
+        next: (data) => this.resultatsRecherche = data,
+        error: () => console.log('Erreur recherche')
+      });
   }
 
   suivre(etudiant: any) {
     this.etudiantsSuivis.push(etudiant);
     this.resultatsRecherche = this.resultatsRecherche.filter(e => e !== etudiant);
-    console.log('Étudiant suivi :', etudiant);
+  }
+
+  deconnecter() {
+    this.storage.removeItem('utilisateur');
+    this.router.navigate(['/']);
   }
 
 }

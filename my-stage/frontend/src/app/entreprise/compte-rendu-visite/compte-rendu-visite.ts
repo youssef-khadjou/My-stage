@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-compte-rendu-visite',
@@ -10,19 +11,23 @@ import { CommonModule } from '@angular/common';
   styleUrl: './compte-rendu-visite.css'
 })
 export class CompteRenduVisite {
-  etape: number = 1;
 
+  etape: number = 1;
   stagiaire: string = '';
   typeVisite: string = '';
   dateVisite: string = '';
   heureVisite: string = '';
-
   presenceStagiaire: string = '';
   travauxRealises: string = '';
   evaluationCompetences: string = '';
   pointsForts: string = '';
   axesAmelioration: string = '';
   objectifsProchaineVisite: string = '';
+
+  constructor(
+    private router: Router,
+    private storage: StorageService
+  ) {}
 
   confirmer() {
     this.etape = 2;
@@ -46,4 +51,10 @@ export class CompteRenduVisite {
       objectifsProchaineVisite: this.objectifsProchaineVisite
     });
   }
+
+  deconnecter() {
+    this.storage.removeItem('utilisateur');
+    this.router.navigate(['/']);
+  }
+
 }

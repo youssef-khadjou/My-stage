@@ -1,1 +1,33 @@
-<p>candidatures works!</p>
+<div class="candidatures-container">
+  <nav class="navbar">
+    <img src="univ_ufr.jpg" alt="Logo" class="logo">
+    <div class="nav-liens">
+      <a routerLink="/etudiant">Accueil</a>
+      <a routerLink="/etudiant/profil">Infos personnelles</a>
+      <a routerLink="/etudiant/offres">Offres de stage</a>
+      <a routerLink="/etudiant/confirmer">Confirmer mon stage</a>
+      <a routerLink="/etudiant/disponibilites">Mes Disponibilités</a>
+    </div>
+    <div class="user-zone">
+      <div class="avatar">E</div>
+      <div class="btn-deconnecter" (click)="deconnecter()" title="Se déconnecter">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+      </div>
+    </div>
+  </nav>
+
+  <div class="contenu" style="padding: 30px 40px;">
+    <h2>Mes candidatures</h2>
+    <div *ngFor="let c of candidatures" style="border:1px solid #ddd; border-radius:8px; padding:15px; margin-top:15px;">
+      <p><strong>Sujet :</strong> {{ c.stage?.intitule }}</p>
+      <p><strong>Entreprise :</strong> {{ c.stage?.entreprise?.nomEntreprise }}</p>
+      <p><strong>Statut :</strong> {{ c.statut }}</p>
+      <p><strong>Date :</strong> {{ c.datePostulation | date:'dd/MM/yyyy' }}</p>
+    </div>
+    <p *ngIf="candidatures.length === 0" style="color:#888; margin-top:20px;">Aucune candidature pour le moment.</p>
+  </div>
+</div>

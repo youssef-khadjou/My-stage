@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-disponibilites',
@@ -10,7 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class Disponibilites {
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private storage: StorageService
+  ) {}
 
   heures = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
@@ -54,6 +58,11 @@ export class Disponibilites {
 
   enregistrer() {
     console.log('Disponibilités enregistrées', this.disponibilites);
+  }
+
+  deconnecter() {
+    this.storage.removeItem('utilisateur')
+    this.router.navigate(['/']);
   }
 
 }

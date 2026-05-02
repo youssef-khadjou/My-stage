@@ -10,7 +10,16 @@
       <a routerLink="/directeur/suivis">Suivis</a>
       <a routerLink="/directeur/soutenances">Soutenances</a>
     </div>
-    <div class="avatar">D</div>
+    <div class="user-zone">
+      <div class="avatar">D.T</div>
+      <div class="btn-deconnecter" (click)="deconnecter()" title="Se déconnecter">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+      </div>
+    </div>
   </nav>
 
   <div class="contenu">
@@ -21,8 +30,8 @@
       <div class="sujet" *ngFor="let sujet of sujets">
         <input type="checkbox" [(ngModel)]="sujet.selectionne">
         <div class="sujet-info">
-          <h3>{{ sujet.entreprise }} - {{ sujet.titre }}</h3>
-          <p>Validé le : {{ sujet.dateValidation }}</p>
+          <h3>{{ sujet.entreprise?.nomEntreprise }} - {{ sujet.intitule }}</h3>
+          <p>Validé le : {{ sujet.dateValidation | date:'dd/MM/yyyy' }}</p>
         </div>
       </div>
 

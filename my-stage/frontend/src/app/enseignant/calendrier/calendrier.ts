@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-calendrier',
@@ -18,6 +19,11 @@ export class Calendrier implements OnInit {
 
   nomsMois = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
     'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+
+  constructor(
+    private router: Router,
+    private storage: StorageService
+  ) {}
 
   get nomMoisActuel(): string {
     return this.nomsMois[this.mois];
@@ -55,6 +61,11 @@ export class Calendrier implements OnInit {
 
   sInscrire(soutenance: any) {
     console.log('Inscrit comme jury pour :', soutenance);
+  }
+
+  deconnecter() {
+    this.storage.removeItem('utilisateur');
+    this.router.navigate(['/']);
   }
 
 }

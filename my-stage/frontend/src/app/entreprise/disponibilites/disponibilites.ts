@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-disponibilites',
@@ -24,6 +25,11 @@ export class Disponibilites {
     { jour: 'MAR 22', heure: '17 H' }
   ];
 
+  constructor(
+    private router: Router,
+    private storage: StorageService
+  ) {}
+
   estSelectionne(jour: string, heure: string): boolean {
     return this.creneauxSelectionnes.some(
       creneau => creneau.jour === jour && creneau.heure === heure
@@ -34,7 +40,6 @@ export class Disponibilites {
     const index = this.creneauxSelectionnes.findIndex(
       creneau => creneau.jour === jour && creneau.heure === heure
     );
-
     if (index !== -1) {
       this.creneauxSelectionnes.splice(index, 1);
     } else {
@@ -48,6 +53,11 @@ export class Disponibilites {
 
   heureAffichage(heure: string): string {
     return heure.toLowerCase().replace(' h', ':00');
+  }
+
+  deconnecter() {
+    this.storage.removeItem('utilisateur');
+    this.router.navigate(['/']);
   }
 
 }

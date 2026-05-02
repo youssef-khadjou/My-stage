@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-salles',
@@ -14,7 +15,10 @@ export class Salles {
   salles = ['Salle 1', 'Salle 2', 'Salle 3', 'Salle 4'];
   selectedSalle: string = '';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private storage: StorageService
+  ) {}
 
   rechercher() {
     if (this.selectedSalle) {
@@ -22,5 +26,10 @@ export class Salles {
         queryParams: { salle: this.selectedSalle }
       });
     }
+  }
+
+  deconnecter() {
+    this.storage.removeItem('utilisateur');
+    this.router.navigate(['/']);
   }
 }

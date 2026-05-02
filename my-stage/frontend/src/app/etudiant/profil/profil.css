@@ -186,3 +186,25 @@
   font-size: 13px;
   cursor: pointer;
 }
+
+.user-zone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-deconnecter {
+  background-color: #e53e3e;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-deconnecter:hover {
+  background-color: #c53030;
+}

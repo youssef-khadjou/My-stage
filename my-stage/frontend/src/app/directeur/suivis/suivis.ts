@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-suivis',
@@ -15,8 +17,26 @@ export class Suivis {
   lieu: string = '';
   etudiants: any[] = [];
 
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private storage: StorageService
+  ) {}
+
   rechercher() {
-    console.log('Recherche :', this.promotion, this.lieu);
+    let url = 'http://localhost:8080/api/etudiants';
+    if (this.promotion) {
+      url += `/niveau/${this.promotion}`;
+    }
+    this.http.get<any[]>(url).subscribe({
+      next: (data) => this.etudiants = data,
+      error: () => console.log('Erreur chargement étudiants')
+    });
+  }
+
+  deconnecter() {
+    this.storage.removeItem('utilisateur');
+    this.router.navigate(['/']);
   }
 
 }

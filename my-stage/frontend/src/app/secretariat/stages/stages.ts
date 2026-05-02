@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-stages',
@@ -10,33 +12,38 @@ import { RouterLink } from '@angular/router';
   templateUrl: './stages.html',
   styleUrl: './stages.css'
 })
-export class Stages {
+export class Stages implements OnInit {
+
   promotionSelectionnee: string = 'master1';
+  stages: any[] = [];
+  stagesFiltres: any[] = [];
+  erreur: string = '';
 
-  stages = [
-    {
-      nom: 'XXXXXXXXXX',
-      prenom: 'XXXXXXXXXX',
-      promotion: 'Master 1',
-      entreprise: 'XXXXXXXXXX',
-      sujet: 'XXXXXXXXXX',
-      tuteur: 'XXXXXXXXXX'
-    },
-    {
-      nom: 'XXXXXXXXXX',
-      prenom: 'XXXXXXXXXX',
-      promotion: 'Master 2',
-      entreprise: 'XXXXXXXXXX',
-      sujet: 'XXXXXXXXXX',
-      tuteur: 'XXXXXXXXXX'
-    }
-  ];
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private storage: StorageService
+  ) {}
 
-  stagesFiltres = [...this.stages];
+  ngOnInit() {
+    this.http.get<any[]>('http://localhost:8080/api/stages').subscribe({
+      next: (data) => {
+        this.stages = data;
+        this.stagesFiltres = data;
+      },
+      error: () => this.erreur = 'Erreur lors du chargement des stages'
+    });
+  }
 
   rechercher() {
+    // filtre sur le niveau de l'étudiant lié à la candidature — ici on filtre sur le statut ou titre en attendant un vrai champ promotion
     this.stagesFiltres = this.stages.filter(stage =>
-      stage.promotion.toLowerCase().replace(' ', '') === this.promotionSelectionnee
+      stage.statut?.toLowerCase() !== 'refuse'
     );
+  }
+
+  deconnecter() {
+    this.storage.removeItem('utilisateur');
+    this.router.navigate(['/']);
   }
 }

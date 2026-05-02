@@ -9,7 +9,16 @@
       <a routerLink="/etudiant/confirmer">Confirmer mon stage</a>
       <a routerLink="/etudiant/disponibilites">Mes Disponibilités</a>
     </div>
-    <div class="avatar">E</div>
+    <div class="user-zone">
+      <div class="avatar">E</div>
+      <div class="btn-deconnecter" (click)="deconnecter()" title="Se déconnecter">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+      </div>
+    </div>
   </nav>
 
   <div class="contenu">
@@ -19,10 +28,10 @@
 
       <div class="offre" *ngFor="let offre of offres">
         <div class="offre-info">
-          <h3>{{ offre.titre }}</h3>
-          <p>Durée : {{ offre.duree }}</p>
-          <p>Gratification : {{ offre.gratification }}</p>
-          <p>Lieu : {{ offre.lieu }}</p>
+          <h3>{{ offre.intitule }}</h3>
+          <p>Durée : {{ offre.dureeSemaines }} semaines</p>
+          <p>Gratification : {{ offre.remuneration }}€/mois</p>
+          <p>Lieu : {{ offre.lieuTravail }}</p>
         </div>
         <button class="btn-voir">Voir la fiche complète</button>
       </div>

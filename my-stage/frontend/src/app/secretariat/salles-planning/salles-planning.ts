@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-salles-planning',
@@ -20,33 +21,33 @@ export class SallesPlanning {
   ];
 
   events = [
-    { jour: 'LUN 21', heure: '9 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
+    { jour: 'LUN 21', heure: '9 H',  etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'LUN 21', heure: '11 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'LUN 21', heure: '15 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'LUN 21', heure: '16 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
-
     { jour: 'MAR 22', heure: '10 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'MAR 22', heure: '11 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'MAR 22', heure: '14 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'MAR 22', heure: '17 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
-
-    { jour: 'MER 23', heure: '8 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
-    { jour: 'MER 23', heure: '9 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
+    { jour: 'MER 23', heure: '8 H',  etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
+    { jour: 'MER 23', heure: '9 H',  etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'MER 23', heure: '11 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'MER 23', heure: '13 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
-
     { jour: 'JEU 24', heure: '10 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'JEU 24', heure: '16 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'JEU 24', heure: '17 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
-
-    { jour: 'VEN 25', heure: '8 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
-    { jour: 'VEN 25', heure: '9 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
+    { jour: 'VEN 25', heure: '8 H',  etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
+    { jour: 'VEN 25', heure: '9 H',  etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'VEN 25', heure: '10 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'VEN 25', heure: '11 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' },
     { jour: 'VEN 25', heure: '14 H', etudiant: 'XXXXXX', enseignant: 'XXXXXX', entreprise: 'XXXXXX' }
   ];
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private storage: StorageService
+  ) {
     this.route.queryParams.subscribe(params => {
       this.salle = params['salle'] || 'Salle 1';
     });
@@ -58,5 +59,10 @@ export class SallesPlanning {
 
   retour() {
     this.router.navigate(['/secretariat/salles']);
+  }
+
+  deconnecter() {
+    this.storage.removeItem('utilisateur');
+    this.router.navigate(['/']);
   }
 }
