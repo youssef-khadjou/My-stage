@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 import { Home } from './home/home';
 import { Login } from './auth/login/login';
 import { Register } from './auth/register/register';
@@ -18,77 +19,59 @@ import { Profil as EnseignantProfil } from './enseignant/profil/profil';
 import { Calendrier } from './enseignant/calendrier/calendrier';
 import { Suivis as EnseignantSuivis } from './enseignant/suivis/suivis';
 import { Soutenances as EnseignantSoutenances } from './enseignant/soutenances/soutenances';
-
 import { Dashboard as SecretariatDashboard } from './secretariat/dashboard/dashboard';
-
 import { Profil as SecretariatProfil } from './secretariat/profil/profil';
-
 import { Calendrier as SecretariatCalendrier } from './secretariat/calendrier/calendrier';
-
 import { Salles } from './secretariat/salles/salles';
 import { SallesPlanning } from './secretariat/salles-planning/salles-planning';
-
 import { Stages as SecretariatStages } from './secretariat/stages/stages';
-
 import { Dashboard as EntrepriseDashboard } from './entreprise/dashboard/dashboard';
-
 import { Profil as EntrepriseProfil } from './entreprise/profil/profil';
-
 import { ProposerSujet } from './entreprise/proposer-sujet/proposer-sujet';
-
 import { Propositions } from './entreprise/propositions/propositions';
-
 import { CompteRenduVisite } from './entreprise/compte-rendu-visite/compte-rendu-visite';
-
 import { Disponibilites as EntrepriseDisponibilites } from './entreprise/disponibilites/disponibilites';
-
-
-
-
-
-
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'login/:role', component: Login },
   { path: 'register', component: Register },
-  { path: 'etudiant', component: EtudiantDashboard },
-  { path: 'etudiant/profil', component: EtudiantProfil },
-  { path: 'etudiant/offres', component: Offres },
-  { path: 'etudiant/confirmer', component: ConfirmerStage },
-  { path: 'etudiant/disponibilites', component: EtudiantDisponibilites },
-  { path: 'directeur', component: DirecteurDashboard },
-  { path: 'directeur/profil', component: DirecteurProfil },
-  { path: 'directeur/validation', component: ValidationSujets },
-  { path: 'directeur/publications', component: Publications },
-  { path: 'directeur/suivis', component: DirecteurSuivis },
-  { path: 'directeur/soutenances', component: DirecteurSoutenances },
-  { path: 'enseignant', component: EnseignantDashboard },
-  { path: 'enseignant/profil', component: EnseignantProfil },
-  { path: 'enseignant/calendrier', component: Calendrier },
-  { path: 'enseignant/suivis', component: EnseignantSuivis },
-  { path: 'enseignant/soutenances', component: EnseignantSoutenances },
 
-  { path: 'secretariat', component: SecretariatDashboard },
+  // Étudiant
+  { path: 'etudiant', component: EtudiantDashboard, canActivate: [authGuard] },
+  { path: 'etudiant/profil', component: EtudiantProfil, canActivate: [authGuard] },
+  { path: 'etudiant/offres', component: Offres, canActivate: [authGuard] },
+  { path: 'etudiant/confirmer', component: ConfirmerStage, canActivate: [authGuard] },
+  { path: 'etudiant/disponibilites', component: EtudiantDisponibilites, canActivate: [authGuard] },
 
-  { path: 'secretariat/profil', component: SecretariatProfil },
+  // Directeur
+  { path: 'directeur', component: DirecteurDashboard, canActivate: [authGuard] },
+  { path: 'directeur/profil', component: DirecteurProfil, canActivate: [authGuard] },
+  { path: 'directeur/validation', component: ValidationSujets, canActivate: [authGuard] },
+  { path: 'directeur/publications', component: Publications, canActivate: [authGuard] },
+  { path: 'directeur/suivis', component: DirecteurSuivis, canActivate: [authGuard] },
+  { path: 'directeur/soutenances', component: DirecteurSoutenances, canActivate: [authGuard] },
 
-  { path: 'secretariat/calendrier', component: SecretariatCalendrier },
+  // Enseignant
+  { path: 'enseignant', component: EnseignantDashboard, canActivate: [authGuard] },
+  { path: 'enseignant/profil', component: EnseignantProfil, canActivate: [authGuard] },
+  { path: 'enseignant/calendrier', component: Calendrier, canActivate: [authGuard] },
+  { path: 'enseignant/suivis', component: EnseignantSuivis, canActivate: [authGuard] },
+  { path: 'enseignant/soutenances', component: EnseignantSoutenances, canActivate: [authGuard] },
 
-  { path: 'secretariat/salles', component: Salles },
-  { path: 'secretariat/salles-planning', component: SallesPlanning },
+  // Secrétariat
+  { path: 'secretariat', component: SecretariatDashboard, canActivate: [authGuard] },
+  { path: 'secretariat/profil', component: SecretariatProfil, canActivate: [authGuard] },
+  { path: 'secretariat/calendrier', component: SecretariatCalendrier, canActivate: [authGuard] },
+  { path: 'secretariat/salles', component: Salles, canActivate: [authGuard] },
+  { path: 'secretariat/salles-planning', component: SallesPlanning, canActivate: [authGuard] },
+  { path: 'secretariat/stages', component: SecretariatStages, canActivate: [authGuard] },
 
-  { path: 'secretariat/stages', component: SecretariatStages },
-
-  { path: 'entreprise', component: EntrepriseDashboard },
-
-  { path: 'entreprise/profil', component: EntrepriseProfil },
-
-  { path: 'entreprise/proposer-sujet', component: ProposerSujet },
-
-  { path: 'entreprise/propositions', component: Propositions },
-
-  { path: 'entreprise/compte-rendu-visite', component: CompteRenduVisite },
-
-  { path: 'entreprise/disponibilites', component: EntrepriseDisponibilites },
+  // Entreprise
+  { path: 'entreprise', component: EntrepriseDashboard, canActivate: [authGuard] },
+  { path: 'entreprise/profil', component: EntrepriseProfil, canActivate: [authGuard] },
+  { path: 'entreprise/proposer-sujet', component: ProposerSujet, canActivate: [authGuard] },
+  { path: 'entreprise/propositions', component: Propositions, canActivate: [authGuard] },
+  { path: 'entreprise/compte-rendu-visite', component: CompteRenduVisite, canActivate: [authGuard] },
+  { path: 'entreprise/disponibilites', component: EntrepriseDisponibilites, canActivate: [authGuard] },
 ];
