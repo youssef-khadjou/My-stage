@@ -25,7 +25,7 @@ public class Soutenance {
     @Column(name = "note_stage")
     private Double noteStage;
 
-    /** Rôle du professeur dans cette soutenance (ex: "président", "rapporteur") */
+    /** Rôle de l'enseignant dans cette soutenance (ex: "président", "rapporteur") */
     @Column(name = "role_soutenance")
     private String roleSoutenance;
 

@@ -51,8 +51,8 @@ public class Stage {
     private Entreprise entreprise;
     
     @ManyToOne
-    @JoinColumn(name = "professeur_id")
-    private Professeur professeur;
+    @JoinColumn(name = "enseignant_id")
+    private Enseignant enseignant;
     
     @CreatedDate
     @Column(name = "date_creation", updatable = false)
@@ -102,8 +102,8 @@ public class Stage {
     public Entreprise getEntreprise() { return entreprise; }
     public void setEntreprise(Entreprise entreprise) { this.entreprise = entreprise; }
 
-    public Professeur getProfesseur() { return professeur; }
-    public void setProfesseur(Professeur professeur) { this.professeur = professeur; }
+    public Enseignant getEnseignant() { return enseignant; }
+    public void setEnseignant(Enseignant enseignant) { this.enseignant = enseignant; }
 
     public LocalDateTime getDateCreation() { return dateCreation; }
     public void setDateCreation(LocalDateTime dateCreation) { this.dateCreation = dateCreation; }

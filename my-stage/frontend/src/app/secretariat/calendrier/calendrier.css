@@ -168,14 +168,14 @@
   color: #1a56a0;
 }
 
-.professeur-bloc {
+.enseignant-bloc {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
 }
 
-.icone-prof {
+.icone-ens {
   width: 52px;
   height: 52px;
   border: 1px solid #ddd;
@@ -187,12 +187,12 @@
   background: white;
 }
 
-.professeur-bloc span {
+.enseignant-bloc span {
   color: #1a56a0;
   font-size: 14px;
 }
 
-.aucun-prof {
+.aucun-enseignant {
   color: red;
   font-size: 18px;
   font-weight: bold;

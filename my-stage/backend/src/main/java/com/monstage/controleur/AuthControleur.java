@@ -5,11 +5,11 @@ import com.monstage.dto.RequeteInscription;
 import com.monstage.modele.Utilisateur;
 import com.monstage.modele.Etudiant;
 import com.monstage.modele.Entreprise;
-import com.monstage.modele.Professeur;
+import com.monstage.modele.Enseignant;
 import com.monstage.repository.UtilisateurRepository;
 import com.monstage.repository.EtudiantRepository;
 import com.monstage.repository.EntrepriseRepository;
-import com.monstage.repository.ProfesseurRepository;
+import com.monstage.repository.EnseignantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +36,7 @@ public class AuthControleur {
     private EntrepriseRepository entrepriseRepository;
 
     @Autowired
-    private ProfesseurRepository professeurRepository;
+    private EnseignantRepository enseignantRepository;
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -116,14 +116,14 @@ public class AuthControleur {
                 entrepriseRepository.save(entreprise);
                 break;
 
-            case PROFESSEUR:
-                Professeur professeur = new Professeur();
-                professeur.setNom(requete.getNom());
-                professeur.setPrenom(requete.getPrenom());
-                professeur.setSpecialite(requete.getSpecialite());
-                professeur.setTelephone(requete.getTelephone());
-                professeur.setUtilisateur(savedUser);
-                professeurRepository.save(professeur);
+            case ENSEIGNANT:
+                Enseignant enseignant = new Enseignant();
+                enseignant.setNom(requete.getNom());
+                enseignant.setPrenom(requete.getPrenom());
+                enseignant.setSpecialite(requete.getSpecialite());
+                enseignant.setTelephone(requete.getTelephone());
+                enseignant.setUtilisateur(savedUser);
+                enseignantRepository.save(enseignant);
                 break;
 
             default:

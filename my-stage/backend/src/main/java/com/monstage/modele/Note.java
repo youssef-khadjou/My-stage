@@ -18,18 +18,18 @@ public class Note {
     private Stage stage;
 
     @ManyToOne
-    @JoinColumn(name = "professeur_id")
-    private Professeur professeur;
+    @JoinColumn(name = "enseignant_id")
+    private Enseignant enseignant;
     
     // Constructeurs
     public Note() {}
     
-    public Note(Long id, Double valeur, String commentaire, Stage stage, Professeur professeur) {
+    public Note(Long id, Double valeur, String commentaire, Stage stage, Enseignant enseignant) {
         this.id = id;
         this.valeur = valeur;
         this.commentaire = commentaire;
         this.stage = stage;
-        this.professeur = professeur;
+        this.enseignant = enseignant;
     }
     
     // Getters et Setters
@@ -65,11 +65,11 @@ public class Note {
         this.stage = stage;
     }
 
-    public Professeur getProfesseur() {
-        return professeur;
+    public Enseignant getEnseignant() {
+        return enseignant;
     }
 
-    public void setProfesseur(Professeur professeur) {
-        this.professeur = professeur;
+    public void setEnseignant(Enseignant enseignant) {
+        this.enseignant = enseignant;
     }
 }

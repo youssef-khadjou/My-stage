@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "professeurs")
-public class Professeur {
+@Table(name = "enseignants")
+public class Enseignant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,10 @@ public class Professeur {
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
-    @OneToMany(mappedBy = "professeur", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL)
     private List<Stage> stages;
     
-    public Professeur() {}
+    public Enseignant() {}
     
     // Getters et Setters
     public Long getId() { return id; }

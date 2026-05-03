@@ -46,7 +46,7 @@ public class Utilisateur {
     private LocalDateTime dateModification;
 
     public enum Role {
-        ETUDIANT, ENTREPRISE, PROFESSEUR, DIRECTEUR, ENSEIGNANT, SECRETARIAT
+        ETUDIANT, ENTREPRISE, DIRECTEUR, ENSEIGNANT, SECRETARIAT
     }
     
     // Constructeurs

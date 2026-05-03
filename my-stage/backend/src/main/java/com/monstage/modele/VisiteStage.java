@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
- * Représente une visite de stage effectuée par un professeur encadrant.
- * Le professeur se rend en entreprise pour suivre l'étudiant.
+ * Représente une visite de stage effectuée par un enseignant encadrant.
+ * L'enseignant se rend en entreprise pour suivre l'étudiant.
  * Un stage peut faire l'objet de plusieurs visites (FAIRE L'OBJET DE 1,n).
  */
 @Entity
@@ -26,7 +26,7 @@ public class VisiteStage {
     @Column(name = "present")
     private Boolean present;
 
-    /** Compte-rendu rédigé par le professeur après la visite */
+    /** Compte-rendu rédigé par l'enseignant après la visite */
     @Column(name = "compte_rendu", columnDefinition = "TEXT")
     private String compteRendu;
 

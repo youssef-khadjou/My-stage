@@ -58,8 +58,8 @@
           <p><span class="label">Heure :</span> {{ s.heure }}</p>
         </div>
         <div class="jury">
-          <p class="label">Professeurs inscrits :</p>
-          <div class="prof" *ngFor="let prof of s.professeurs">{{ prof }}</div>
+          <p class="label">Enseignants inscrits :</p>
+          <div class="enseignant" *ngFor="let enseignant of s.enseignants">{{ enseignant }}</div>
           <button class="btn-plus" (click)="sInscrire(s)">+</button>
         </div>
       </div>

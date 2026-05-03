@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 /**
- * Représente un rendez-vous de suivi entre un professeur encadrant et un étudiant.
- * Ces rendez-vous permettent au professeur de suivre l'avancement du stage
+ * Représente un rendez-vous de suivi entre un enseignant encadrant et un étudiant.
+ * Ces rendez-vous permettent au enseignant de suivre l'avancement du stage
  * sans nécessairement se déplacer en entreprise (peut être en présentiel ou à distance).
  * Relation : FAIRE L'OBJET DE (1,1) avec la candidature.
  */

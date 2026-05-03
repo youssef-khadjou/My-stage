@@ -25,7 +25,7 @@ public class RequeteInscription {
     private String codePostal;
     private String secteurActivite;
 
-    // Professeur
+    // Enseignant
     private String specialite;
     
     // Constructeurs
@@ -172,7 +172,7 @@ public class RequeteInscription {
         this.secteurActivite = secteurActivite;
     }
     
-    // Getters et Setters - Professeur
+    // Getters et Setters - Enseignant
     public String getSpecialite() {
         return specialite;
     }

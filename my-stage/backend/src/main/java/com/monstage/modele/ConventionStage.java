@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
  * Représente la convention de stage tripartite entre :
  * - l'Etudiant
  * - l'Entreprise
- * - l'Université (représentée par un Professeur/responsable)
+ * - l'Université (représentée par un Enseignant/responsable)
  *
  * Une convention est générée quand une candidature est acceptée.
  * Elle doit être signée par les trois parties avant le début du stage.
