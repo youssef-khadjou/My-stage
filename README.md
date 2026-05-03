@@ -64,21 +64,27 @@ My'Stage est une plateforme web de gestion des stages académiques. Elle permet 
 
 ### 2. Configurer la base de donnees
 
-Creer la base de donnees :
-
-```sql
-CREATE DATABASE my_stage_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+#### Étape 1 — Lancer MariaDB/MySQL et se connecter
+```bash
+mysql -u root -p
 ```
 
-Configurer l'acces dans `backend/src/main/resources/application.properties` :
-
+#### Étape 2 — Créer la base de données
+```sql
+CREATE DATABASE my_stage_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE my_stage_db;
+    
+```
+#### Étape 3 — Configurer l'accès dans `backend/src/main/resources/application.properties`
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/my_stage_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 spring.datasource.username=root
 spring.datasource.password=TON_MOT_DE_PASSE
 ```
 
-### 3. Lancer le backend (Spring Boot)
+#### Étape 4 — Lancer le backend
+Le backend va automatiquement créer toutes les tables grâce à `spring.jpa.hibernate.ddl-auto=update`.
+**Il n'y a pas de script SQL à exécuter manuellement.**
 
 Depuis IntelliJ :
 - Ouvrir `backend/src/main/java/com/monstage/MonStageApplication.java`
@@ -93,7 +99,7 @@ Depuis le terminal (dans `backend/`) :
 
 Le backend est accessible sur `http://localhost:8080`
 
-### 4. Lancer le frontend (Angular)
+#### Étape 5 — Lancer le frontend (Angular)
 
 Dans un nouveau terminal, aller dans `frontend/` :
 
@@ -106,13 +112,11 @@ Dans un nouveau terminal, aller dans `frontend/` :
 
 Le frontend est accessible sur `http://localhost:4200`
 
-### 5. Tester l'application
+#### Étape 6 — Tester l'application
 
 1. Creer un compte via `http://localhost:4200/register`
 2. Se connecter via `http://localhost:4200/login/{role}` (ex: `/login/etudiant`)
 3. Explorer les fonctionnalites selon le role
-
-Compte de test : email `test@test.com`, mot de passe `password`
 
 ---
 
@@ -123,9 +127,9 @@ My-stage/
 ├── backend/                      # Spring Boot
 │   ├── src/main/java/com/monstage/
 │   │   ├── configuration/       # Configuration CORS
-│   │   ├── controleur/          # API REST (Auth, Stages, etc.)
+│   │   ├── controleur/          # API REST (Auth, Etudiant, Enseignant, Entreprise, Stage, Soutenance...)
 │   │   ├── dto/                 # Objets de transfert de donnees
-│   │   ├── modele/              # Entites JPA (Utilisateur, Stage...)
+│   │   ├── modele/              # Entités JPA (Utilisateur, Stage, Enseignant, Etudiant...)
 │   │   ├── repository/          # Interfaces d'acces BDD
 │   │   └── service/             # Logique metier (AuthService)
 │   └── src/main/resources/
@@ -138,6 +142,8 @@ My-stage/
 │   │   ├── enseignant/          # Dashboard enseignant
 │   │   ├── directeur/           # Dashboard directeur
 │   │   ├── secretariat/         # Dashboard secretariat
+│   │   ├── guards/              # Auth guard (protection des routes)
+│   │   ├── services/            # StorageService
 │   │   ├── home/                # Page d'accueil avec choix du role
 │   │   └── shared/              # Composants partages
 │   └── public/                  # Images et ressources statiques
