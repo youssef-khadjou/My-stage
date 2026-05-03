@@ -95,12 +95,11 @@ public class AuthControleur {
         switch (requete.getRole()) {
             case ETUDIANT:
                 Etudiant etudiant = new Etudiant();
-                etudiant.setId(savedUser.getId());
-                etudiant.setNumeroEtudiant(requete.getNumeroEtudiant());
-                etudiant.setFiliere(requete.getFiliere());
-                etudiant.setNiveau(requete.getNiveau());
-                etudiant.setAnneeScolaire(requete.getAnneeScolaire());
                 etudiant.setUtilisateur(savedUser);
+                etudiant.setNumeroEtudiant(requete.getNumeroEtudiant() != null ? requete.getNumeroEtudiant() : requete.getEmail());
+                etudiant.setFiliere(requete.getFiliere() != null ? requete.getFiliere() : "");
+                etudiant.setNiveau(requete.getNiveau() != null ? requete.getNiveau() : "");
+                etudiant.setAnneeScolaire(requete.getAnneeScolaire() != null ? requete.getAnneeScolaire() : "2025-2026");
                 etudiantRepository.save(etudiant);
                 break;
 

@@ -44,7 +44,7 @@ public class CreneauSoutenance {
      * Relation PLANIFIER (1,n) : une semaine contient plusieurs créneaux.
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_semaine", nullable = false)
+    @JoinColumn(name = "id_semaine", nullable = true)
     private SemaineSoutenance semaineSoutenance;
 
     /**

@@ -16,7 +16,8 @@ export class Register {
   prenom: string = '';
   sexe: string = '';
   fonction: string = '';
-  departement: string = '';
+  filiere: string = '';
+  niveau: string = '';
   email: string = '';
   motDePasse: string = '';
   confirmation: string = '';
@@ -29,6 +30,22 @@ export class Register {
     if (this.motDePasse !== this.confirmation) {
       this.erreur = 'Les mots de passe ne correspondent pas';
       return;
+    }
+
+    const body: any = {
+      nom: this.nom,
+      prenom: this.prenom,
+      email: this.email,
+      motDePasse: this.motDePasse,
+      telephone: '',
+      role: this.fonction.toUpperCase()
+    };
+
+    if (this.fonction.toLowerCase() === 'etudiant') {
+      body.filiere = this.filiere;
+      body.niveau = this.niveau;
+      body.numeroEtudiant = this.email;
+      body.anneeScolaire = '2025-2026';
     }
 
     this.http.post<any>('http://localhost:8080/api/auth/register', {

@@ -20,6 +20,7 @@ export class Profil implements OnInit {
   departement: string = '';
   succes: string = '';
   erreur: string = '';
+  initiales: string = '';
 
   constructor(
     private http: HttpClient,
@@ -29,9 +30,9 @@ export class Profil implements OnInit {
 
   ngOnInit() {
     const utilisateur = JSON.parse(localStorage.getItem('utilisateur') || '{}');
-    this.nom = utilisateur.nom || '';
-    this.prenom = utilisateur.prenom || '';
-    this.email = utilisateur.email || '';
+    const n = utilisateur.nom?.charAt(0) || '';
+    const p = utilisateur.prenom?.charAt(0) || '';
+    this.initiales = (n + '.' + p).toUpperCase();
   }
 
   enregistrer() {

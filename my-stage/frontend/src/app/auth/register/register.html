@@ -38,16 +38,22 @@
       </select>
     </div>
 
-    <div class="champ">
-      <label>Département</label>
-      <select [(ngModel)]="departement">
-        <option value="">Choisir un département</option>
-        <option value="miage-l3">MIAGE - L3</option>
-        <option value="miage-m1">MIAGE - M1</option>
-        <option value="miage-m2">MIAGE - M2</option>
-        <option value="inge-l3">Ingénierie - L3</option>
-        <option value="inge-m1">Ingénierie - M1</option>
-        <option value="inge-m2">Ingénierie - M2</option>
+    <div class="champ" *ngIf="fonction === 'etudiant'">
+      <label>Filière</label>
+      <select [(ngModel)]="filiere">
+        <option value="">Choisir une filière</option>
+        <option value="MIAGE">MIAGE</option>
+        <option value="Ingénierie">Ingénierie</option>
+      </select>
+    </div>
+
+    <div class="champ" *ngIf="fonction === 'etudiant'">
+      <label>Niveau</label>
+      <select [(ngModel)]="niveau">
+        <option value="">Choisir un niveau</option>
+        <option value="L3">L3</option>
+        <option value="M1">M1</option>
+        <option value="M2">M2</option>
       </select>
     </div>
 

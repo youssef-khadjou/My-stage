@@ -27,15 +27,15 @@
       <h2>Mes étudiants suivis</h2>
       <div class="carte-etudiant" *ngFor="let etudiant of etudiantsSuivis">
         <div class="etudiant-info">
-          <p><span class="label">Nom :</span> {{ etudiant.nom }}</p>
-          <p><span class="label">Prénom :</span> {{ etudiant.prenom }}</p>
-          <p><span class="label">Promotion :</span> {{ etudiant.promotion }}</p>
+          <p><span class="label">Nom :</span> {{ etudiant.utilisateur?.nom }}</p>
+          <p><span class="label">Prénom :</span> {{ etudiant.utilisateur?.prenom }}</p>
+          <p><span class="label">Niveau :</span> {{ etudiant.niveau }}</p>
+          <p><span class="label">Filière :</span> {{ etudiant.filiere }}</p>
         </div>
         <div class="etudiant-info">
-          <p><span class="label">Entreprise :</span> {{ etudiant.entreprise }}</p>
-          <p><span class="label">Sujet :</span> {{ etudiant.sujet }}</p>
-          <p><span class="label">Tuteur de stage :</span> {{ etudiant.tuteur }}</p>
+          <p><span class="label">Email :</span> {{ etudiant.utilisateur?.email }}</p>
         </div>
+        <button class="btn-ne-plus-suivre" (click)="nePlusSuivre(etudiant)">Ne plus suivre</button>
       </div>
       <p class="vide" *ngIf="etudiantsSuivis.length === 0">Vous ne suivez aucun étudiant pour le moment.</p>
     </div>
@@ -48,12 +48,9 @@
           <label>Promotion</label>
           <select [(ngModel)]="promotionFiltre">
             <option value="">Toutes</option>
-            <option value="miage-l3">MIAGE L3</option>
-            <option value="miage-m1">MIAGE M1</option>
-            <option value="miage-m2">MIAGE M2</option>
-            <option value="inge-l3">Ingénierie L3</option>
-            <option value="inge-m1">Ingénierie M1</option>
-            <option value="inge-m2">Ingénierie M2</option>
+            <option value="L3">L3</option>
+            <option value="M1">M1</option>
+            <option value="M2">M2</option>
           </select>
         </div>
         <div class="filtre">
@@ -69,13 +66,13 @@
 
       <div class="carte-etudiant" *ngFor="let etudiant of resultatsRecherche">
         <div class="etudiant-info">
-          <p><span class="label">Nom :</span> {{ etudiant.nom }}</p>
-          <p><span class="label">Prénom :</span> {{ etudiant.prenom }}</p>
-          <p><span class="label">Promotion :</span> {{ etudiant.promotion }}</p>
+          <p><span class="label">Nom :</span> {{ etudiant.utilisateur?.nom }}</p>
+          <p><span class="label">Prénom :</span> {{ etudiant.utilisateur?.prenom }}</p>
+          <p><span class="label">Niveau :</span> {{ etudiant.niveau }}</p>
+          <p><span class="label">Filière :</span> {{ etudiant.filiere }}</p>
         </div>
         <div class="etudiant-info">
-          <p><span class="label">Entreprise :</span> {{ etudiant.entreprise }}</p>
-          <p><span class="label">Sujet :</span> {{ etudiant.sujet }}</p>
+          <p><span class="label">Email :</span> {{ etudiant.utilisateur?.email }}</p>
         </div>
         <button class="btn-suivre" (click)="suivre(etudiant)">Suivre</button>
       </div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +20,8 @@ export class Suivis implements OnInit {
   lieuFiltre: string = '';
   rechercheLancee: boolean = false;
 
+  private platformId = inject(PLATFORM_ID);
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -26,26 +29,47 @@ export class Suivis implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.http.get<any[]>('http://localhost:8080/api/stages')
-      .subscribe({
-        next: (data) => this.etudiantsSuivis = data,
-        error: () => console.log('Erreur chargement étudiants suivis')
-      });
+    if (isPlatformBrowser(this.platformId)) {
+      const saved = localStorage.getItem('etudiantsSuivis');
+      if (saved) {
+        this.etudiantsSuivis = JSON.parse(saved);
+      }
+    }
   }
 
   rechercher() {
-    this.rechercheLancee = true;
-    this.http.get<any[]>('http://localhost:8080/api/stages')
-      .subscribe({
-        next: (data) => this.resultatsRecherche = data,
-        error: () => console.log('Erreur recherche')
-      });
+    let url = 'http://localhost:8080/api/etudiants';
+    if (this.promotionFiltre) {
+      url += `/niveau/${this.promotionFiltre}`;
+    }
+    this.http.get<any[]>(url).subscribe({
+      next: (data) => {
+        this.resultatsRecherche = data;
+        this.rechercheLancee = true;
+      },
+      error: () => console.log('Erreur chargement étudiants')
+    });
   }
 
   suivre(etudiant: any) {
+    // Vérifier si déjà suivi
+    const dejasuivi = this.etudiantsSuivis.find(e => e.id === etudiant.id);
+    if (dejasuivi) return;
+
     this.etudiantsSuivis.push(etudiant);
     this.resultatsRecherche = this.resultatsRecherche.filter(e => e !== etudiant);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('etudiantsSuivis', JSON.stringify(this.etudiantsSuivis));
+    }
   }
+
+  nePlusSuivre(etudiant: any) {
+    this.etudiantsSuivis = this.etudiantsSuivis.filter(e => e.id !== etudiant.id);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('etudiantsSuivis', JSON.stringify(this.etudiantsSuivis));
+    }
+  }
+
 
   deconnecter() {
     this.storage.removeItem('utilisateur');

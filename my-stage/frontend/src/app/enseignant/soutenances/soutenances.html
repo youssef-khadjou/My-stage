@@ -31,8 +31,8 @@
           <label>Sélectionnez un étudiant</label>
           <select [(ngModel)]="etudiantSelectionne">
             <option value="">Choisir un étudiant</option>
-            <option *ngFor="let e of etudiants" [value]="e.etudiant?.id">
-              {{ e.etudiant?.nom }} {{ e.etudiant?.prenom }}
+            <option *ngFor="let e of etudiants" [value]="e.id">
+              {{ e.utilisateur?.nom }} {{ e.utilisateur?.prenom }}
             </option>
           </select>
         </div>
@@ -71,16 +71,16 @@
       <h2>Soutenances planifiées</h2>
       <div class="carte-soutenance" *ngFor="let s of soutenances">
         <div class="soutenance-info">
-          <p><span class="label">Nom :</span> {{ s.nom }}</p>
-          <p><span class="label">Prénom :</span> {{ s.prenom }}</p>
-          <p><span class="label">Promotion :</span> {{ s.promotion }}</p>
+          <p><span class="label">Nom :</span> {{ s.etudiant?.utilisateur?.nom }}</p>
+          <p><span class="label">Prénom :</span> {{ s.etudiant?.utilisateur?.prenom }}</p>
+          <p><span class="label">Niveau :</span> {{ s.etudiant?.niveau }}</p>
         </div>
         <div class="soutenance-info">
-          <p><span class="label">Entreprise :</span> {{ s.entreprise }}</p>
-          <p><span class="label">Sujet :</span> {{ s.sujet }}</p>
-          <p><span class="label">Tuteur de stage :</span> {{ s.tuteur }}</p>
+          <p><span class="label">Date :</span> {{ s.dateSoutenance }}</p>
+          <p><span class="label">Heure :</span> {{ s.heureDebut }}</p>
+          <p><span class="label">Salle :</span> {{ s.salle }}</p>
         </div>
-        <button class="btn-plus">+</button>
+        <button class="btn-supprimer" (click)="supprimer(s)">🗑️</button>
       </div>
       <p class="vide" *ngIf="soutenances.length === 0">Aucune soutenance planifiée.</p>
     </div>

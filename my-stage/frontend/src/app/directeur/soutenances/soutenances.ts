@@ -34,7 +34,8 @@ export class Soutenances implements OnInit {
         error: () => console.log('Erreur chargement soutenances')
       });
 
-    this.http.get<any[]>('http://localhost:8080/api/stages')
+    // Charger les étudiants depuis /api/etudiants au lieu de /api/stages
+    this.http.get<any[]>('http://localhost:8080/api/etudiants')
       .subscribe({
         next: (data) => this.etudiants = data,
         error: () => console.log('Erreur chargement étudiants')
@@ -42,23 +43,40 @@ export class Soutenances implements OnInit {
   }
 
   ajouter() {
+    if (!this.date || !this.heure || !this.salle) return;
+
+    const etudiantChoisi = this.etudiants.find(e => e.id == this.etudiantSelectionne);
+
     const body = {
       etudiantId: this.etudiantSelectionne,
       date: this.date,
       heure: this.heure,
       salle: this.salle
     };
+
     this.http.post<any>('http://localhost:8080/api/soutenances', body)
       .subscribe({
         next: (data) => {
+          data.etudiant = etudiantChoisi;
           this.soutenances.push(data);
-          this.succes = 'Soutenance planifiée avec succès !';
+          this.succes = 'Soutenance ajoutée avec succès !';
           this.etudiantSelectionne = '';
           this.date = '';
           this.salle = '';
           this.heure = '';
         },
         error: () => console.log('Erreur ajout soutenance')
+      });
+  }
+
+  supprimer(soutenance: any) {
+    const id = soutenance.id || soutenance.idCreneau || soutenance.id_creneau;
+    this.http.delete(`http://localhost:8080/api/soutenances/${id}`)
+      .subscribe({
+        next: () => {
+          this.soutenances = this.soutenances.filter(s => s !== soutenance);
+        },
+        error: () => console.log('Erreur suppression soutenance')
       });
   }
 

@@ -203,3 +203,17 @@
 .btn-deconnecter:hover {
   background-color: #c53030;
 }
+
+.btn-ne-plus-suivre {
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-ne-plus-suivre:hover {
+  background-color: #c53030;
+}

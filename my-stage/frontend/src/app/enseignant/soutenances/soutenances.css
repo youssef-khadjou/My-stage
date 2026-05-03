@@ -231,3 +231,15 @@
 .btn-deconnecter:hover {
   background-color: #c53030;
 }
+
+.btn-supprimer {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #e53e3e;
+}
+
+.btn-supprimer:hover {
+  color: #c53030;
+}
