@@ -91,10 +91,10 @@ public class SujetStageControleur {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSujet(@PathVariable Long id) {
-        if (sujetStageRepository.existsById(id)) {
-            sujetStageRepository.deleteById(id);
-            return ResponseEntity.ok().build();
+        if (!sujetStageRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+        sujetStageRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }

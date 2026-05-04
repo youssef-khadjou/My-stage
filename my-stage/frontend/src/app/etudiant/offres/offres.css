@@ -142,6 +142,22 @@
   gap: 10px;
 }
 
+.btn-annuler {
+  padding: 10px 20px;
+  background: white;
+  border: 2px solid #e53e3e;
+  color: #e53e3e;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-annuler:hover {
+  background: #e53e3e;
+  color: white;
+}
+
 .btn-deconnecter {
   background-color: #e53e3e;
   color: white;

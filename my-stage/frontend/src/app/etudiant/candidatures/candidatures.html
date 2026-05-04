@@ -23,8 +23,8 @@
   <div class="contenu" style="padding: 30px 40px;">
     <h2>Mes candidatures</h2>
     <div *ngFor="let c of candidatures" style="border:1px solid #ddd; border-radius:8px; padding:15px; margin-top:15px;">
-      <p><strong>Sujet :</strong> {{ c.stage?.intitule }}</p>
-      <p><strong>Entreprise :</strong> {{ c.stage?.entreprise?.nomEntreprise }}</p>
+      <p><strong>Sujet :</strong> {{ c.sujet?.intitule }}</p>
+      <p><strong>Entreprise :</strong> {{ c.sujet?.entreprise?.nomEntreprise }}</p>
       <p><strong>Statut :</strong> {{ c.statut }}</p>
       <p><strong>Date :</strong> {{ c.datePostulation | date:'dd/MM/yyyy' }}</p>
     </div>

@@ -19,9 +19,7 @@
   border-bottom: 1px solid #ddd;
 }
 
-.logo {
-  height: 50px;
-}
+.logo { height: 50px; }
 
 .nav-liens {
   display: flex;
@@ -35,9 +33,7 @@
   cursor: pointer;
 }
 
-.nav-liens a:hover {
-  color: #1a56a0;
-}
+.nav-liens a:hover { color: #1a56a0; }
 
 .avatar {
   background-color: #1a56a0;
@@ -98,28 +94,43 @@
 .cal-jours {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
+  gap: 4px;
+}
+
+.cal-jour-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px 0;
+  min-height: 44px;
+}
+
+.cal-jour-wrapper.vide {
+  cursor: default;
+}
+
+.cal-jour-wrapper span {
+  padding: 6px 5px;
+  border-radius: 50%;
+  font-size: 14px;
+  width: 32px;
   text-align: center;
 }
 
-.cal-jours span {
-  padding: 10px 5px;
-  border-radius: 50%;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.cal-jours span:hover:not(.vide) {
-  background-color: #e8f0fe;
-}
-
-.cal-jours span.actif {
+.cal-jour-wrapper span.actif {
   background-color: #1a56a0;
   color: white;
 }
 
-.cal-jours span.vide {
-  cursor: default;
+.cal-jour-wrapper:hover:not(.vide) span:not(.actif) {
+  background-color: #e8f0fe;
+}
+
+.point-soutenance {
+  color: #1a56a0;
+  font-size: 8px;
+  line-height: 1;
 }
 
 .bloc-soutenances {
@@ -159,37 +170,6 @@
 .label {
   color: #1a56a0;
   font-weight: bold;
-}
-
-.jury {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.enseignant {
-  background-color: #f0f5ff;
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  color: #1a56a0;
-}
-
-.btn-plus {
-  background-color: #1a56a0;
-  color: white;
-  border: none;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  font-size: 20px;
-  cursor: pointer;
 }
 
 .vide {
@@ -238,6 +218,4 @@
   cursor: pointer;
 }
 
-.btn-deconnecter:hover {
-  background-color: #c53030;
-}
+.btn-deconnecter:hover { background-color: #c53030; }

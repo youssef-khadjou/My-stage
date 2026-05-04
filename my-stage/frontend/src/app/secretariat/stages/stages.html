@@ -22,44 +22,52 @@
   </nav>
 
   <div class="contenu">
-
-    <div class="bloc-filtre">
-      <h2>Sélectionnez la promotion</h2>
-
-      <div class="radios">
-        <label>
-          <input type="radio" name="promotion" [(ngModel)]="promotionSelectionnee" value="master1">
-          Master 1
-        </label>
-        <label>
-          <input type="radio" name="promotion" [(ngModel)]="promotionSelectionnee" value="master2">
-          Master 2
-        </label>
-      </div>
-
-      <button class="btn-rechercher" (click)="rechercher()">Rechercher</button>
+    <div class="titre-section">
+      <h2>Stages confirmés</h2>
+      <p>Liste des étudiants ayant confirmé leur stage</p>
     </div>
 
-    <p *ngIf="erreur" style="color:red">{{ erreur }}</p>
-
-    <div class="liste-stages">
-      <div class="carte-stage" *ngFor="let stage of stagesFiltres">
-        <div class="colonne">
-          <p><strong>Titre :</strong> {{ stage.titre }}</p>
-          <p><strong>Durée :</strong> {{ stage.duree }} semaines</p>
-          <p><strong>Lieu :</strong> {{ stage.lieu || '—' }}</p>
-        </div>
-
-        <div class="colonne">
-          <p><strong>Entreprise :</strong> {{ stage.entreprise?.nom || '—' }}</p>
-          <p><strong>Statut :</strong> {{ stage.statut }}</p>
-          <p><strong>Tuteur :</strong> {{ stage.enseignant?.utilisateur?.nom || '—' }}</p>
-        </div>
-      </div>
-
-      <p *ngIf="stagesFiltres.length === 0 && !erreur">Aucun stage trouvé.</p>
+    <div class="barre-recherche">
+      <input
+        type="text"
+        [(ngModel)]="recherche"
+        (ngModelChange)="filtrer()"
+        placeholder="Rechercher par étudiant, stage, entreprise, niveau...">
     </div>
 
+    <p *ngIf="erreur" style="color:red; text-align:center;">{{ erreur }}</p>
+
+    <div class="tableau-wrapper">
+      <table class="tableau">
+        <thead>
+        <tr>
+          <th>Étudiant</th>
+          <th>Niveau</th>
+          <th>Filière</th>
+          <th>Stage</th>
+          <th>Entreprise</th>
+          <th>Lieu</th>
+          <th>Période</th>
+          <th>Gratification</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of candidaturesFiltrees">
+          <td>{{ c.etudiant?.utilisateur?.prenom }} {{ c.etudiant?.utilisateur?.nom }}</td>
+          <td>{{ c.etudiant?.niveau }}</td>
+          <td>{{ c.etudiant?.filiere }}</td>
+          <td>{{ c.stage?.titre }}</td>
+          <td>{{ c.stage?.entreprise?.nomEntreprise }}</td>
+          <td>{{ c.stage?.lieu }}</td>
+          <td>{{ c.stage?.dateDebut | date:'dd/MM/yyyy' }} - {{ c.stage?.dateFin | date:'dd/MM/yyyy' }}</td>
+          <td>{{ c.stage?.remuneration }}€/mois</td>
+        </tr>
+        <tr *ngIf="candidaturesFiltrees.length === 0">
+          <td colspan="8" style="text-align:center; color:#888; padding:20px;">Aucun stage confirmé.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <footer class="footer">

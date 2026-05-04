@@ -6,12 +6,11 @@
       <a routerLink="/directeur">Accueil</a>
       <a routerLink="/directeur/profil">Infos personnelles</a>
       <a routerLink="/directeur/validation">Validation sujets</a>
-      <a routerLink="/directeur/publications">Publications</a>
       <a routerLink="/directeur/suivis">Suivis</a>
       <a routerLink="/directeur/soutenances">Soutenances</a>
     </div>
     <div class="user-zone">
-      <div class="avatar">D.T</div>
+      <div class="avatar">E.S</div>
       <div class="btn-deconnecter" (click)="deconnecter()" title="Se déconnecter">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
@@ -32,8 +31,8 @@
           <label>Sélectionnez un étudiant</label>
           <select [(ngModel)]="etudiantSelectionne">
             <option value="">Choisir un étudiant</option>
-            <option *ngFor="let e of etudiants" [value]="e.etudiant?.id">
-              {{ e.etudiant?.nom }} {{ e.etudiant?.prenom }}
+            <option *ngFor="let e of etudiants" [value]="e.id">
+              {{ e.utilisateur?.nom }} {{ e.utilisateur?.prenom }}
             </option>
           </select>
         </div>
@@ -60,7 +59,7 @@
       </div>
 
       <div class="boutons">
-        <button class="btn-annuler" routerLink="/directeur">Annuler</button>
+        <button class="btn-annuler" routerLink="/enseignant">Annuler</button>
         <button class="btn-ajouter" (click)="ajouter()">Ajouter</button>
       </div>
 

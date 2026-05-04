@@ -12,6 +12,7 @@
   background: #f8f8f8;
 }
 
+/* ── NAVBAR ── */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -41,6 +42,12 @@
   color: #154080;
 }
 
+.user-zone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .avatar {
   background-color: #4a6fb3;
   color: white;
@@ -51,8 +58,25 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  font-size: 13px;
 }
 
+.btn-deconnecter {
+  background-color: #e53e3e;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-deconnecter:hover {
+  background-color: #c53030;
+}
+
+/* ── CONTENU ── */
 .contenu {
   flex: 1;
   display: flex;
@@ -61,83 +85,128 @@
   padding: 50px 40px;
 }
 
+/* ── CARTE ── */
 .carte-formulaire {
-  width: 640px;
+  width: 800px;
   background: white;
   border: 1px solid #ddd;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
-  padding: 36px 32px 28px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+  padding: 36px 40px 32px;
+}
+
+.titre-formulaire {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e8eef8;
+}
+
+.titre-formulaire h2 {
+  color: #2f5fb3;
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.titre-formulaire p {
+  color: #999;
+  font-size: 13px;
+}
+
+/* ── COLONNES ── */
+.colonnes {
   display: flex;
-  justify-content: space-between;
   gap: 40px;
-  flex-wrap: wrap;
 }
 
 .colonne-gauche,
 .colonne-droite {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.colonne-gauche {
-  width: 44%;
-}
-
-.colonne-droite {
-  width: 44%;
-}
-
-.champ-inline {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.champ-inline label {
-  color: #2f5fb3;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.champ-inline input {
-  border: none;
-  outline: none;
-  background: transparent;
-  color: #b8b8b8;
-  font-size: 16px;
-  min-width: 140px;
   flex: 1;
-}
-
-.zone-fichier {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 20px;
 }
 
-.btn-fichier {
-  border: 2px solid #4a6fb3;
+/* ── CHAMPS ── */
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.champ label {
+  font-size: 13px;
+  font-weight: bold;
   color: #2f5fb3;
-  background: white;
-  padding: 8px 14px;
+}
+
+.champ input,
+.champ textarea {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 14px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background: #fafbff;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.champ input:focus,
+.champ textarea:focus {
+  outline: none;
+  border-color: #4a6fb3;
+  background: white;
+}
+
+.champ input::placeholder,
+.champ textarea::placeholder {
+  color: #bbb;
+}
+
+/* ── FICHIER ── */
+.btn-fichier {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 2px dashed #4a6fb3;
+  border-radius: 6px;
+  color: #2f5fb3;
   cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.btn-fichier:hover {
+  background: #f0f5ff;
 }
 
 .nom-fichier {
-  font-size: 14px;
-  color: #666;
+  font-size: 12px;
+  color: #4a6fb3;
+  margin-top: 4px;
 }
 
+/* ── MESSAGES ── */
+.message-succes {
+  color: green;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.message-erreur {
+  color: #e53e3e;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* ── BOUTONS ── */
 .boutons {
   display: flex;
+  justify-content: center;
   gap: 30px;
   margin-top: 36px;
 }
@@ -145,11 +214,11 @@
 .btn-annuler,
 .btn-publier {
   min-width: 170px;
-  padding: 14px 26px;
-  font-size: 18px;
+  padding: 13px 26px;
+  font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: background 0.2s;
 }
 
 .btn-annuler {
@@ -158,16 +227,22 @@
   color: #2f5fb3;
 }
 
+.btn-annuler:hover {
+  background: #f0f5ff;
+}
+
 .btn-publier {
   background: #4a6fb3;
   border: none;
   color: white;
+  box-shadow: 0 4px 10px rgba(74, 111, 179, 0.3);
 }
 
 .btn-publier:hover {
   background: #3d5d98;
 }
 
+/* ── FOOTER ── */
 .footer {
   background-color: #3f67b1;
   color: white;
@@ -188,25 +263,4 @@
   text-decoration: none;
   font-size: 13px;
   cursor: pointer;
-}
-
-.user-zone {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-deconnecter {
-  background-color: #e53e3e;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.btn-deconnecter:hover {
-  background-color: #c53030;
 }

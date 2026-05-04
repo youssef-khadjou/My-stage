@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -22,6 +23,8 @@ export class Profil implements OnInit {
   erreur: string = '';
   initiales: string = '';
 
+  private platformId = inject(PLATFORM_ID);
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -29,13 +32,18 @@ export class Profil implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (!isPlatformBrowser(this.platformId)) return;
     const utilisateur = JSON.parse(localStorage.getItem('utilisateur') || '{}');
+    this.nom = utilisateur.nom || '';
+    this.prenom = utilisateur.prenom || '';
+    this.email = utilisateur.email || '';
     const n = utilisateur.nom?.charAt(0) || '';
     const p = utilisateur.prenom?.charAt(0) || '';
     this.initiales = (n + '.' + p).toUpperCase();
   }
 
   enregistrer() {
+    if (!isPlatformBrowser(this.platformId)) return;
     const utilisateur = JSON.parse(localStorage.getItem('utilisateur') || '{}');
     this.http.put<any>(`http://localhost:8080/api/utilisateurs/${utilisateur.id}`, {
       nom: this.nom,
@@ -55,5 +63,4 @@ export class Profil implements OnInit {
     this.storage.removeItem('utilisateur');
     this.router.navigate(['/']);
   }
-
 }

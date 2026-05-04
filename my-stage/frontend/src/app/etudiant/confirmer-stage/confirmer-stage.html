@@ -22,50 +22,74 @@
   </nav>
 
   <div class="contenu">
-    <div class="carte-stage">
-      <h2>Confirmation de votre stage</h2>
-      <p class="sous-titre">Félicitations ! Vous avez été sélectionné pour par le directeur</p>
+    <div class="liste-confirmer">
 
-      <div class="info-ligne">
-        <span class="label">Entreprise :</span>
-        <span>{{ stage.entreprise }}</span>
-      </div>
-      <div class="info-ligne">
-        <span class="label">Poste :</span>
-        <span>{{ stage.poste }}</span>
-      </div>
-      <div class="info-ligne">
-        <span class="label">Période :</span>
-        <span>{{ stage.debut }} - {{ stage.fin }}</span>
-      </div>
-      <div class="info-ligne">
-        <span class="label">Gratification :</span>
-        <span>{{ stage.gratification }}</span>
-      </div>
-      <div class="info-ligne">
-        <span class="label">Tuteur entreprise :</span>
-        <span>{{ stage.tuteur }}</span>
-      </div>
-      <div class="info-ligne">
-        <span class="label">Lieu :</span>
-        <span>{{ stage.lieu }}</span>
-      </div>
+      <h2>Confirmer mon stage</h2>
+      <p class="sous-titre">Gérez vos stages acceptés par le directeur</p>
 
-      <div class="avertissement">
-        <p>Avant de confirmer :</p>
-        <ul>
-          <li>Lisez attentivement la convention</li>
-          <li>Vérifiez les dates et modalités</li>
-          <li>Contactez votre tuteur pédagogique si questions</li>
-        </ul>
-      </div>
+      <ng-container *ngIf="!chargement">
+
+        <!-- En attente de confirmation -->
+        <ng-container *ngIf="candidaturesAConfirmer.length > 0">
+          <h3 class="section-titre">En attente de votre réponse ({{ candidaturesAConfirmer.length }})</h3>
+
+          <div class="confirmer-item" *ngFor="let c of candidaturesAConfirmer">
+            <div class="confirmer-info">
+              <h4>{{ c.stage?.titre }}</h4>
+              <p>Entreprise : {{ c.stage?.entreprise?.nomEntreprise }}</p>
+              <p>Période : {{ c.stage?.dateDebut }} - {{ c.stage?.dateFin }}</p>
+              <p>Gratification : {{ c.stage?.remuneration }}€/mois</p>
+              <p>Lieu : {{ c.stage?.lieu }}</p>
+              <div class="avertissement">
+                <span>Avant de confirmer : lisez la convention, vérifiez les dates, contactez votre tuteur si besoin.</span>
+              </div>
+            </div>
+            <div class="confirmer-actions">
+              <button class="btn-refuser" (click)="refuser(c.id)">Refuser</button>
+              <button class="btn-confirmer" (click)="confirmer(c.id)">Confirmer</button>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Stages confirmés -->
+        <ng-container *ngIf="candidaturesConfirmees.length > 0">
+          <h3 class="section-titre">Stages confirmés ({{ candidaturesConfirmees.length }})</h3>
+
+          <div class="confirmer-item" *ngFor="let c of candidaturesConfirmees">
+            <div class="confirmer-info">
+              <h4>{{ c.stage?.titre }}</h4>
+              <p>Entreprise : {{ c.stage?.entreprise?.nomEntreprise }}</p>
+              <p>Période : {{ c.stage?.dateDebut }} - {{ c.stage?.dateFin }}</p>
+              <p>Lieu : {{ c.stage?.lieu }}</p>
+            </div>
+            <button class="btn-annuler-confirmation" (click)="annulerConfirmation(c.id)">Annuler</button>
+          </div>
+        </ng-container>
+
+        <!-- Stages refusés -->
+        <ng-container *ngIf="candidaturesRefusees.length > 0">
+          <h3 class="section-titre">Stages refusés ({{ candidaturesRefusees.length }})</h3>
+
+          <div class="confirmer-item confirmer-item-refus" *ngFor="let c of candidaturesRefusees">
+            <div class="confirmer-info">
+              <h4>{{ c.stage?.titre }}</h4>
+              <p>Entreprise : {{ c.stage?.entreprise?.nomEntreprise }}</p>
+              <p>Période : {{ c.stage?.dateDebut }} - {{ c.stage?.dateFin }}</p>
+            </div>
+            <button class="btn-annuler-confirmation" (click)="annulerRefus(c.id)">Annuler</button>
+          </div>
+        </ng-container>
+
+        <p *ngIf="candidaturesAConfirmer.length === 0 && candidaturesConfirmees.length === 0 && candidaturesRefusees.length === 0"
+           style="text-align:center; margin-top:40px; color:#888;">
+          Aucun stage accepté pour le moment.
+        </p>
+
+      </ng-container>
+
+      <p *ngIf="chargement" style="text-align:center; margin-top:40px; color:#888;">Chargement...</p>
 
     </div>
-  </div>
-
-  <div class="boutons">
-    <button class="btn-refuser" (click)="refuser()">Refuser</button>
-    <button class="btn-confirmer" (click)="confirmer()">Confirmer</button>
   </div>
 
   <footer class="footer">

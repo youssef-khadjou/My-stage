@@ -3,6 +3,7 @@ package com.monstage.modele;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Représente une visite de stage effectuée par un enseignant encadrant.
@@ -49,11 +50,13 @@ public class VisiteStage {
     /** Le stage visité */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_stage", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "enseignant", "entreprise", "competencesRequises", "dateCreation"})
     private Stage stage;
 
     /** La candidature associée (lien via FAIRE L'OBJET DE dans le MCD) */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_candidature")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Candidature candidature;
 
     // ---- Constructeurs ----

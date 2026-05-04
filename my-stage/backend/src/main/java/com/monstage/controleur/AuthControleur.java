@@ -105,14 +105,13 @@ public class AuthControleur {
 
             case ENTREPRISE:
                 Entreprise entreprise = new Entreprise();
-                entreprise.setId(savedUser.getId());
-                entreprise.setSiret(requete.getSiret());
-                entreprise.setNomEntreprise(requete.getNomEntreprise());
-                entreprise.setAdresse(requete.getAdresse());
-                entreprise.setVille(requete.getVille());
-                entreprise.setCodePostal(requete.getCodePostal());
-                entreprise.setSecteurActivite(requete.getSecteurActivite());
                 entreprise.setUtilisateur(savedUser);
+                entreprise.setSiret(requete.getSiret() != null ? requete.getSiret() : "");
+                entreprise.setNomEntreprise(requete.getNomEntreprise() != null ? requete.getNomEntreprise() : requete.getNom());
+                entreprise.setAdresse(requete.getAdresse() != null ? requete.getAdresse() : "");
+                entreprise.setVille(requete.getVille() != null ? requete.getVille() : "");
+                entreprise.setCodePostal(requete.getCodePostal() != null ? requete.getCodePostal() : "");
+                entreprise.setSecteurActivite(requete.getSecteurActivite() != null ? requete.getSecteurActivite() : "");
                 entrepriseRepository.save(entreprise);
                 break;
 

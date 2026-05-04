@@ -28,13 +28,30 @@
 
       <div class="offre" *ngFor="let offre of offres">
         <div class="offre-info">
-          <h3>{{ offre.intitule }}</h3>
-          <p>Durée : {{ offre.dureeSemaines }} semaines</p>
+          <h3>{{ offre.titre }}</h3>
+          <p>Durée : {{ offre.duree }} semaines</p>
           <p>Gratification : {{ offre.remuneration }}€/mois</p>
-          <p>Lieu : {{ offre.lieuTravail }}</p>
+          <p>Lieu : {{ offre.lieu }}</p>
+          <p>Entreprise : {{ offre.entreprise?.nomEntreprise }}</p>
         </div>
-        <button class="btn-voir">Voir la fiche complète</button>
+
+        <button
+          class="btn-voir"
+          *ngIf="!dejaCandidat(offre.id)"
+          (click)="postuler(offre)">
+          Postuler
+        </button>
+        <button
+          class="btn-annuler"
+          *ngIf="dejaCandidat(offre.id)"
+          (click)="annuler(offre.id)">
+          Annuler
+        </button>
+
       </div>
+
+      <p *ngIf="succes" style="color:green; margin-top:10px;">{{ succes }}</p>
+      <p *ngIf="erreur" style="color:red; margin-top:10px;">{{ erreur }}</p>
 
     </div>
   </div>

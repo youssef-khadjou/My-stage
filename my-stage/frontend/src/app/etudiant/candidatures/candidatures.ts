@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -13,6 +14,7 @@ import { StorageService } from '../../services/storage.service';
 export class Candidatures implements OnInit {
 
   candidatures: any[] = [];
+  private platformId = inject(PLATFORM_ID);
 
   constructor(
     private http: HttpClient,
@@ -21,7 +23,8 @@ export class Candidatures implements OnInit {
   ) {}
 
   ngOnInit() {
-    const utilisateur = JSON.parse(this.storage.getItem('utilisateur') || '{}');
+    if (!isPlatformBrowser(this.platformId)) return;
+    const utilisateur = JSON.parse(localStorage.getItem('utilisateur') || '{}');
     this.http.get<any[]>(`http://localhost:8080/api/candidatures/etudiant/${utilisateur.id}`)
       .subscribe({
         next: (data) => this.candidatures = data,
@@ -33,5 +36,4 @@ export class Candidatures implements OnInit {
     this.storage.removeItem('utilisateur');
     this.router.navigate(['/']);
   }
-
 }

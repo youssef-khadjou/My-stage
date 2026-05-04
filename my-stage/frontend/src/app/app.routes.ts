@@ -23,7 +23,6 @@ import { Dashboard as SecretariatDashboard } from './secretariat/dashboard/dashb
 import { Profil as SecretariatProfil } from './secretariat/profil/profil';
 import { Calendrier as SecretariatCalendrier } from './secretariat/calendrier/calendrier';
 import { Salles } from './secretariat/salles/salles';
-import { SallesPlanning } from './secretariat/salles-planning/salles-planning';
 import { Stages as SecretariatStages } from './secretariat/stages/stages';
 import { Dashboard as EntrepriseDashboard } from './entreprise/dashboard/dashboard';
 import { Profil as EntrepriseProfil } from './entreprise/profil/profil';
@@ -64,7 +63,6 @@ export const routes: Routes = [
   { path: 'secretariat/profil', component: SecretariatProfil, canActivate: [authGuard] },
   { path: 'secretariat/calendrier', component: SecretariatCalendrier, canActivate: [authGuard] },
   { path: 'secretariat/salles', component: Salles, canActivate: [authGuard] },
-  { path: 'secretariat/salles-planning', component: SallesPlanning, canActivate: [authGuard] },
   { path: 'secretariat/stages', component: SecretariatStages, canActivate: [authGuard] },
 
   // Entreprise

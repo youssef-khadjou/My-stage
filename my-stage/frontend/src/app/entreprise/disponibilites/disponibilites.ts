@@ -1,63 +1,92 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-disponibilites',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './disponibilites.html',
   styleUrl: './disponibilites.css'
 })
-export class Disponibilites {
+export class Disponibilites implements OnInit {
 
-  jours = ['LUN 21', 'MAR 22', 'MER 23', 'JEU 24', 'VEN 25', 'SAM 26', 'DIM 27'];
-  heures = ['8 H', '9 H', '10 H', '11 H', '12 H', '13 H', '14 H', '15 H', '16 H', '17 H'];
-
-  creneauxSelectionnes: { jour: string; heure: string }[] = [
-    { jour: 'MER 23', heure: '8 H' },
-    { jour: 'VEN 25', heure: '8 H' },
-    { jour: 'JEU 24', heure: '10 H' },
-    { jour: 'LUN 21', heure: '11 H' },
-    { jour: 'MER 23', heure: '13 H' },
-    { jour: 'VEN 25', heure: '14 H' },
-    { jour: 'LUN 21', heure: '15 H' },
-    { jour: 'MAR 22', heure: '17 H' }
-  ];
+  disponibilites: any[] = [];
+  date: string = '';
+  heureDebut: string = '';
+  heureFin: string = '';
+  succes: string = '';
+  erreur: string = '';
+  utilisateurId: number = 0;
 
   constructor(
+    private http: HttpClient,
     private router: Router,
-    private storage: StorageService
+    private storage: StorageService,
+    private cdr: ChangeDetectorRef
   ) {}
 
-  estSelectionne(jour: string, heure: string): boolean {
-    return this.creneauxSelectionnes.some(
-      creneau => creneau.jour === jour && creneau.heure === heure
-    );
+  ngOnInit() {
+    const utilisateur = JSON.parse(this.storage.getItem('utilisateur') || '{}');
+    this.utilisateurId = utilisateur.id;
+    this.chargerDisponibilites();
   }
 
-  toggleCreneau(jour: string, heure: string) {
-    const index = this.creneauxSelectionnes.findIndex(
-      creneau => creneau.jour === jour && creneau.heure === heure
-    );
-    if (index !== -1) {
-      this.creneauxSelectionnes.splice(index, 1);
-    } else {
-      this.creneauxSelectionnes.push({ jour, heure });
+  chargerDisponibilites() {
+    this.http.get<any[]>(`http://localhost:8080/api/disponibilites/utilisateur/${this.utilisateurId}`)
+      .subscribe({
+        next: (data) => {
+          this.disponibilites = data;
+          this.cdr.detectChanges();
+        },
+        error: () => console.log('Erreur chargement')
+      });
+  }
+
+  ajouter() {
+    if (!this.date || !this.heureDebut || !this.heureFin) {
+      this.erreur = 'Veuillez remplir tous les champs.';
+      return;
     }
+    if (this.heureFin <= this.heureDebut) {
+      this.erreur = 'L\'heure de fin doit être après l\'heure de début.';
+      return;
+    }
+
+    this.http.post<any>(`http://localhost:8080/api/disponibilites/utilisateur/${this.utilisateurId}`, {
+      date: this.date,
+      heureDebut: this.heureDebut,
+      heureFin: this.heureFin
+    }).subscribe({
+      next: (data) => {
+        this.disponibilites.push(data);
+        this.cdr.detectChanges();
+        this.succes = 'Disponibilité ajoutée !';
+        this.erreur = '';
+        this.date = '';
+        this.heureDebut = '';
+        this.heureFin = '';
+      },
+      error: () => this.erreur = 'Erreur lors de l\'ajout.'
+    });
   }
 
-  enregistrer() {
-    console.log('Disponibilités enregistrées :', this.creneauxSelectionnes);
-  }
-
-  heureAffichage(heure: string): string {
-    return heure.toLowerCase().replace(' h', ':00');
+  supprimer(id: number) {
+    if (!confirm('Supprimer cette disponibilité ?')) return;
+    this.http.delete(`http://localhost:8080/api/disponibilites/${id}`)
+      .subscribe({
+        next: () => {
+          this.disponibilites = this.disponibilites.filter(d => d.id !== id);
+          this.cdr.detectChanges();
+        },
+        error: () => this.erreur = 'Erreur lors de la suppression.'
+      });
   }
 
   deconnecter() {
     this.storage.removeItem('utilisateur');
     this.router.navigate(['/']);
   }
-
 }

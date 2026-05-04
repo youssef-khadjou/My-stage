@@ -19,9 +19,7 @@
   border-bottom: 1px solid #ddd;
 }
 
-.logo {
-  height: 50px;
-}
+.logo { height: 50px; }
 
 .nav-liens {
   display: flex;
@@ -35,9 +33,7 @@
   cursor: pointer;
 }
 
-.nav-liens a:hover {
-  color: #1a56a0;
-}
+.nav-liens a:hover { color: #1a56a0; }
 
 .avatar {
   background-color: #1a56a0;
@@ -49,13 +45,45 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  font-size: 12px;
 }
+
+.user-zone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-deconnecter {
+  background-color: #e53e3e;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-deconnecter:hover { background-color: #c53030; }
 
 .contenu {
   flex: 1;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 40px;
+  gap: 40px;
+}
+
+.liste-sujets, .liste-historique {
+  width: 100%;
+  max-width: 860px;
+}
+
+.liste-historique {
+  border-top: 2px solid #ddd;
+  padding-top: 30px;
 }
 
 .liste-sujets {
@@ -72,6 +100,21 @@
   font-size: 20px;
 }
 
+.liste-historique {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 30px;
+  width: 750px;
+  border-top: 1px solid #ddd;
+}
+
+.liste-historique h2 {
+  color: #1a56a0;
+  text-align: center;
+  font-size: 20px;
+}
+
 .sous-titre {
   color: #1a56a0;
   text-align: center;
@@ -82,44 +125,41 @@
 .sujet {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
+  align-items: flex-start;
+  padding: 24px 0;
   border-bottom: 1px solid #eee;
   gap: 20px;
 }
 
 .sujet-info h3 {
   color: #1a56a0;
-  font-size: 15px;
-  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e8f0fb;
 }
 
 .sujet-info p {
   font-size: 13px;
   color: #555;
-  margin-bottom: 3px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.sujet-info p strong {
+  color: #1a56a0;
+  font-weight: 600;
+  min-width: 110px;
+  display: inline-block;
 }
 
 .sujet-actions {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: flex-end;
-}
-
-.btn-description {
-  border: 1px solid #1a56a0;
-  background: white;
-  color: #1a56a0;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 13px;
-}
-
-.btn-groupe {
-  display: flex;
-  gap: 10px;
+  flex-shrink: 0;
+  padding-top: 4px;
 }
 
 .btn-refuser {
@@ -132,6 +172,8 @@
   font-size: 13px;
 }
 
+.btn-refuser:hover { background-color: #f0f0f0; }
+
 .btn-valider {
   background-color: #1a56a0;
   color: white;
@@ -142,9 +184,7 @@
   font-size: 13px;
 }
 
-.btn-valider:hover {
-  background-color: #154080;
-}
+.btn-valider:hover { background-color: #154080; }
 
 .vide {
   text-align: center;
@@ -173,25 +213,4 @@
   text-decoration: none;
   font-size: 13px;
   cursor: pointer;
-}
-
-.user-zone {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-deconnecter {
-  background-color: #e53e3e;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.btn-deconnecter:hover {
-  background-color: #c53030;
 }

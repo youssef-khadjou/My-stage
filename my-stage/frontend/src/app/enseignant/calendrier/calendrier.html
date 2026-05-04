@@ -34,13 +34,18 @@
         <span>Je</span><span>Ve</span><span>Sa</span><span>Di</span>
       </div>
       <div class="cal-jours">
-        <span
-          *ngFor="let jour of jours"
+        <div
+          *ngFor="let jour of jours; trackBy: trackByJour"
+          class="cal-jour-wrapper"
           [class.vide]="jour === 0"
-          [class.actif]="jour === jourSelectionne"
           (click)="jour !== 0 && selectionnerJour(jour)">
-          {{ jour !== 0 ? jour : '' }}
-        </span>
+          <span
+            [class.actif]="jour === jourSelectionne"
+            [class.vide]="jour === 0">
+            {{ jour !== 0 ? jour : '' }}
+          </span>
+          <span class="point-soutenance" *ngIf="aSoutenance(jour)">●</span>
+        </div>
       </div>
     </div>
 
@@ -48,19 +53,13 @@
       <h2>Soutenances du {{ jourSelectionne }} {{ nomMoisActuel }} {{ annee }}</h2>
       <div class="carte-soutenance" *ngFor="let s of soutenances">
         <div class="soutenance-info">
-          <p><span class="label">Étudiant :</span> {{ s.etudiant }}</p>
-          <p><span class="label">Entreprise :</span> {{ s.entreprise }}</p>
-          <p><span class="label">Sujet :</span> {{ s.sujet }}</p>
+          <p><span class="label">Étudiant :</span> {{ s.etudiantObj?.utilisateur?.nom }} {{ s.etudiantObj?.utilisateur?.prenom }}</p>
+          <p><span class="label">Niveau :</span> {{ s.etudiantObj?.niveau }}</p>
+          <p><span class="label">Filière :</span> {{ s.etudiantObj?.filiere }}</p>
         </div>
         <div class="soutenance-info">
           <p><span class="label">Salle :</span> {{ s.salle }}</p>
-          <p><span class="label">Date :</span> {{ s.date }}</p>
-          <p><span class="label">Heure :</span> {{ s.heure }}</p>
-        </div>
-        <div class="jury">
-          <p class="label">Enseignants inscrits :</p>
-          <div class="enseignant" *ngFor="let enseignant of s.enseignants">{{ enseignant }}</div>
-          <button class="btn-plus" (click)="sInscrire(s)">+</button>
+          <p><span class="label">Heure :</span> {{ s.heureDebut }}</p>
         </div>
       </div>
       <p class="vide" *ngIf="soutenances.length === 0">Aucune soutenance pour ce jour.</p>

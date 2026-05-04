@@ -6,7 +6,6 @@
       <a routerLink="/directeur">Accueil</a>
       <a routerLink="/directeur/profil">Infos personnelles</a>
       <a routerLink="/directeur/validation">Validation sujets</a>
-      <a routerLink="/directeur/publications">Publications</a>
       <a routerLink="/directeur/suivis">Suivis</a>
       <a routerLink="/directeur/soutenances">Soutenances</a>
     </div>
@@ -30,20 +29,40 @@
       <div class="sujet" *ngFor="let sujet of sujets">
         <div class="sujet-info">
           <h3>{{ sujet.entreprise?.nomEntreprise || 'Entreprise' }}</h3>
-          <p>Sujet : {{ sujet.intitule }}</p>
-          <p>Reçu le : {{ sujet.dateProposition | date:'dd/MM/yyyy' }}</p>
+          <p><strong>Intitulé :</strong> {{ sujet.intitule }}</p>
+          <p><strong>Description :</strong> {{ sujet.description }}</p>
+          <p><strong>Durée :</strong> {{ sujet.dureeEnSemaines || sujet.duree_semaines || sujet.duree }} semaines</p>
+          <p><strong>Période :</strong> {{ sujet.dateDebut || sujet.date_debut }} - {{ sujet.dateFin || sujet.date_fin }}</p>
+          <p><strong>Lieu :</strong> {{ sujet.lieuTravail || sujet.lieu_travail || sujet.lieu }}</p>
+          <p><strong>Compétences :</strong> {{ sujet.competencesRequises || sujet.competences_requises || sujet.competences }}</p>
+          <p><strong>Rémunération :</strong> {{ sujet.remuneration }}€/mois</p>
+          <p><strong>Reçu le :</strong> {{ sujet.dateProposition | date:'dd/MM/yyyy' }}</p>
         </div>
         <div class="sujet-actions">
-          <button class="btn-description">Voir la description complète</button>
-          <div class="btn-groupe">
-            <button class="btn-refuser" (click)="refuser(sujet)">Refuser</button>
-            <button class="btn-valider" (click)="valider(sujet)">Valider</button>
-          </div>
+          <button class="btn-refuser" (click)="refuser(sujet)">Refuser</button>
+          <button class="btn-valider" (click)="valider(sujet)">Valider</button>
         </div>
       </div>
 
       <p class="vide" *ngIf="sujets.length === 0">Aucun sujet en attente de validation.</p>
 
+    </div>
+    <div class="liste-historique">
+      <h2>Historique des décisions</h2>
+      <p class="sous-titre">Sujets validés et refusés</p>
+
+      <div class="sujet" *ngFor="let s of historique">
+        <div class="sujet-info">
+          <h3>{{ s.entreprise?.nomEntreprise || '—' }}</h3>
+          <p><strong>Intitulé :</strong> {{ s.intitule }}</p>
+          <p><strong>Reçu le :</strong> {{ s.dateProposition | date:'dd/MM/yyyy' }}</p>
+          <p><strong>Statut :</strong>
+            <span [style.color]="s.statut === 'VALIDE' ? 'green' : 'red'">{{ s.statut }}</span>
+          </p>
+        </div>
+      </div>
+
+      <p class="vide" *ngIf="historique.length === 0">Aucune décision prise pour le moment.</p>
     </div>
   </div>
 

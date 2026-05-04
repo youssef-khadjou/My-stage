@@ -19,6 +19,9 @@ public class CreneauSoutenance {
     @Column(name = "id_creneau")
     private Long id;
 
+    @Column(name = "etudiant_id")
+    private Long etudiantId;
+
     /** Date du créneau */
     @Column(name = "date_soutenance", nullable = false)
     private LocalDate dateSoutenance;
@@ -72,6 +75,9 @@ public class CreneauSoutenance {
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
+    public Long getEtudiantId() { return etudiantId; }
+    public void setEtudiantId(Long etudiantId) { this.etudiantId = etudiantId; }
 
     public LocalDate getDateSoutenance() { return dateSoutenance; }
     public void setDateSoutenance(LocalDate dateSoutenance) { this.dateSoutenance = dateSoutenance; }

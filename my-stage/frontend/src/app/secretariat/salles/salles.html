@@ -22,18 +22,47 @@
   </nav>
 
   <div class="contenu">
-    <div class="card">
-      <h2>Sélectionnez une salle</h2>
 
-      <select [(ngModel)]="selectedSalle">
-        <option value="">Veuillez sélectionner une salle</option>
-        <option *ngFor="let salle of salles" [value]="salle">
-          {{ salle }}
-        </option>
-      </select>
-
-      <button (click)="rechercher()">Rechercher</button>
+    <!-- Sélection salle -->
+    <div class="carte-selection">
+      <div class="titre-carte">
+        <h2>Planning des salles</h2>
+        <p>Sélectionnez une salle pour voir ses créneaux de soutenance</p>
+      </div>
+      <div class="selection-row">
+        <select [(ngModel)]="selectedSalle">
+          <option value="">Veuillez sélectionner une salle</option>
+          <option *ngFor="let salle of salles" [value]="salle">{{ salle }}</option>
+        </select>
+        <button (click)="rechercher()">Afficher le planning</button>
+      </div>
     </div>
+
+    <!-- Planning -->
+    <div class="planning-zone" *ngIf="creneaux.length > 0">
+      <h3>Planning — {{ selectedSalle }}</h3>
+      <table class="tableau">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Heure début</th>
+          <th>Heure fin</th>
+          <th>Étudiant</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of creneaux">
+          <td>{{ c.dateSoutenance | date:'dd/MM/yyyy' }}</td>
+          <td>{{ c.heureDebut?.substring(0,5) }}</td>
+          <td>{{ c.heureFin?.substring(0,5) }}</td>
+          <td>{{ c.nomEtudiant }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p *ngIf="selectedSalle && creneaux.length === 0" class="vide">Aucun créneau pour cette salle.</p>
+
   </div>
 
   <footer class="footer">

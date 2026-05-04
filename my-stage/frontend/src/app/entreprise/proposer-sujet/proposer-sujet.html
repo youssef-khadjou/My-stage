@@ -26,54 +26,64 @@
 
     <div class="carte-formulaire">
 
-      <div class="colonne-gauche">
-        <div class="champ-inline">
-          <label>Titre du poste :</label>
-          <input type="text" [(ngModel)]="titrePoste" placeholder="XXXXXXXXXX">
-        </div>
-
-        <div class="champ-inline">
-          <label>Description :</label>
-          <input type="text" [(ngModel)]="description" placeholder="XXXXXXXXXX">
-        </div>
+      <div class="titre-formulaire">
+        <h2>Proposer un sujet de stage</h2>
+        <p>Remplissez les informations ci-dessous pour soumettre votre offre</p>
       </div>
 
-      <div class="colonne-droite">
-        <div class="champ-inline">
-          <label>Durée :</label>
-          <input type="text" [(ngModel)]="duree" placeholder="XXXXXXXXXX">
+      <div class="colonnes">
+
+        <div class="colonne-gauche">
+          <div class="champ">
+            <label>Titre du poste</label>
+            <input type="text" [(ngModel)]="titrePoste" placeholder="Ex : Développeur Full Stack Angular / Spring Boot">
+          </div>
+
+          <div class="champ">
+            <label>Description</label>
+            <textarea [(ngModel)]="description" rows="5" placeholder="Décrivez les missions et responsabilités du stagiaire..."></textarea>
+          </div>
+
+          <div class="champ">
+            <label>Compétences requises</label>
+            <input type="text" [(ngModel)]="competences" placeholder="Ex : Angular, Java, SQL, Git...">
+          </div>
         </div>
 
-        <div class="champ-inline">
-          <label>Gratification :</label>
-          <input type="text" [(ngModel)]="gratification" placeholder="XXXXXXXXXX">
+        <div class="colonne-droite">
+          <div class="champ">
+            <label>Durée (en semaines)</label>
+            <input type="number" [(ngModel)]="duree" placeholder="Ex : 12">
+          </div>
+
+          <div class="champ">
+            <label>Gratification (€/mois)</label>
+            <input type="number" [(ngModel)]="gratification" placeholder="Ex : 600">
+          </div>
+
+          <div class="champ">
+            <label>Lieu / Télétravail</label>
+            <input type="text" [(ngModel)]="teletravail" placeholder="Ex : Paris (75) — Télétravail partiel">
+          </div>
+
+          <div class="champ">
+            <label>Fiche de poste (optionnel)</label>
+            <label for="fichier" class="btn-fichier">📎 Joindre un fichier</label>
+            <input id="fichier" type="file" (change)="onFileSelected($event)" hidden>
+            <span class="nom-fichier" *ngIf="fichierNom">✅ {{ fichierNom }}</span>
+          </div>
         </div>
 
-        <div class="champ-inline">
-          <label>Compétences :</label>
-          <input type="text" [(ngModel)]="competences" placeholder="XXXXXXXXXX">
-        </div>
-
-        <div class="champ-inline">
-          <label>Télétravail :</label>
-          <input type="text" [(ngModel)]="teletravail" placeholder="XXXXXXXXXX">
-        </div>
-      </div>
-
-      <div class="zone-fichier">
-        <label for="fichier" class="btn-fichier">Joindre fiche de poste</label>
-        <input id="fichier" type="file" (change)="onFileSelected($event)" hidden>
-        <span class="nom-fichier" *ngIf="fichierNom">{{ fichierNom }}</span>
       </div>
 
     </div>
 
-    <p *ngIf="erreur" style="color: red; font-size: 13px;">{{ erreur }}</p>
-    <p *ngIf="succes" style="color: green; font-size: 13px;">{{ succes }}</p>
+    <p *ngIf="erreur" style="color: red; font-size: 13px; text-align:center;">{{ erreur }}</p>
+    <p *ngIf="succes" style="color: green; font-size: 13px; text-align:center;">{{ succes }}</p>
 
     <div class="boutons">
       <button class="btn-annuler" routerLink="/entreprise">Annuler</button>
-      <button class="btn-publier" (click)="publierOffre()">Publier l’offre</button>
+      <button class="btn-publier" (click)="publierOffre()">Publier l'offre</button>
     </div>
 
   </div>

@@ -23,39 +23,47 @@
 
   <div class="contenu">
 
-    <div class="info-box">
-      <p>Indiquer mes disponibilités</p>
-      <p>Pour les visites de suivi et soutenances</p>
-    </div>
-
-    <div class="calendrier">
-      <div class="header-cal">
-        <div class="heure-col"></div>
-        <div class="jour" *ngFor="let jour of jours">
-          <span class="jour-nom">{{ jour.nom }}</span>
-          <span class="jour-num">{{ jour.num }}</span>
+    <!-- FORMULAIRE AJOUT -->
+    <div class="carte-formulaire">
+      <div class="titre-carte">
+        <h2>Ajouter une disponibilité</h2>
+        <p>Indiquez vos créneaux disponibles pour les visites de suivi et soutenances</p>
+      </div>
+      <div class="form-grille">
+        <div class="champ">
+          <label>Date</label>
+          <input type="date" [(ngModel)]="date">
+        </div>
+        <div class="champ">
+          <label>Heure de début</label>
+          <input type="time" [(ngModel)]="heureDebut">
+        </div>
+        <div class="champ">
+          <label>Heure de fin</label>
+          <input type="time" [(ngModel)]="heureFin">
         </div>
       </div>
-
-      <div class="body-cal">
-        <div class="ligne" *ngFor="let heure of heures">
-          <div class="heure-label">{{ heure }}H</div>
-          <div
-            class="creneau"
-            *ngFor="let jour of jours"
-            [class.disponible]="isDisponible(jour.num, heure)"
-            (click)="toggleDisponibilite(jour.num, heure)">
-            <span *ngIf="isDisponible(jour.num, heure)">{{ heure }}:00<br>Disponible</span>
-          </div>
-        </div>
+      <p *ngIf="erreur" style="color:red; text-align:center; margin-top:10px;">{{ erreur }}</p>
+      <p *ngIf="succes" style="color:green; text-align:center; margin-top:10px;">{{ succes }}</p>
+      <div class="boutons">
+        <button class="btn-annuler" routerLink="/etudiant">Annuler</button>
+        <button class="btn-principal" (click)="ajouter()">Ajouter</button>
       </div>
     </div>
 
-  </div>
+    <!-- LISTE DES DISPOS -->
+    <div class="liste-dispos">
+      <h2>Mes disponibilités</h2>
+      <div class="carte-dispo" *ngFor="let d of disponibilites">
+        <div class="dispo-info">
+          <span class="dispo-date">{{ d.date | date:'dd/MM/yyyy' }}</span>
+          <span class="dispo-heures">{{ d.heureDebut }} → {{ d.heureFin }}</span>
+        </div>
+        <button class="btn-supprimer" (click)="supprimer(d.id)">Supprimer</button>
+      </div>
+      <p *ngIf="disponibilites.length === 0" class="vide">Aucune disponibilité enregistrée.</p>
+    </div>
 
-  <div class="boutons">
-    <button class="btn-annuler" routerLink="/etudiant">Annuler</button>
-    <button class="btn-enregistrer" (click)="enregistrer()">Enregistrer</button>
   </div>
 
   <footer class="footer">

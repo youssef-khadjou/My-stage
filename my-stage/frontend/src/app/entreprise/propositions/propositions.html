@@ -29,17 +29,20 @@
         <h2>Mes propositions de stage</h2>
       </div>
 
-      <div class="liste-propositions">
-        <div class="ligne-proposition" *ngFor="let proposition of propositions">
-          <div class="infos">
-            <p class="titre">{{ proposition.titre }}</p>
-            <p><strong>Etudiant :</strong> {{ proposition.etudiant }}</p>
-            <p><strong>Statut :</strong> {{ proposition.statut }}</p>
-          </div>
-
-          <button class="btn-voir" (click)="voirProposition(proposition)">Voir</button>
+      <div class="ligne-proposition" *ngFor="let proposition of propositions">
+        <div class="infos">
+          <p class="titre">{{ proposition.intitule }}</p>
+          <p><strong>Description :</strong> {{ proposition.description }}</p>
+          <p><strong>Compétences :</strong> {{ proposition.competencesRequises }}</p>
+          <p><strong>Durée :</strong> {{ proposition.dureeSemaines }} semaines</p>
+          <p><strong>Gratification :</strong> {{ proposition.remuneration }}€/mois</p>
+          <p><strong>Lieu :</strong> {{ proposition.lieuTravail }}</p>
+          <p><strong>Statut :</strong> {{ proposition.statut }}</p>
         </div>
+        <button class="btn-supprimer" (click)="supprimer(proposition.id)">🗑️ Supprimer</button>
       </div>
+
+      <p *ngIf="propositions.length === 0">Aucune proposition pour le moment.</p>
     </div>
 
   </div>

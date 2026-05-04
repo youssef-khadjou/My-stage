@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -21,6 +22,8 @@ export class Profil implements OnInit {
   succes: string = '';
   erreur: string = '';
 
+  private platformId = inject(PLATFORM_ID);
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -28,26 +31,30 @@ export class Profil implements OnInit {
   ) {}
 
   ngOnInit() {
-    const utilisateur = JSON.parse(localStorage.getItem('utilisateur') || '{}');
-    this.nom = utilisateur.nom || '';
-    this.prenom = utilisateur.prenom || '';
-    this.email = utilisateur.email || '';
+    if (isPlatformBrowser(this.platformId)) {
+      const utilisateur = JSON.parse(localStorage.getItem('utilisateur') || '{}');
+      this.nom = utilisateur.nom || '';
+      this.prenom = utilisateur.prenom || '';
+      this.email = utilisateur.email || '';
+    }
   }
 
   enregistrer() {
-    const utilisateur = JSON.parse(localStorage.getItem('utilisateur') || '{}');
-    this.http.put<any>(`http://localhost:8080/api/utilisateurs/${utilisateur.id}`, {
-      nom: this.nom,
-      prenom: this.prenom,
-      email: this.email,
-      role: utilisateur.role
-    }).subscribe({
-      next: (data) => {
-        localStorage.setItem('utilisateur', JSON.stringify(data));
-        this.succes = 'Profil mis à jour !';
-      },
-      error: () => this.erreur = 'Erreur lors de la mise à jour'
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      const utilisateur = JSON.parse(localStorage.getItem('utilisateur') || '{}');
+      this.http.put<any>(`http://localhost:8080/api/utilisateurs/${utilisateur.id}`, {
+        nom: this.nom,
+        prenom: this.prenom,
+        email: this.email,
+        role: utilisateur.role
+      }).subscribe({
+        next: (data) => {
+          localStorage.setItem('utilisateur', JSON.stringify(data));
+          this.succes = 'Profil mis à jour !';
+        },
+        error: () => this.erreur = 'Erreur lors de la mise à jour'
+      });
+    }
   }
 
   deconnecter() {

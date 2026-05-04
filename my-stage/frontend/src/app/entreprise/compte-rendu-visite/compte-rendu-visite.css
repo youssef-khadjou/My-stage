@@ -12,6 +12,7 @@
   background: #f8f8f8;
 }
 
+/* ── NAVBAR ── */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -41,6 +42,12 @@
   color: #154080;
 }
 
+.user-zone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .avatar {
   background-color: #4a6fb3;
   color: white;
@@ -51,140 +58,138 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  font-size: 13px;
 }
 
+.btn-deconnecter {
+  background-color: #e53e3e;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-deconnecter:hover {
+  background-color: #c53030;
+}
+
+/* ── CONTENU ── */
 .contenu {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 38px 40px;
+  padding: 40px;
 }
 
-.carte-etape1,
-.carte-etape2 {
-  width: 760px;
+/* ── CARTE FORMULAIRE ── */
+.carte-selection {
+  width: 900px;
   background: white;
   border: 1px solid #ddd;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+  padding: 24px 36px;
+  margin-bottom: 24px;
 }
 
-.titre-etape1 {
-  padding: 18px 26px 14px;
-  border-bottom: 1px solid #9bb2de;
+.carte-formulaire {
+  width: 900px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+  padding: 30px 36px;
 }
 
-.titre-etape1 h2 {
+.titre-carte {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.titre-carte h2 {
   color: #2f5fb3;
   font-size: 18px;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 
-.titre-etape1 p {
-  color: #2f5fb3;
-  font-size: 14px;
-  font-weight: bold;
+.titre-carte p {
+  color: #888;
+  font-size: 13px;
 }
 
-.form-etape1 {
-  display: flex;
-  justify-content: space-between;
-  gap: 50px;
-  padding: 30px 65px 38px;
+/* ── GRILLE FORMULAIRE ── */
+.form-grille {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-.colonne {
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  gap: 34px;
+.champ.pleine-largeur {
+  grid-column: span 2;
 }
 
 .champ {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 7px;
 }
 
 .champ label {
-  color: #2f5fb3;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
+  color: #2f5fb3;
 }
 
 .champ select,
-.champ input {
+.champ input,
+.champ textarea {
   width: 100%;
-  border: 2px solid #4a6fb3;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
   border-radius: 6px;
-  padding: 10px 14px;
   font-size: 14px;
-  color: #2f5fb3;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background: #fafbff;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.champ select:focus,
+.champ input:focus,
+.champ textarea:focus {
+  outline: none;
+  border-color: #4a6fb3;
   background: white;
 }
 
-.carte-etape2 {
-  padding: 26px 28px 30px;
+.champ select::placeholder,
+.champ input::placeholder,
+.champ textarea::placeholder {
+  color: #bbb;
 }
 
-.grid-etape2 {
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-}
-
-.bloc-gauche,
-.bloc-droite {
-  width: 48%;
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-}
-
-.champ-ligne,
-.champ-zone {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.champ-ligne label,
-.champ-zone label {
-  color: #2f5fb3;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.champ-ligne input,
-.champ-zone textarea {
-  border: none;
-  outline: none;
-  background: transparent;
-  color: #b7b7b7;
-  font-size: 15px;
-  resize: none;
-  line-height: 1.5;
-}
-
-.champ-zone textarea {
-  min-height: 90px;
-}
-
+/* ── BOUTONS ── */
 .boutons {
   display: flex;
-  gap: 22px;
-  margin-top: 30px;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 28px;
 }
 
 .btn-annuler,
 .btn-principal {
-  min-width: 120px;
+  min-width: 130px;
   padding: 12px 24px;
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: background 0.2s;
 }
 
 .btn-annuler {
@@ -193,21 +198,84 @@
   color: #2f5fb3;
 }
 
+.btn-annuler:hover {
+  background: #f0f5ff;
+}
+
 .btn-principal {
   background: #4a6fb3;
   border: none;
   color: white;
+  box-shadow: 0 4px 10px rgba(74, 111, 179, 0.3);
 }
 
 .btn-principal:hover {
   background: #3d5d98;
 }
 
+/* ── LISTE COMPTES RENDUS ── */
+.liste-comptes-rendus {
+  margin-top: 40px;
+  width: 900px;
+}
+
+.liste-comptes-rendus h2 {
+  color: #2f5fb3;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.carte-cr {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+}
+
+.cr-corps {
+  display: flex;
+  gap: 30px;
+}
+
+.cr-info {
+  min-width: 240px;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.9;
+}
+
+.cr-info strong {
+  color: #2f5fb3;
+}
+
+.cr-contenu {
+  flex: 1;
+  font-size: 13px;
+  color: #555;
+  white-space: pre-line;
+  border-left: 2px solid #e8eef8;
+  padding-left: 20px;
+  line-height: 1.7;
+}
+
+.vide {
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+/* ── FOOTER ── */
 .footer {
   background-color: #3f67b1;
   color: white;
   text-align: center;
   padding: 20px;
+  margin-top: 40px;
 }
 
 .footer-liens {
@@ -225,23 +293,20 @@
   cursor: pointer;
 }
 
-.user-zone {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-deconnecter {
-  background-color: #e53e3e;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn-supprimer {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: white;
+  border: 2px solid #e53e3e;
+  color: #e53e3e;
+  border-radius: 6px;
+  font-size: 13px;
   cursor: pointer;
+  transition: all 0.2s;
+  align-self: flex-end;
 }
 
-.btn-deconnecter:hover {
-  background-color: #c53030;
+.btn-supprimer:hover {
+  background: #e53e3e;
+  color: white;
 }

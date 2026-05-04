@@ -243,3 +243,10 @@
 .btn-supprimer:hover {
   color: #c53030;
 }
+
+.has-soutenance {
+  background-color: #1a56a0;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+}

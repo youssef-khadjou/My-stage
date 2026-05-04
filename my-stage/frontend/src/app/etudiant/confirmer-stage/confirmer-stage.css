@@ -51,6 +51,28 @@
   font-weight: bold;
 }
 
+.user-zone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-deconnecter {
+  background-color: #e53e3e;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-deconnecter:hover {
+  background-color: #c53030;
+}
+
 .contenu {
   flex: 1;
   display: flex;
@@ -58,78 +80,79 @@
   padding: 40px;
 }
 
-.carte-stage {
+.liste-confirmer {
   background: white;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 30px;
-  width: 550px;
+  width: 600px;
 }
 
-.carte-stage h2 {
+.liste-confirmer h2 {
   color: #1a56a0;
   text-align: center;
   font-size: 20px;
-  margin-bottom: 5px;
 }
 
 .sous-titre {
-  color: #555;
+  color: #1a56a0;
   text-align: center;
   font-size: 13px;
   margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
 }
 
-.info-ligne {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
+.section-titre {
   font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  margin: 20px 0 5px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
 }
 
-.label {
+.confirmer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+  gap: 15px;
+}
+
+.confirmer-info h4 {
   color: #1a56a0;
-  font-weight: bold;
-  min-width: 150px;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.confirmer-info p {
+  font-size: 13px;
+  color: #555;
 }
 
 .avertissement {
-  margin-top: 20px;
-  font-size: 13px;
-  color: #333;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
 }
 
-.avertissement p {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.avertissement ul {
-  padding-left: 20px;
-}
-
-.avertissement li {
-  margin-bottom: 5px;
-  color: #1a56a0;
-}
-
-.boutons {
+.confirmer-actions {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .btn-refuser {
-  border: 1px solid #333;
+  padding: 8px 18px;
   background: white;
+  border: 1px solid #333;
   color: #333;
-  padding: 12px 40px;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 13px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-refuser:hover {
@@ -137,17 +160,50 @@
 }
 
 .btn-confirmer {
+  padding: 8px 18px;
   background-color: #1a56a0;
   color: white;
-  padding: 12px 40px;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 13px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-confirmer:hover {
   background-color: #154080;
+}
+
+.btn-annuler-confirmation {
+  padding: 8px 18px;
+  background: white;
+  border: 2px solid #e53e3e;
+  color: #e53e3e;
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-annuler-confirmation:hover {
+  background: #e53e3e;
+  color: white;
+}
+
+.badge-refusee {
+  background-color: #fde8e8;
+  color: #e53e3e;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.confirmer-item-refus {
+  opacity: 0.7;
 }
 
 .footer {
@@ -170,26 +226,4 @@
   text-decoration: none;
   font-size: 13px;
   cursor: pointer;
-}
-
-.user-zone {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-deconnecter {
-  background-color: #e53e3e;
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.btn-deconnecter:hover {
-  background-color: #c53030;
 }

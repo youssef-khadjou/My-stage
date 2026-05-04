@@ -9,6 +9,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #f8f8f8;
 }
 
 .navbar {
@@ -17,11 +18,10 @@
   align-items: center;
   padding: 15px 40px;
   border-bottom: 1px solid #ddd;
+  background: white;
 }
 
-.logo {
-  height: 50px;
-}
+.logo { height: 50px; }
 
 .nav-liens {
   display: flex;
@@ -30,180 +30,181 @@
 
 .nav-liens a {
   text-decoration: none;
-  color: #333;
+  color: #1a56a0;
   font-size: 14px;
   cursor: pointer;
 }
 
-.nav-liens a:hover {
-  color: #1a56a0;
+.nav-liens a:hover { color: #154080; }
+
+.user-zone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .avatar {
-  background-color: #1a56a0;
+  background-color: #4a6fb3;
   color: white;
-  min-width: 40px;
-  height: 40px;
-  padding: 0 10px;
-  border-radius: 50px;
+  min-width: 52px;
+  height: 52px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  font-size: 13px;
 }
+
+.btn-deconnecter {
+  background-color: #e53e3e;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-deconnecter:hover { background-color: #c53030; }
 
 .contenu {
   flex: 1;
   display: flex;
-  gap: 40px;
-  padding: 50px 70px;
-  align-items: flex-start;
+  gap: 30px;
+  padding: 30px 40px;
 }
 
 .bloc-calendrier {
-  width: 360px;
   background: white;
   border: 1px solid #ddd;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
   padding: 25px;
+  width: 350px;
+  height: fit-content;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.10);
 }
 
-.mois-header {
+.cal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
-}
-
-.mois-header h2 {
-  color: #1a56a0;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #2f5fb3;
   font-size: 18px;
 }
 
-.navigation-mois {
-  display: flex;
-  gap: 18px;
-  color: #1a56a0;
+.cal-header button {
+  background: none;
+  border: none;
   font-size: 24px;
-}
-
-.navigation-mois span {
   cursor: pointer;
-  user-select: none;
+  color: #2f5fb3;
 }
 
-.jours-semaine {
+.cal-jours-semaine {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
-  margin-bottom: 10px;
-  color: #1a56a0;
   font-size: 13px;
-  font-weight: bold;
+  color: #888;
+  margin-bottom: 10px;
 }
 
-.grille-calendrier {
+.cal-jours {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
 }
 
-.grille-calendrier span {
-  height: 40px;
-  border: 1px solid #e6e6e6;
+.cal-jour-wrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  color: #4d6a9a;
-}
-
-.grille-calendrier span:not(.jour-inactif) {
   cursor: pointer;
+  padding: 4px 0;
+  min-height: 44px;
 }
 
-.jour-actif {
-  background-color: #2f5fb3;
-  color: white !important;
-  font-weight: bold;
+.cal-jour-wrapper.vide { cursor: default; }
+
+.cal-jour-wrapper span {
+  padding: 6px 5px;
+  border-radius: 50%;
+  font-size: 14px;
+  width: 32px;
+  text-align: center;
 }
 
-.jour-inactif {
-  background-color: #f1f1f1;
-  color: #b0b0b0 !important;
+.cal-jour-wrapper span.actif {
+  background-color: #4a6fb3;
+  color: white;
 }
 
-.liste-cartes {
+.cal-jour-wrapper:hover:not(.vide) span:not(.actif) {
+  background-color: #e8f0fe;
+}
+
+.point-soutenance {
+  color: #4a6fb3;
+  font-size: 8px;
+  line-height: 1;
+}
+
+.bloc-soutenances {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 15px;
+}
+
+.bloc-soutenances h2 {
+  color: #2f5fb3;
+  font-size: 18px;
 }
 
 .carte-soutenance {
   background: white;
   border: 1px solid #ddd;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-  padding: 25px 30px;
+  border-radius: 10px;
+  padding: 20px;
   display: flex;
-  justify-content: space-between;
   gap: 30px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
-.infos-gauche,
-.infos-centre,
-.infos-droite {
+.soutenance-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 30px;
-}
-
-.carte-soutenance p {
-  font-size: 15px;
-  color: #b3b3b3;
-}
-
-.carte-soutenance strong {
-  color: #1a56a0;
-}
-
-.enseignant-bloc {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 8px;
 }
 
-.icone-ens {
-  width: 52px;
-  height: 52px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  background: white;
-}
-
-.enseignant-bloc span {
-  color: #1a56a0;
+.soutenance-info p {
   font-size: 14px;
+  color: #333;
 }
 
-.aucun-enseignant {
-  color: red;
-  font-size: 18px;
+.label {
+  color: #2f5fb3;
   font-weight: bold;
-  margin-top: 10px;
+}
+
+.vide {
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  margin-top: 20px;
 }
 
 .footer {
-  background-color: #1a56a0;
+  background-color: #3f67b1;
   color: white;
   text-align: center;
   padding: 20px;
+  margin-top: 40px;
 }
 
 .footer-liens {
@@ -219,25 +220,4 @@
   text-decoration: none;
   font-size: 13px;
   cursor: pointer;
-}
-
-.user-zone {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-deconnecter {
-  background-color: #e53e3e;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.btn-deconnecter:hover {
-  background-color: #c53030;
 }

@@ -33,7 +33,9 @@ public class Candidature {
         EN_ATTENTE,
         ACCEPTEE,
         REFUSEE,
-        EN_COURS_TRAITEMENT
+        EN_COURS_TRAITEMENT,
+        CONFIRMEE,
+        REFUSEE_ETUDIANT
     }
 
     @PrePersist

@@ -9,6 +9,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #f8f8f8;
 }
 
 .navbar {
@@ -17,11 +18,10 @@
   align-items: center;
   padding: 15px 40px;
   border-bottom: 1px solid #ddd;
+  background: white;
 }
 
-.logo {
-  height: 50px;
-}
+.logo { height: 50px; }
 
 .nav-liens {
   display: flex;
@@ -35,8 +35,12 @@
   cursor: pointer;
 }
 
-.nav-liens a:hover {
-  color: #1a56a0;
+.nav-liens a:hover { color: #1a56a0; }
+
+.user-zone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .avatar {
@@ -51,134 +55,174 @@
   font-weight: bold;
 }
 
+.btn-deconnecter {
+  background-color: #e53e3e;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-deconnecter:hover { background-color: #c53030; }
+
 .contenu {
   flex: 1;
   display: flex;
-  gap: 20px;
-  padding: 30px 40px;
-}
-
-.info-box {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  height: fit-content;
-  width: 200px;
-  font-size: 14px;
-  color: #1a56a0;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1.8;
-}
-
-.calendrier {
-  flex: 1;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.header-cal {
-  display: grid;
-  grid-template-columns: 50px repeat(7, 1fr);
-  background: #f5f5f5;
-  border-bottom: 1px solid #ddd;
-}
-
-.heure-col {
-  border-right: 1px solid #ddd;
-}
-
-.jour {
-  display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 0;
-  border-right: 1px solid #ddd;
+  padding: 40px;
+  gap: 30px;
+}
+
+.carte-formulaire {
+  width: 700px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.10);
+  padding: 30px 36px;
+}
+
+.titre-carte {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.titre-carte h2 {
+  color: #1a56a0;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.titre-carte p {
+  color: #888;
   font-size: 13px;
 }
 
-.jour-nom {
-  color: #888;
-  font-size: 11px;
-}
-
-.jour-num {
-  font-weight: bold;
-  color: #333;
-}
-
-.body-cal {
-  overflow-y: auto;
-  max-height: 500px;
-}
-
-.ligne {
+.form-grille {
   display: grid;
-  grid-template-columns: 50px repeat(7, 1fr);
-  border-bottom: 1px solid #eee;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
 }
 
-.heure-label {
-  font-size: 11px;
-  color: #888;
-  padding: 5px;
-  border-right: 1px solid #ddd;
+.champ {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
 }
 
-.creneau {
-  border-right: 1px solid #eee;
-  height: 50px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  text-align: center;
-  transition: background 0.2s;
+.champ label {
+  font-size: 13px;
+  font-weight: bold;
+  color: #1a56a0;
 }
 
-.creneau:hover {
-  background-color: #e8f0fe;
+.champ input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fafbff;
 }
 
-.creneau.disponible {
-  background-color: #1a56a0;
-  color: white;
+.champ input:focus {
+  outline: none;
+  border-color: #1a56a0;
+  background: white;
 }
 
 .boutons {
   display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 24px;
 }
 
 .btn-annuler {
-  border: 1px solid #333;
+  padding: 10px 30px;
   background: white;
+  border: 1px solid #333;
   color: #333;
-  padding: 10px 30px;
   border-radius: 5px;
   font-size: 15px;
   cursor: pointer;
 }
 
-.btn-enregistrer {
-  background-color: #1a56a0;
-  color: white;
+.btn-principal {
   padding: 10px 30px;
+  background: #1a56a0;
   border: none;
+  color: white;
   border-radius: 5px;
   font-size: 15px;
   cursor: pointer;
 }
 
-.btn-enregistrer:hover {
-  background-color: #154080;
+.btn-principal:hover { background: #154080; }
+
+.liste-dispos {
+  width: 700px;
+}
+
+.liste-dispos h2 {
+  color: #1a56a0;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.carte-dispo {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px 22px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dispo-info {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.dispo-date {
+  font-weight: bold;
+  color: #1a56a0;
+  font-size: 15px;
+}
+
+.dispo-heures {
+  color: #555;
+  font-size: 14px;
+}
+
+.btn-supprimer {
+  padding: 8px 16px;
+  background: white;
+  border: 2px solid #e53e3e;
+  color: #e53e3e;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-supprimer:hover {
+  background: #e53e3e;
+  color: white;
+}
+
+.vide {
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  margin-top: 20px;
 }
 
 .footer {
@@ -186,6 +230,7 @@
   color: white;
   text-align: center;
   padding: 20px;
+  margin-top: 40px;
 }
 
 .footer-liens {
@@ -202,26 +247,3 @@
   font-size: 13px;
   cursor: pointer;
 }
-
-.user-zone {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-deconnecter {
-  background-color: #e53e3e;
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.btn-deconnecter:hover {
-  background-color: #c53030;
-}
-

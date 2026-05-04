@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -22,23 +22,30 @@ export class Soutenances implements OnInit {
   succes: string = '';
 
   constructor(
-    private http: HttpClient,
     private router: Router,
-    private storage: StorageService
+    private http: HttpClient,
+    private storage: StorageService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.http.get<any[]>('http://localhost:8080/api/soutenances')
       .subscribe({
-        next: (data) => this.soutenances = data,
+        next: (soutenancesData) => {
+          this.http.get<any[]>('http://localhost:8080/api/etudiants')
+            .subscribe({
+              next: (etudiantsData) => {
+                this.etudiants = etudiantsData;
+                this.soutenances = soutenancesData.map(s => {
+                  s.etudiant = etudiantsData.find(e => e.id == s.etudiantId);
+                  return s;
+                });
+                this.cdr.detectChanges();
+              },
+              error: () => console.log('Erreur chargement étudiants')
+            });
+        },
         error: () => console.log('Erreur chargement soutenances')
-      });
-
-    // Charger les étudiants depuis /api/etudiants au lieu de /api/stages
-    this.http.get<any[]>('http://localhost:8080/api/etudiants')
-      .subscribe({
-        next: (data) => this.etudiants = data,
-        error: () => console.log('Erreur chargement étudiants')
       });
   }
 
@@ -58,23 +65,24 @@ export class Soutenances implements OnInit {
       .subscribe({
         next: (data) => {
           data.etudiant = etudiantChoisi;
-          this.soutenances.push(data);
+          this.soutenances = [...this.soutenances, data];
           this.succes = 'Soutenance ajoutée avec succès !';
           this.etudiantSelectionne = '';
           this.date = '';
           this.salle = '';
           this.heure = '';
+          this.cdr.detectChanges();
         },
         error: () => console.log('Erreur ajout soutenance')
       });
   }
 
   supprimer(soutenance: any) {
-    const id = soutenance.id || soutenance.idCreneau || soutenance.id_creneau;
-    this.http.delete(`http://localhost:8080/api/soutenances/${id}`)
+    this.http.delete(`http://localhost:8080/api/soutenances/${soutenance.id}`)
       .subscribe({
         next: () => {
-          this.soutenances = this.soutenances.filter(s => s !== soutenance);
+          this.soutenances = [...this.soutenances.filter(s => s.id !== soutenance.id)];
+          this.cdr.detectChanges();
         },
         error: () => console.log('Erreur suppression soutenance')
       });
@@ -84,5 +92,4 @@ export class Soutenances implements OnInit {
     this.storage.removeItem('utilisateur');
     this.router.navigate(['/']);
   }
-
 }

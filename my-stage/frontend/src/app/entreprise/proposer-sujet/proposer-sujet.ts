@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -23,6 +24,8 @@ export class ProposerSujet {
   succes: string = '';
   erreur: string = '';
 
+  private platformId = inject(PLATFORM_ID);
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -37,6 +40,7 @@ export class ProposerSujet {
   }
 
   publierOffre() {
+    if (!isPlatformBrowser(this.platformId)) return;
     const utilisateur = JSON.parse(localStorage.getItem('utilisateur') || '{}');
     const entrepriseId = utilisateur.id;
 
@@ -52,9 +56,7 @@ export class ProposerSujet {
         this.succes = 'Offre publiée avec succès !';
         setTimeout(() => this.router.navigate(['/entreprise/propositions']), 2000);
       },
-      error: () => {
-        this.erreur = 'Erreur lors de la publication';
-      }
+      error: () => this.erreur = 'Erreur lors de la publication'
     });
   }
 
@@ -62,5 +64,4 @@ export class ProposerSujet {
     this.storage.removeItem('utilisateur');
     this.router.navigate(['/']);
   }
-
 }

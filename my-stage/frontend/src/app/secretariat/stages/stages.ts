@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -14,31 +14,37 @@ import { StorageService } from '../../services/storage.service';
 })
 export class Stages implements OnInit {
 
-  promotionSelectionnee: string = 'master1';
-  stages: any[] = [];
-  stagesFiltres: any[] = [];
+  candidatures: any[] = [];
+  candidaturesFiltrees: any[] = [];
+  recherche: string = '';
   erreur: string = '';
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private storage: StorageService
+    private storage: StorageService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
-    this.http.get<any[]>('http://localhost:8080/api/stages').subscribe({
+    this.http.get<any[]>('http://localhost:8080/api/candidatures').subscribe({
       next: (data) => {
-        this.stages = data;
-        this.stagesFiltres = data;
+        this.candidatures = data.filter(c => c.statut === 'CONFIRMEE');
+        this.candidaturesFiltrees = [...this.candidatures];
+        this.cdr.detectChanges();
       },
       error: () => this.erreur = 'Erreur lors du chargement des stages'
     });
   }
 
-  rechercher() {
-    // filtre sur le niveau de l'étudiant lié à la candidature — ici on filtre sur le statut ou titre en attendant un vrai champ promotion
-    this.stagesFiltres = this.stages.filter(stage =>
-      stage.statut?.toLowerCase() !== 'refuse'
+  filtrer() {
+    const r = this.recherche.toLowerCase();
+    this.candidaturesFiltrees = this.candidatures.filter(c =>
+      c.etudiant?.utilisateur?.nom?.toLowerCase().includes(r) ||
+      c.etudiant?.utilisateur?.prenom?.toLowerCase().includes(r) ||
+      c.stage?.titre?.toLowerCase().includes(r) ||
+      c.stage?.entreprise?.nomEntreprise?.toLowerCase().includes(r) ||
+      c.etudiant?.niveau?.toLowerCase().includes(r)
     );
   }
 

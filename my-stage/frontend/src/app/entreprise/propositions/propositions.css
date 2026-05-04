@@ -62,13 +62,14 @@
 }
 
 .carte-propositions {
-  width: 470px;
+  width: 700px;
   background: white;
   border: 1px solid #ddd;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
   overflow: hidden;
 }
+
 
 .titre-carte {
   border-bottom: 1px solid #9bb2de;
@@ -93,6 +94,10 @@
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+  padding: 16px;
+  border: 1px solid #e8eef8;
+  border-radius: 8px;
+  background: #f8faff;
 }
 
 .infos {
@@ -166,5 +171,20 @@
 }
 
 .btn-deconnecter:hover {
+  background-color: #c53030;
+}
+
+.btn-supprimer {
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  align-self: center;
+}
+
+.btn-supprimer:hover {
   background-color: #c53030;
 }

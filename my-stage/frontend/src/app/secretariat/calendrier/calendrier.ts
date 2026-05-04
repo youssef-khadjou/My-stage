@@ -1,7 +1,8 @@
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
 import { StorageService } from '../../services/storage.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-calendrier-secretariat',
@@ -9,37 +10,83 @@ import { StorageService } from '../../services/storage.service';
   templateUrl: './calendrier.html',
   styleUrl: './calendrier.css'
 })
-export class Calendrier {
-  mois: string[] = [
-    'Janvier 2026', 'Février 2026', 'Mars 2026', 'Avril 2026',
-    'Mai 2026', 'Juin 2026', 'Juillet 2026', 'Août 2026',
-    'Septembre 2026', 'Octobre 2026', 'Novembre 2026', 'Décembre 2026'
-  ];
+export class Calendrier implements OnInit {
 
-  indexMois: number = 5;
-  jourSelectionne: number = 18;
-  joursDuMois: number[] = Array.from({ length: 31 }, (_, i) => i + 1);
-  joursInactifs: number[] = [1, 2, 3, 4];
+  mois: number = new Date().getMonth();
+  annee: number = new Date().getFullYear();
+  jourSelectionne: number = new Date().getDate();
+  jours: number[] = [];
+  soutenances: any[] = [];
+  toutesLesSoutenances: any[] = [];
+
+  nomsMois = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+    'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 
   constructor(
     private router: Router,
-    private storage: StorageService
+    private storage: StorageService,
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef
   ) {}
 
-  get moisActuel(): string {
-    return this.mois[this.indexMois];
+  get nomMoisActuel(): string {
+    return this.nomsMois[this.mois];
+  }
+
+  ngOnInit() {
+    this.genererCalendrier();
+    this.http.get<any[]>('http://localhost:8080/api/soutenances')
+      .subscribe({
+        next: (data) => {
+          this.toutesLesSoutenances = data;
+          this.filtrerSoutenances();
+          this.cdr.detectChanges();
+        },
+        error: () => console.log('Erreur chargement soutenances')
+      });
+  }
+
+  filtrerSoutenances() {
+    const dateSelectionnee = `${this.annee}-${String(this.mois + 1).padStart(2, '0')}-${String(this.jourSelectionne).padStart(2, '0')}`;
+    this.soutenances = this.toutesLesSoutenances.filter(s => s.dateSoutenance === dateSelectionnee);
+  }
+
+  genererCalendrier() {
+    const premierJour = new Date(this.annee, this.mois, 1).getDay();
+    const nbJours = new Date(this.annee, this.mois + 1, 0).getDate();
+    const decalage = premierJour === 0 ? 6 : premierJour - 1;
+    this.jours = [];
+    for (let i = 0; i < decalage; i++) this.jours.push(0);
+    for (let i = 1; i <= nbJours; i++) this.jours.push(i);
   }
 
   moisPrecedent() {
-    if (this.indexMois > 0) this.indexMois--;
+    if (this.mois === 0) { this.mois = 11; this.annee--; }
+    else this.mois--;
+    this.genererCalendrier();
+    this.filtrerSoutenances();
   }
 
   moisSuivant() {
-    if (this.indexMois < this.mois.length - 1) this.indexMois++;
+    if (this.mois === 11) { this.mois = 0; this.annee++; }
+    else this.mois++;
+    this.genererCalendrier();
+    this.filtrerSoutenances();
   }
 
   selectionnerJour(jour: number) {
     this.jourSelectionne = jour;
+    this.filtrerSoutenances();
+  }
+
+  aSoutenance(jour: number): boolean {
+    if (jour === 0) return false;
+    const date = `${this.annee}-${String(this.mois + 1).padStart(2, '0')}-${String(jour).padStart(2, '0')}`;
+    return this.toutesLesSoutenances.some(s => s.dateSoutenance === date);
+  }
+
+  trackByJour(index: number, jour: number): number {
+    return index;
   }
 
   deconnecter() {

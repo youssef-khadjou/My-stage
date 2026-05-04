@@ -6,7 +6,6 @@
       <a routerLink="/directeur">Accueil</a>
       <a routerLink="/directeur/profil">Infos personnelles</a>
       <a routerLink="/directeur/validation">Validation sujets</a>
-      <a routerLink="/directeur/publications">Publications</a>
       <a routerLink="/directeur/suivis">Suivis</a>
       <a routerLink="/directeur/soutenances">Soutenances</a>
     </div>
@@ -35,13 +34,6 @@
       <a class="lien">Commencer →</a>
     </div>
 
-    <div class="carte" (click)="naviguer('/directeur/publications')">
-      <span class="icone">📢</span>
-      <h2>Publications</h2>
-      <p>Envoyez les sujets validés aux étudiants</p>
-      <a class="lien">Commencer →</a>
-    </div>
-
     <div class="carte" (click)="naviguer('/directeur/suivis')">
       <span class="icone">📊</span>
       <h2>Suivis</h2>
@@ -49,6 +41,12 @@
       <a class="lien">Commencer →</a>
     </div>
 
+    <div class="carte" (click)="naviguer('/directeur/soutenances')">
+      <span class="icone">🎓</span>
+      <h2>Soutenances</h2>
+      <p>Planifier les soutenances des étudiants</p>
+      <a class="lien">Commencer →</a>
+    </div>
   </div>
 
   <footer class="footer">

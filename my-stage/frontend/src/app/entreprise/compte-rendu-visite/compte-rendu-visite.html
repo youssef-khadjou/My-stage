@@ -22,98 +22,118 @@
     </div>
   </nav>
 
-  <div class="contenu">
+  <div class="contenu" *ngIf="estNavigateur">
 
-    <!-- ETAPE 1 -->
-    <div class="carte-etape1" *ngIf="etape === 1">
-      <div class="titre-etape1">
+    <!-- PARTIE HAUTE : choix du stage -->
+    <div class="carte-selection">
+      <div class="titre-carte">
+        <h2>Sélectionner un stage</h2>
+      </div>
+      <div class="champ">
+        <label>Stage</label>
+        <select [(ngModel)]="stageSelectionne" (ngModelChange)="onStageChange()">
+          <option value="">Choisir un stage</option>
+          <option *ngFor="let s of stages" [value]="s.id.toString()">
+            {{ s.titre }} — {{ s.lieu }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- PARTIE MILIEU : formulaire compte rendu (visible seulement si stage sélectionné) -->
+    <div class="carte-formulaire" *ngIf="stageSelectionne">
+      <div class="titre-carte">
         <h2>Nouveau compte rendu de visite</h2>
         <p>Remplissez ce rapport après chaque visite de suivi</p>
       </div>
 
-      <div class="form-etape1">
-        <div class="colonne">
-          <div class="champ">
-            <label>Stagiaire :</label>
-            <select [(ngModel)]="stagiaire">
-              <option value="">Choisir un stagiaire</option>
-              <option value="stagiaire1">Stagiaire 1</option>
-              <option value="stagiaire2">Stagiaire 2</option>
-              <option value="stagiaire3">Stagiaire 3</option>
-            </select>
-          </div>
+      <div class="form-grille">
 
-          <div class="champ">
-            <label>Type de la visite</label>
-            <select [(ngModel)]="typeVisite">
-              <option value="">Choisir un type de visite</option>
-              <option value="suivi">Visite de suivi</option>
-              <option value="evaluation">Visite d'évaluation</option>
-              <option value="finale">Visite finale</option>
-            </select>
-          </div>
+        <div class="champ">
+          <label>Type de la visite</label>
+          <select [(ngModel)]="typeVisite">
+            <option value="">Choisir un type de visite</option>
+            <option value="suivi">Visite de suivi</option>
+            <option value="evaluation">Visite d'évaluation</option>
+            <option value="finale">Visite finale</option>
+          </select>
         </div>
 
-        <div class="colonne">
-          <div class="champ">
-            <label>Date de la visite</label>
-            <input type="date" [(ngModel)]="dateVisite">
-          </div>
-
-          <div class="champ">
-            <label>Heure de la visite</label>
-            <input type="time" [(ngModel)]="heureVisite">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ETAPE 2 -->
-    <div class="carte-etape2" *ngIf="etape === 2">
-      <div class="grid-etape2">
-
-        <div class="bloc-gauche">
-          <div class="champ-ligne">
-            <label>Présence du stagiaire :</label>
-            <input type="text" [(ngModel)]="presenceStagiaire" placeholder="XXXXXXXXXX">
-          </div>
-
-          <div class="champ-zone">
-            <label>Travaux réalisés depuis dernière visite :</label>
-            <textarea [(ngModel)]="travauxRealises" rows="5" placeholder="XXXXXXXXXX&#10;XXXXXXXXXX&#10;XXXXXXXXXX"></textarea>
-          </div>
-
-          <div class="champ-zone">
-            <label>Évaluation des compétences :</label>
-            <textarea [(ngModel)]="evaluationCompetences" rows="5" placeholder="-XXXXXXXXXX&#10;-XXXXXXXXXX&#10;-XXXXXXXXXX"></textarea>
-          </div>
-
-          <div class="champ-ligne">
-            <label>Points forts :</label>
-            <input type="text" [(ngModel)]="pointsForts" placeholder="XXXXXXXXXX">
-          </div>
+        <div class="champ">
+          <label>Date de la visite</label>
+          <input type="date" [(ngModel)]="dateVisite">
         </div>
 
-        <div class="bloc-droite">
-          <div class="champ-zone">
-            <label>Axes d'amélioration :</label>
-            <textarea [(ngModel)]="axesAmelioration" rows="5" placeholder="XXXXXXXXXX&#10;XXXXXXXXXX&#10;XXXXXXXXXX"></textarea>
-          </div>
+        <div class="champ">
+          <label>Heure de la visite</label>
+          <input type="time" [(ngModel)]="heureVisite">
+        </div>
 
-          <div class="champ-zone">
-            <label>Objectifs pour la prochaine visite :</label>
-            <textarea [(ngModel)]="objectifsProchaineVisite" rows="5" placeholder="XXXXXXXXXX&#10;XXXXXXXXXX&#10;XXXXXXXXXX"></textarea>
-          </div>
+        <div class="champ">
+          <label>Présence du stagiaire</label>
+          <select [(ngModel)]="presenceStagiaire">
+            <option value="">--</option>
+            <option value="Oui">Oui</option>
+            <option value="Non">Non</option>
+          </select>
+        </div>
+
+        <div class="champ pleine-largeur">
+          <label>Travaux réalisés depuis la dernière visite</label>
+          <textarea [(ngModel)]="travauxRealises" rows="3" placeholder="Décrivez les travaux réalisés..."></textarea>
+        </div>
+
+        <div class="champ pleine-largeur">
+          <label>Évaluation des compétences</label>
+          <textarea [(ngModel)]="evaluationCompetences" rows="3" placeholder="Évaluez les compétences..."></textarea>
+        </div>
+
+        <div class="champ">
+          <label>Points forts</label>
+          <textarea [(ngModel)]="pointsForts" rows="3" placeholder="Points forts observés..."></textarea>
+        </div>
+
+        <div class="champ">
+          <label>Axes d'amélioration</label>
+          <textarea [(ngModel)]="axesAmelioration" rows="3" placeholder="Axes à améliorer..."></textarea>
+        </div>
+
+        <div class="champ pleine-largeur">
+          <label>Objectifs pour la prochaine visite</label>
+          <textarea [(ngModel)]="objectifsProchaineVisite" rows="3" placeholder="Objectifs fixés..."></textarea>
         </div>
 
       </div>
+
+      <p *ngIf="erreur" style="color:red; text-align:center; margin-top:10px;">{{ erreur }}</p>
+      <p *ngIf="succes" style="color:green; text-align:center; margin-top:10px;">{{ succes }}</p>
+
+      <div class="boutons">
+        <button class="btn-annuler" (click)="stageSelectionne = ''">Annuler</button>
+        <button class="btn-principal" (click)="soumettre()">Soumettre</button>
+      </div>
     </div>
 
-    <div class="boutons">
-      <button class="btn-annuler" *ngIf="etape === 1" routerLink="/entreprise">Annuler</button>
-      <button class="btn-annuler" *ngIf="etape === 2" (click)="retourEtape1()">Annuler</button>
-      <button class="btn-principal" *ngIf="etape === 1" (click)="confirmer()">Confirmer</button>
-      <button class="btn-principal" *ngIf="etape === 2" (click)="soumettre()">Soumettre</button>
+    <!-- PARTIE BASSE : liste des comptes rendus du stage sélectionné -->
+    <div class="liste-comptes-rendus" *ngIf="stageSelectionne">
+      <h2>Comptes rendus soumis</h2>
+
+      <div class="carte-cr" *ngFor="let cr of comptesRendus">
+        <div class="cr-corps">
+          <div class="cr-info">
+            <p><strong>Stage :</strong> {{ cr.stage?.titre }}</p>
+            <p><strong>Date :</strong> {{ cr.dateVisite | date:'dd/MM/yyyy' }}</p>
+            <p><strong>Type :</strong> {{ cr.nomTuteur }}</p>
+            <p><strong>Présence :</strong> {{ cr.present ? 'Oui' : 'Non' }}</p>
+          </div>
+          <div class="cr-contenu">
+            <p>{{ cr.compteRendu }}</p>
+          </div>
+          <button class="btn-supprimer" (click)="supprimerCompteRendu(cr.id)">Supprimer</button>
+        </div>
+      </div>
+
+      <p *ngIf="comptesRendus.length === 0" class="vide">Aucun compte rendu pour ce stage.</p>
     </div>
 
   </div>

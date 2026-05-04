@@ -3,6 +3,7 @@ package com.monstage.modele;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Représente un sujet de stage proposé par une entreprise.
@@ -83,6 +84,7 @@ public class SujetStage {
     /** L'entreprise qui propose ce sujet */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_entreprise", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Entreprise entreprise;
 
     // ---- Constructeurs ----

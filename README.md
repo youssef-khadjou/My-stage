@@ -69,12 +69,41 @@ My'Stage est une plateforme web de gestion des stages académiques. Elle permet 
 mysql -u root -p
 ```
 
-#### Étape 2 — Créer la base de données
+#### Étape 2 — La base de données
+#### Création de la base de données
 ```sql
 CREATE DATABASE my_stage_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE my_stage_db;
-    
 ```
+
+#### Connexion à la base de données
+Accès via terminal
+```bash
+  cd "C:\Program Files\MariaDB 10.10\bin"
+  .\mysql.exe -u root -p
+```
+
+#### Commandes utiles
+```sql
+-- Afficher toutes les bases de données
+SHOW DATABASES;
+
+-- Utiliser la base du projet
+USE my_stage_db;
+
+-- Afficher toutes les tables
+SHOW TABLES;
+
+-- Voir la structure d'une table
+DESCRIBE utilisateur;
+
+--Voir le contenu d'une table
+SELECT * FROM utilisateur;
+
+-- Quitter
+EXIT;
+```
+    
 #### Étape 3 — Configurer l'accès dans `backend/src/main/resources/application.properties`
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/my_stage_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
